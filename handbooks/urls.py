@@ -23,10 +23,10 @@ router = routers.DefaultRouter()
 router.register(r'equipment', EquipmentView, basename='equipment')
 router.register(r'engine', EngineView, basename='engine')
 router.register(r'transmission', TransmissionView, basename='transmission')
-router.register(r'steeringAxle', SteeringAxleView, basename='steering axle')
-router.register(r'typeOfMaintenance', TypeOfMaintenanceView, basename='type of maintenance')
-router.register(r'recoveryMethod', RecoveryMethodView, basename='recovery method')
-router.register(r'serviceCompany', ServiceCompanyView, basename='service company')
+router.register(r'steering_axle', SteeringAxleView, basename='steering axle')
+router.register(r'type_of_maintenance', TypeOfMaintenanceView, basename='type of maintenance')
+router.register(r'recovery_method', RecoveryMethodView, basename='recovery method')
+router.register(r'service_company', ServiceCompanyView, basename='service company')
 
 
 urlpatterns = [

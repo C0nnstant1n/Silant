@@ -27,4 +27,5 @@ router.extend(handbook_router)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls))
 ]
