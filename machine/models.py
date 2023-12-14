@@ -4,7 +4,7 @@ from handbooks.models import ModelOfSteeringAxle, ServiceCompany
 from django.contrib.auth.models import User
 
 
-class Machine(models.Model):
+class MachineModel(models.Model):
     machine_serial_number = models.TextField(max_length=256)
     model_equipment = models.ForeignKey(ModelOfEquipment, on_delete=models.CASCADE)
     model_engine = models.ForeignKey(ModelOfEngine, on_delete=models.CASCADE)

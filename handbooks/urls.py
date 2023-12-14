@@ -11,18 +11,24 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    1. Import the include() function: from django.urls.py import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls.py'))
 """
-from django.contrib import admin
+
 from django.urls import path, include
-from django.http import HttpResponse
+from rest_framework import routers
+from .views import *
 
-
-def index(request):
-    return HttpResponse("Здесь содержится информация о справочниках")
+router = routers.DefaultRouter()
+router.register(r'equipment', EquipmentView, basename='equipment')
+router.register(r'engine', EngineView, basename='engine')
+router.register(r'transmission', TransmissionView, basename='transmission')
+router.register(r'steeringAxle', SteeringAxleView, basename='steering axle')
+router.register(r'typeOfMaintenance', TypeOfMaintenanceView, basename='type of maintenance')
+router.register(r'recoveryMethod', RecoveryMethodView, basename='recovery method')
+router.register(r'serviceCompany', ServiceCompanyView, basename='service company')
 
 
 urlpatterns = [
-    path('', index, name='handbooks')
+    path('handbooks/', include(router.urls)),
 ]

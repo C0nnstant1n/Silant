@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Machine
+from .models import MachineModel
 
 # Register your models here.
-admin.site.register(Machine)
+admin.site.register(MachineModel)
