@@ -1,0 +1,54 @@
+@import '../vars.scss';
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $main-color3;
+  margin: 0 2rem;
+  border-radius: 0.5rem;
+  flex-grow: 1;
+  .main__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    h2 {
+      width: 70%;
+      text-align: center;
+    }
+    .search_form{
+      max-width: 60%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .form__input, .form__button{
+        min-width: 300px;
+        max-width: 40%;
+        margin: 1rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(22, 62, 108, 0.3);
+      }
+      .form__button{
+        min-width: 100px;
+        max-width: 15%;
+      }
+    }
+  }
+  .main__article, .main__search_result{
+    width: 90%;
+    height: 3rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(22, 62, 108, 0.3);
+  }
+  .main__search_result{
+    width: 90%;
+    height: 100%;
+    overflow: scroll;
+  }
+}

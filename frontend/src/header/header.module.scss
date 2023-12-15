@@ -1,0 +1,42 @@
+@import '../vars.scss';
+header {
+  .header__logo{
+    img {
+      margin-left: 1rem;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .header__nav {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+  h2{
+    text-align: center;
+  }
+  .header__button {
+    margin-right: 2rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: $main-color1;
+    color: $main-color3;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+  .header__button:hover {
+    border-color: $main-color2;
+  }
+  .header__button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+
+

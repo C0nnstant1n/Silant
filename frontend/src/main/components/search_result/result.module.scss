@@ -1,0 +1,13 @@
+@import '../../../vars.scss';
+.result_table{
+    width: 100%;
+    thead{
+        font-weight: bold;
+        tr{
+            td{
+                border: 2px inset #163E6C;
+            }
+        }
+
+    }
+}
