@@ -1,0 +1,71 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block content %}
+
+{#<form method="post" action="{% url 'login' %}">#}
+{#{% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <input type="submit" value="login">#}
+{#    <input type="hidden" name="next" value="{{ next }}">#}
+{#</form>#}
+    
+    
+    <div class='authorization'>
+    <div class='authorization__form'>
+        <div class='form__top'>
+            <div class='top__container'>
+                <h2>
+                    <a class='active_tab' href='#'>
+                        Войти
+                    </a>
+                </h2>
+                <hr/>
+            </div>
+            <div class='inactive_tab'>
+                <h2>
+                    <a class='inactive_tab' href='#'>
+                        Зарегистрироваться
+                    </a>
+                </h2>
+                <hr/>
+            </div>
+        </div>
+
+        <Form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <label for='login'>Логин</label>
+            <input
+                id='login'
+                name='username'
+                type='text'
+                required
+                minLength={8}
+            />
+            <label for='password'>Пароль</label>
+            <input
+                id='password'
+                name='password'
+                type='password'
+                minLength={7}
+                required
+            />
+            <button
+                type='submit'
+            >
+                Вход
+            </button>
+        </Form>
+
+        <a href='#'>Восстановить пароль</a>
+
+        <div class='alternative_signin'>
+            <p>Войти через:</p>
+            <div class='alternative_signin_links'>
+                <img src="{% static 'img/google_button.svg'%}" alt="google"/>
+                <img src="{% static 'img/yandex_button.svg'%}" alt="yandex"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

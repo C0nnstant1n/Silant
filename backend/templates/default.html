@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мой Силант</title>
+    <link rel="stylesheet" crossorigin href="{% static 'styles/index.css' %}">
+  </head>
+    <body>
+    <div id="root">
+        <header>
+            <picture class="header__logo">
+                <img src="{% static 'img/Logotype accent RGB 1.svg' %}" alt="Logo"></picture>
+            <div>
+                <nav class="header__nav">
+                <a href="#">+7-8352-20-12-09</a>
+                <a href="#">telegram</a>
+                </nav>
+                <h2>Электронная сервисная книжка "Мой Силант"</h2>
+            </div>
+            {% if user.is_authenticated  %}
+                <div class="account">
+                  <div class="account__name">
+                    <span>{{user}}</span>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="account__name_button" type="submit"> Выход</button>
+                    </form>
+                  </div>
+                </div>
+            {% else %}
+                <a href="/accounts/login/" class="header__button">Вход</a>
+            {% endif %}
+        </header>
+        <main>
+            
+            {% block content %}
+            {% endblock content %}
+            
+        </main>
+        <footer>
+            <picture class="_footer__logo_1awpq_1">
+                <img src="{% static 'img/Logotype accent RGB 1.svg' %}" alt="logo">
+            </picture>
+            <nav class="_footer__container_1awpq_6">
+                <a href="#">+7-8352-20-12-09</a>
+                <a href="#">telegram</a>
+            </nav>
+            <section class="_footer__copyright_1awpq_12">
+                <p>Мой Силант 2022 ®</p>
+            </section>
+        </footer></div>
+</body>
+</html>

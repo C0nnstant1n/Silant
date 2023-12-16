@@ -28,4 +28,8 @@ router.register(r'type_of_maintenance', TypeOfMaintenanceView, basename='type_of
 router.register(r'recovery_method', RecoveryMethodView, basename='recovery_method')
 router.register(r'service_company', ServiceCompanyView, basename='service_company')
 
+urlpatterns = [
+    path('', index, name='index')
+]
+
 

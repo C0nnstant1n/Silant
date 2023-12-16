@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from rest_framework import viewsets
 from .serializer import *
 from .models import *
@@ -50,4 +50,4 @@ class ServiceCompanyView(viewsets.ModelViewSet):
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the")
+    return render(request, 'default.html')
