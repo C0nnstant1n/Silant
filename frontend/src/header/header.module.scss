@@ -36,6 +36,40 @@ header {
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
+  .account {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 2rem;
+    a {
+      color: #ebe6d6;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .account__name {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      opacity: 0.7;
+      font-size: 0.875rem;
+    }
+    .account__name_button {
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-size: 0.625rem;
+      opacity: 0.4;
+      cursor: pointer;
+      color: $main-color1;
+
+      &:hover {
+        color: $main-color2;
+        opacity: 1;
+      }
+    }
+  }
 }
 
 

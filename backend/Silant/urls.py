@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework import routers
+
+from Silant import logout
 from complaints.urls import router as complaints_router
 from maintenance.urls import router as maintenance_router
 from machine.urls import router as machine_router
@@ -36,4 +38,6 @@ urlpatterns = [
     path('api/swagger-ui/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('', include('handbooks.urls')),
+    path('', include('setCookie.urls')),
+    path('logout', logout.logout_view, name='logout')
 ]

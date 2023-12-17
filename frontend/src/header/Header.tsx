@@ -1,7 +1,9 @@
 import logo from '../assets/Logotype accent RGB 1.svg'
 import styles from './header.module.scss'
+import {username} from "../scripts/get_coockies.ts";
 
 export default function Header(){
+
     return(
         <header>
             <picture className={styles.header__logo}>
@@ -14,7 +16,15 @@ export default function Header(){
                 </nav>
                 <h2>Электронная сервисная книжка "Мой Силант"</h2>
             </div>
-            <button className={styles.header__button}>Вход</button>
+            {username && username !='undefined' ?
+            <div className={styles.account}>
+                <div className={styles.account__name}>
+                    <span>{username}</span>
+                    <a href="http://127.0.0.1:8000/logout" className={styles.account__name_button}>выход</a>
+                </div>
+                
+            </div>
+        : <a className={styles.header__button} href="http://127.0.0.1:8000/accounts/login/">Вход</a>}
 
         </header>
     )
