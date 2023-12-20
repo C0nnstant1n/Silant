@@ -1,36 +1,38 @@
 import styles from './main.module.scss'
-import {useLocation, Form, Outlet} from "react-router-dom";
+import {Form, Outlet, useActionData} from "react-router-dom";
+import {username} from "../scripts/get_coockies.ts";
+
 
 export default function Main(){
-    let location = useLocation();
-    let params = new URLSearchParams(location.search);
-    let from = params.get("sn") || "/";
-    // let navigation = useNavigation();
-
-
+    let actionData = useActionData() as { error: string } | undefined;
+    if (username === 'undefined'){
+        console.log(username)
+        fetch("http://127.0.0.1:8000/logout").then((response)=> console.log(response.statusText))
+    }
     return(
         <>
-            <section className={styles.main__form}>
-                <h2>Проверьте комплектацию и технические характеристики техники Силант</h2>
-                <Form className={styles.search_form} method="post" replace>
-                    <input type="hidden" name="redirectTo" value={from}/>
-                    <input className={styles.form__input} type="text" placeholder="Заводской номер" name="sn"/>
-                    <button className={styles.form__button}>поиск</button>
-                </Form>
-            </section>
-            <hr/>
-            <section className={styles.main__article}>
-                <p>Информация о комплектации и технических характеристиках Вашей техники</p>
-            </section>
-            <hr/>
+        <section className={styles.main__form}>
+            <h2>Проверьте комплектацию и технические характеристики техники Силант</h2>
+            <Form className={styles.search_form} method="post" replace>
+                <input className={styles.form__input} type="text" placeholder="Заводской номер"
+                       name="machine_serial_number"/>
+                <button className={styles.form__button}>поиск</button>
+            </Form>
+            {actionData && actionData.error ? (
+                <p style={{color: "red"}}>{actionData.error}</p>
+            ) : null}
+        </section>
+        <hr/>
+        <section className={styles.main__article}>
+            <p>Информация о комплектации и технических характеристиках Вашей техники</p>
+        </section>
+        <hr/>
+        <div className={styles.result_container}>
             <section className={styles.main__search_result}>
-                <Outlet />
+                <Outlet/>
             </section>
-            <hr/>
-        </>
-    )
+        </div>
+    <hr/>
+</>
+)
 }
-
-// function getMachine(){
-//
-// }

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+
 from .serializer import *
 from .models import *
 
@@ -17,6 +19,7 @@ class EngineView(viewsets.ModelViewSet):
 class TransmissionView(viewsets.ModelViewSet):
     queryset = ModelOfTransmission.objects.all()
     serializer_class = TransmissionSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class DriveAxleView(viewsets.ModelViewSet):

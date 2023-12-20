@@ -15,5 +15,6 @@ function getCookie(name: string) {
 }
 const csrftoken = getCookie("csrftoken");
 const username: string|null = getCookie('username')
+const sessionid = getCookie("sessionid")
 
-export {csrftoken, username}
+export {csrftoken, username, sessionid}

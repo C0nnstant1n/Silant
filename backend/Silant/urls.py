@@ -35,6 +35,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
     path('api/swagger-ui/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('', include('handbooks.urls')),

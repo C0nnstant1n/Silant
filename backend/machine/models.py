@@ -19,7 +19,7 @@ class MachineModel(models.Model):
     date_shipped_from_factory = models.DateField()
     consignee = models.TextField(max_length=256)
     delivery_address = models.TextField(max_length=256)
-    equipment = models.TextField(max_length=256)
+    equipment = models.TextField(max_length=256, blank=True)
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     service_company = models.ForeignKey(ServiceCompany, on_delete=models.CASCADE)
 

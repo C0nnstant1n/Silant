@@ -5,8 +5,13 @@ import Footer from "./footer/footer.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "./error-page.tsx";
 import Main from "./main/main.tsx";
-import Result from "./main/components/search_result/Result.tsx";
-import {findAction, findLoader} from "./scripts/search.ts";
+import ResultShMachine from "./main/components/search_result/ResultShMachine.tsx";
+import {findAction} from "./scripts/actions.ts";
+import {Provider} from "react-redux";
+import {store} from "./redux";
+import {service} from "./main/components/service/service.tsx";
+import {authenticatedLoader} from "./scripts/loaders.ts";
+
 
 const router = createBrowserRouter([
     {
@@ -18,11 +23,13 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'result',
-                loader: findLoader,
-                element: <Result />
-            }
+                element: <ResultShMachine />,
+                loader: authenticatedLoader,
+                errorElement: <ErrorPage />,
+            },
         ]
     },
+    service
 ])
 
 function App() {
@@ -31,7 +38,9 @@ function App() {
     <>
       <Header />
         <main>
-            <RouterProvider router={router} />
+            <Provider store={store}>
+                <RouterProvider router={router} />
+            </Provider>
         </main>
       <Footer />
     </>

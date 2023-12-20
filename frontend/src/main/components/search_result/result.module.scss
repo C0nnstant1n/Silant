@@ -1,4 +1,12 @@
 @import '../../../vars.scss';
+
+.search_result__container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .result_table{
     width: 100%;
     thead{

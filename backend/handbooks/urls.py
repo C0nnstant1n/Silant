@@ -29,7 +29,8 @@ router.register(r'recovery_method', RecoveryMethodView, basename='recovery_metho
 router.register(r'service_company', ServiceCompanyView, basename='service_company')
 
 urlpatterns = [
-    path('', index, name='index')
+    path('', index, name='index'),
+    path('api/handbooks/', include(router.urls))
 ]
 
 
