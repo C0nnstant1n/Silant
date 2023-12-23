@@ -20,6 +20,7 @@ const router = createBrowserRouter([
         element: <Main />,
         action: findAction,
         errorElement: <ErrorPage />,
+        loader: authenticatedLoader,
         children: [
             {
                 path: 'result',
@@ -36,13 +37,13 @@ function App() {
 
   return (
     <>
-      <Header />
+    <Provider store={store}>
+        <Header />
         <main>
-            <Provider store={store}>
                 <RouterProvider router={router} />
-            </Provider>
         </main>
       <Footer />
+    </Provider>
     </>
   )
 }

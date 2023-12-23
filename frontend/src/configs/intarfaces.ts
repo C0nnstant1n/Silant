@@ -1,29 +1,36 @@
+interface IUser {
+    user: string,
+    username: string,
+    group?: string,
+    company?: string
+}
+interface IHandbook{
+    id: number,
+    name: string,
+    description: string,
+    user?: number
+}
 interface IMachine {
     "id": number,
-    "model_equipment": string,
+    "model_equipment": IHandbook,
     "machine_serial_number": string,
-    "model_engine": string,
+    "model_engine": IHandbook,
     "engine_serial_number": string,
-    "model_transmission": string,
+    "model_transmission": IHandbook,
     "transmission_serial_number": string,
-    "model_drive_axle": string,
+    "model_drive_axle": IHandbook,
     "drive_axle_serial_number": string,
-    "steering_axle": string,
+    "steering_axle": IHandbook,
     "steering_axle_serial_number": string,
     "date_shipped_from_factory": string,
-    "client": string,
-    "consignee": string,
+    "client": IHandbook,
+    "consignee": IHandbook,
     "delivery_address": string,
     "equipment": string,
-    "service_company": string,
+    "service_company": IHandbook,
     supply_contract: string,
 }
-interface IResponsetMachine {
-    count: number,
-    next: number | null,
-    previous: number|null,
-    results: [IMachine]
-}
+
 interface IShMachine {
     "id": number,
     "model_equipment": string,
@@ -37,11 +44,30 @@ interface IShMachine {
     "steering_axle": string,
     "steering_axle_serial_number": string,
 }
-interface IResponseShMachine {
-    count: number,
-    next: number | null,
-    previous: number|null,
-    results: [IShMachine]
+
+interface IMainentance {
+    "id": number,
+    "maintenance_date": string,
+    "operating_time": string,
+    "order_number": number,
+    "order_data": string,
+    "maintenance_type": IHandbook,
+    "machine": string,
+    "service_company": IHandbook
+}
+
+interface IComplaint {
+    "id": number,
+    "date_refusal": string,
+    "operating_time": number,
+    "description": string,
+    "spare_parts": string,
+    "recovery_date": string,
+    "equipment_downtime": number,
+    "failure_node": string,
+    "recovery_method": string,
+    "machine": string,
+    "service_company": string
 }
 
 interface IResponse {
@@ -51,4 +77,6 @@ interface IResponse {
     results: []
 }
 
-export type {IResponse, IShMachine, IResponseShMachine, IResponsetMachine, IMachine}
+
+export type {IResponse, IShMachine, IMachine, IMainentance, IComplaint,
+    IHandbook, IUser}

@@ -1,10 +1,10 @@
-import {machineApi} from "../../../../redux/machine.ts";
-import styles from "../../search_result/result.module.scss";
-import {IMachine} from "../../../../configs/intarfaces.ts";
-import MachineTable from "./machine_tables.tsx";
+import {machineApi} from "../../../../../redux/machine.ts";
+import styles from "../../../search_result/result.module.scss";
+import {IMachine} from "../../../../../configs/intarfaces.ts";
+import MachineTable from "./machine_table.tsx";
 
 export default function Info(){
-    const {data: machine, error, isLoading} = machineApi.useGetMachineQuery('')
+    const {data: machine, error, isLoading} = machineApi.useGetMachinesQuery('')
     // console.log(machine)
     return (
         <>{
@@ -32,8 +32,7 @@ export default function Info(){
             :
             < table className = {styles.result_table} >
                 < thead >
-                < tr >
-                    <td>№ п / п </td>
+                < tr>
                     <td>Модель техники</td>
                     <td>Зав. № машины</td>
                     <td>Модель Двигателя</td>

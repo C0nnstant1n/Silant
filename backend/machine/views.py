@@ -15,8 +15,9 @@ class MachineViewSet(viewsets.ModelViewSet):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
         if 'Manager' in group:
-            return MachineModel.objects.all()
-        return MachineModel.objects.filter(Q(client=user) | Q(service_company__user=user))
+            return MachineModel.objects.all().order_by('-date_shipped_from_factory')
+        return (MachineModel.objects.filter(Q(client=user) | Q(service_company__user=user)).
+                order_by('-date_shipped_from_factory'))
 
 
 class SharedMachineViewSet(generics.ListAPIView, viewsets.ModelViewSet):

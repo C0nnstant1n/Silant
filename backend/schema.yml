@@ -1752,6 +1752,14 @@ components:
         id:
           type: integer
           readOnly: true
+        machine:
+          type: string
+        recovery_method:
+          type: string
+        service_company:
+          type: string
+        failure_node:
+          type: string
         date_refusal:
           type: string
           format: date
@@ -1771,14 +1779,6 @@ components:
           maximum: 9223372036854775807
           minimum: -9223372036854775808
           format: int64
-        failure_node:
-          type: integer
-        recovery_method:
-          type: integer
-        machine:
-          type: integer
-        service_company:
-          type: integer
       required:
       - date_refusal
       - description
@@ -1889,6 +1889,12 @@ components:
         id:
           type: integer
           readOnly: true
+        maintenance_type:
+          type: string
+        service_company:
+          type: string
+        machine:
+          type: string
         maintenance_date:
           type: string
           format: date
@@ -1902,12 +1908,6 @@ components:
         order_data:
           type: string
           format: date
-        maintenance_type:
-          type: integer
-        machine:
-          type: integer
-        service_company:
-          type: integer
       required:
       - id
       - machine
@@ -2143,6 +2143,14 @@ components:
         id:
           type: integer
           readOnly: true
+        machine:
+          type: string
+        recovery_method:
+          type: string
+        service_company:
+          type: string
+        failure_node:
+          type: string
         date_refusal:
           type: string
           format: date
@@ -2162,14 +2170,6 @@ components:
           maximum: 9223372036854775807
           minimum: -9223372036854775808
           format: int64
-        failure_node:
-          type: integer
-        recovery_method:
-          type: integer
-        machine:
-          type: integer
-        service_company:
-          type: integer
     PatchedEngine:
       type: object
       properties:
@@ -2244,6 +2244,12 @@ components:
         id:
           type: integer
           readOnly: true
+        maintenance_type:
+          type: string
+        service_company:
+          type: string
+        machine:
+          type: string
         maintenance_date:
           type: string
           format: date
@@ -2257,12 +2263,6 @@ components:
         order_data:
           type: string
           format: date
-        maintenance_type:
-          type: integer
-        machine:
-          type: integer
-        service_company:
-          type: integer
     PatchedRecoveryMethod:
       type: object
       properties:

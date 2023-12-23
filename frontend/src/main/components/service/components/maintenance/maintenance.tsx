@@ -1,12 +1,15 @@
-import {maintenanceApi} from "../../../../redux/maintenance.ts";
-import styles from "../../search_result/result.module.scss";
+import {maintenanceApi} from "../../../../../redux/maintenance.ts";
+import styles from "../../../search_result/result.module.scss";
+import MaintenanceTable from "./maintenance_table.tsx";
+import {IMainentance} from "../../../../../configs/intarfaces.ts";
 
 
 export default function Maintenance(){
-    const {data: maintenance, error, isLoading} = maintenanceApi.useGetMaintenanceQuery('')
-    console.log(maintenance)
-    console.log(error)
-    console.log(isLoading)
+    const {
+        data: maintenance,
+        error,
+        isLoading} = maintenanceApi.useGetMaintenanceQuery('')
+
     return(
         <>
             {
@@ -35,18 +38,23 @@ export default function Maintenance(){
                                 <table className={styles.result_table}>
                                     <thead>
                                     <tr>
-                                        <td>Тип ТО</td>
+                                        <td>Зав. № машины</td>
+                                        <td>Вид ТО</td>
                                         <td>Дата Проведения ТО</td>
                                         <td>Наработка, м/час</td>
                                         <td>№ Заказ-наряда</td>
-                                        <td>Сервисная компания</td>
-                                        <td>Машина</td>
+                                        <td>Дата Заказ-наряда</td>
+                                        <td>Организация проводившая ТО</td>
                                     </tr>
                                     </thead>
+                                    <tbody>
+                                        {maintenance && maintenance.results
+                                            .map((table: IMainentance) =>
+                                                <MaintenanceTable maintenance={table} key={table.id} />)}
+                                    </tbody>
                                 </table>
                             )
                     )
-
             }
         </>
     )

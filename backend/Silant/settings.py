@@ -140,7 +140,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/s/'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:3000/service/info'
 LOGOUT_REDIRECT_URL = 'http://127.0.0.1:3000'
 
 REST_FRAMEWORK = {
