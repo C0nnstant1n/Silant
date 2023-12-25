@@ -75,7 +75,7 @@ main{
       flex-wrap: wrap;
       a{
         min-width: 140px;
-        margin: 1rem 0;
+        margin-top: 1rem;
         border-radius: 0.4rem;
         border: 1px solid $main-color1;
         padding: 0.6em 1.2em;
@@ -92,6 +92,10 @@ main{
           border: 1px solid $main-color2;
         }
       }
+    }
+
+    .create_link{
+      margin: 2rem 0;
     }
   }
   .main__search_result{

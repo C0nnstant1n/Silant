@@ -9,7 +9,8 @@ export default function ResultShMachine(){
     let params = new URLSearchParams(location.search);
     // console.log(params.get('id'))
 
-        const {data: machine, error, isLoading} = shmachineApi.useGetMachineQuery(params.get('machine_serial_number'))
+        const {data: machine, error, isLoading} =
+            shmachineApi.useGetMachineQuery(params.get('machine_serial_number'))
         // console.log(error)
         // console.log(machine)
 

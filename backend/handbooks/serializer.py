@@ -1,13 +1,15 @@
 from django.contrib.auth.models import User
+from django.template import Engine
 
-from .models import ModelOfEquipment, ModelOfEngine, ModelOfTransmission, ModelOfDriveAxle
+from machine.models import MachineModel
+from .models import ModelOfEngine, ModelOfTransmission, ModelOfDriveAxle, Client
 from .models import ModelOfSteeringAxle, TypeOfMaintenance, NatureOfFailure, RecoveryMethod, ServiceCompany
 from rest_framework import serializers
 
 
-class EquipmentSerializer(serializers.ModelSerializer):
+class MachineModelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ModelOfEquipment
+        model = MachineModel
         fields = '__all__'
 
 
@@ -58,3 +60,15 @@ class ServiceCompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = ServiceCompany
         fields = ['id', 'name', 'description']
+
+
+class ClientSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Client
+        fields = ['id', 'name', 'description']
+
+    def get_name(self, obj):
+        return '{} {}'.format(obj.user.first_name, obj.user.last_name)
+

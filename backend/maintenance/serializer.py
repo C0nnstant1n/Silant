@@ -1,6 +1,4 @@
 from rest_framework import serializers
-
-from handbooks.models import RecoveryMethod, ServiceCompany
 from handbooks.serializer import ServiceCompanySerializer, TypeOfMaintenanceSerializer
 from machine.models import MachineModel
 from .models import MaintenanceModel

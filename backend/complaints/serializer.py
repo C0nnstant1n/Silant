@@ -10,6 +10,7 @@ class ComplaintsSerializer(serializers.ModelSerializer):
     recovery_method = serializers.SlugRelatedField(queryset=RecoveryMethod.objects.all(), slug_field='name')
     service_company = serializers.SlugRelatedField(queryset=ServiceCompany.objects.all(), slug_field='name')
     failure_node = serializers.SlugRelatedField(queryset=NatureOfFailure.objects.all(), slug_field='name')
+
     class Meta:
         model = ComplaintsModel
         fields = '__all__'

@@ -2,7 +2,7 @@ import styles from "./result.module.scss"
 import {useLocation} from "react-router-dom";
 import {shmachineApi} from "../../../redux/shmachine.ts";
 import TString from "./TString.tsx";
-import {IMachine} from "../../../configs/intarfaces.ts";
+import {IShMachine} from "../../../configs/intarfaces.ts";
 import {username} from "../../../scripts/get_coockies.ts";
 
 export default function Result(){
@@ -56,7 +56,7 @@ export default function Result(){
                 </tr>
                 </thead>
                 <tbody>
-                {machine && machine.map((machine: IMachine) => <TString machine={machine} key={machine.id}/>)}
+                {machine && machine.results.map((machine: IShMachine) => <TString machine={machine} key={machine.id}/>)}
                 </tbody>
             </table>
         )

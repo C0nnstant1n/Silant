@@ -1,6 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {BACKAND_URL, MACHINE_URL} from "../configs/urls.ts";
+import {BACKAND_URL, CREATE_MACHINE_URL, MACHINE_URL} from "../configs/urls.ts";
 import {IMachine, IResponse} from "../configs/intarfaces.ts";
+import {csrftoken} from "../scripts/get_coockies.ts";
 
 export const machineApi = createApi({
     reducerPath: "machineApi",
@@ -17,6 +18,17 @@ export const machineApi = createApi({
                 url: MACHINE_URL + arg,
                 credentials: 'include',
             })
-        })
+        }),
+        createMachine: build.mutation<IMachine, IMachine>({
+            query: (machine: IMachine)=> ({
+                url: CREATE_MACHINE_URL,
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                credentials: 'include',
+                body: machine
+            })
+        }),
     })
 })

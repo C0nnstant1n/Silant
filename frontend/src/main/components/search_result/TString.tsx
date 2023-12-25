@@ -8,7 +8,7 @@ export default function TString({machine}:IProps){
     return (
         <tr>
             <td>{machine.id}</td>
-            <td>{machine.model_equipment}</td>
+            <td>{machine.machine_model}</td>
             <td>{machine.machine_serial_number}</td>
             <td>{machine.model_engine}</td>
             <td>{machine.engine_serial_number}</td>

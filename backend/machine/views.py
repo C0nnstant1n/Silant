@@ -2,26 +2,37 @@ from django.contrib.auth.models import Group
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import generics
-from .serializer import MachineSerializer, SharedMachineSerializer
-from .models import MachineModel
+from .serializer import GetMachineSerializer, SharedMachineSerializer, PostMachineSerializer
+from .models import Machine
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
+from rest_framework.permissions import DjangoModelPermissions, IsAdminUser
 
 
-class MachineViewSet(viewsets.ModelViewSet):
-    serializer_class = MachineSerializer
+class GetMachineViewSet(viewsets.ModelViewSet):
+    serializer_class = GetMachineSerializer
+    permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
+
+        print(user, group)
         if 'Manager' in group:
-            return MachineModel.objects.all().order_by('-date_shipped_from_factory')
-        return (MachineModel.objects.filter(Q(client=user) | Q(service_company__user=user)).
+            print('manager')
+            return Machine.objects.all().order_by('-date_shipped_from_factory')
+        return (Machine.objects.filter(Q(client__user=user) | Q(service_company__user=user)).
                 order_by('-date_shipped_from_factory'))
 
 
+class PostMachineViewSet(DjangoModelPermissions, viewsets.ModelViewSet):
+    queryset = Machine.objects.all()
+    serializer_class = PostMachineSerializer
+    permission_classes = [DjangoModelPermissions]
+
+
 class SharedMachineViewSet(generics.ListAPIView, viewsets.ModelViewSet):
-    queryset = MachineModel.objects.all()
+    queryset = Machine.objects.all()
     serializer_class = SharedMachineSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = [DjangoFilterBackend]

@@ -1,5 +1,6 @@
 import {LoaderFunctionArgs, redirect} from "react-router-dom";
 
+
 async function findAction({ request }: LoaderFunctionArgs) {
     let formData = await request.formData();
     let serial_number = formData.get("machine_serial_number") as string | null;
@@ -8,6 +9,5 @@ async function findAction({ request }: LoaderFunctionArgs) {
     }
     return redirect(`/result?machine_serial_number=${encodeURIComponent(serial_number)}`)
 }
-
 
 export {findAction}

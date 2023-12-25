@@ -11,8 +11,8 @@ interface IHandbook{
     user?: number
 }
 interface IMachine {
-    "id": number,
-    "model_equipment": IHandbook,
+    "id"?: number,
+    "machine_model": IHandbook,
     "machine_serial_number": string,
     "model_engine": IHandbook,
     "engine_serial_number": string,
@@ -24,7 +24,7 @@ interface IMachine {
     "steering_axle_serial_number": string,
     "date_shipped_from_factory": string,
     "client": IHandbook,
-    "consignee": IHandbook,
+    "consignee": string,
     "delivery_address": string,
     "equipment": string,
     "service_company": IHandbook,
@@ -33,7 +33,7 @@ interface IMachine {
 
 interface IShMachine {
     "id": number,
-    "model_equipment": string,
+    "machine_model": string,
     "machine_serial_number": string,
     "model_engine": string,
     "engine_serial_number": string,
@@ -45,7 +45,7 @@ interface IShMachine {
     "steering_axle_serial_number": string,
 }
 
-interface IMainentance {
+interface IMaintenance {
     "id": number,
     "maintenance_date": string,
     "operating_time": string,
@@ -78,5 +78,5 @@ interface IResponse {
 }
 
 
-export type {IResponse, IShMachine, IMachine, IMainentance, IComplaint,
+export type {IResponse, IShMachine, IMachine, IMaintenance, IComplaint,
     IHandbook, IUser}

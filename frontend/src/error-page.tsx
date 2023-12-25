@@ -8,7 +8,7 @@ interface IError {
 
 export default function ErrorPage() {
     const error = useRouteError() as IError;
-
+    // console.log(error)
     return (
         <div className={styles.error_page}>
             <h1>Ууупс!!!</h1>

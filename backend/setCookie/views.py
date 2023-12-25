@@ -26,7 +26,7 @@ def get_user(request):
 
         if group:
             current_user.update({'group': group[0][0]})
-        print(current_user)
+        # print(current_user)
         return JsonResponse(current_user)
 
     return HttpResponse('false')

@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {IMainentance, IResponse} from "../configs/intarfaces.ts";
+import {IMaintenance, IResponse} from "../configs/intarfaces.ts";
 import {BACKAND_URL, MAINTENANCE_URL} from "../configs/urls.ts";
 
 export const maintenanceApi = createApi(({
@@ -12,7 +12,7 @@ export const maintenanceApi = createApi(({
                 credentials: 'include',
             })
         }),
-        getMaintenanceDetail: build.query<IMainentance, string>({
+        getMaintenanceDetail: build.query<IMaintenance, string>({
             query: (arg: string)=> ({
                 url: MAINTENANCE_URL + arg,
                 credentials: 'include',

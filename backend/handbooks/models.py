@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
-class ModelOfEquipment(models.Model):
+class MachineModel(models.Model):
     name = models.TextField(max_length=256)
     description = models.TextField()
 
@@ -69,6 +68,15 @@ class RecoveryMethod(models.Model):
 class ServiceCompany(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=256)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Client(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=256)
     description = models.TextField()
 
     def __str__(self):

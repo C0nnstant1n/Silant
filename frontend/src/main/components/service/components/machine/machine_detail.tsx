@@ -32,7 +32,7 @@ export default function MachineDetail(){
                                         <div className={styles2.detail__descriptions}>
                                             <section>
                                                 <p className={styles2.label}>Модель:</p>
-                                                <p className={styles2.text}>{data && data.model_equipment.name}</p>
+                                                <p className={styles2.text}>{data && data.machine_model.name}</p>
                                             </section>
                                             <section>
                                                 <p className={styles2.label}>Зав. № машины:</p>
@@ -76,7 +76,7 @@ export default function MachineDetail(){
                                             </section>
                                             <section>
                                                 <p className={styles2.label}>Покупатель:</p>
-                                                <p className={styles2.text}>{data && data.client}</p>
+                                                <p className={styles2.text}>{data && data.client.name}</p>
                                             </section>
                                             <section>
                                                 <p className={styles2.label}>Грузополучатель (конечный потребитель):</p>

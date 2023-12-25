@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-from corsheaders.defaults import default_headers
+# from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,17 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'rest_framework',
-    'drf_spectacular',
+    # 'drf_spectacular',
     'django_filters',
     'complaints',
     'handbooks',
     'machine',
     'maintenance',
-
-
-
     'setCookie',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -144,26 +141,25 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:3000/service/info'
 LOGOUT_REDIRECT_URL = 'http://127.0.0.1:3000'
 
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAdminUser',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
-SPECTACULAR_SETTINGS = {
- 'TITLE': 'Silant',
- 'DESCRIPTION': 'Silant backend for Django REST Framework',
- 'VERSION': '1.0.0',
- 'SERVE_INCLUDE_SCHEMA': False,
- # OTHER SETTINGS
-}
+# SPECTACULAR_SETTINGS = {
+#  'TITLE': 'Silant',
+#  'DESCRIPTION': 'Silant backend for Django REST Framework',
+#  'VERSION': '1.0.0',
+#  'SERVE_INCLUDE_SCHEMA': False,
+#  # OTHER SETTINGS
+# }
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True

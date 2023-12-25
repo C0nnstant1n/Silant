@@ -20,13 +20,15 @@ from rest_framework import routers
 from .views import *
 
 router = routers.SimpleRouter()
-router.register(r'equipment', EquipmentView, basename='equipment')
+router.register(r'machine_model', MachineModelView, basename='machine_model')
 router.register(r'engine', EngineView, basename='engine')
 router.register(r'transmission', TransmissionView, basename='transmission')
+router.register(r'drive_axle', DriveAxleView, basename='drive_axle')
 router.register(r'steering_axle', SteeringAxleView, basename='steering_axle')
 router.register(r'type_of_maintenance', TypeOfMaintenanceView, basename='type_of_maintenance')
 router.register(r'recovery_method', RecoveryMethodView, basename='recovery_method')
 router.register(r'service_company', ServiceCompanyView, basename='service_company')
+router.register(r'client', ClientView, basename='client')
 
 urlpatterns = [
     path('', index, name='index'),

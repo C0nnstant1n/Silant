@@ -11,6 +11,8 @@ import MaintenanceDetail from "./components/maintenance/maintenance_detail.tsx";
 import MaintenanceType from "./components/handbooks/maintenace_type.tsx";
 import ServiceOrganisation from "./components/handbooks/service_organisation.tsx";
 import {userApi} from "../../../redux/user.ts";
+import CreateMachine from "./components/machine/create_machine.tsx";
+
 
 const service =  {
     path: 'service',
@@ -22,6 +24,21 @@ const service =  {
             element: <Info />,
             errorElement: <ErrorPage />,
 
+        },
+        {
+            path: 'info/:infoId',
+            element: <MachineDetail />,
+            children: [
+                {
+                    path: 'company/:companyID',
+                    element: <ServiceOrganisation />
+                }
+            ]
+        },
+        {
+            path: 'create_machine',
+            element: <CreateMachine />,
+            errorElement: <ErrorPage />,
         },
         {
             path: 'to',
@@ -37,16 +54,7 @@ const service =  {
             path: `complaints/:complaintId`,
             element: <ComplaintDetail />
         },
-        {
-            path: 'info/:infoId',
-            element: <MachineDetail />,
-            children: [
-                {
-                    path: 'company/:companyID',
-                    element: <ServiceOrganisation />
-                }
-                ]
-        },
+
         {
             path: 'to/:toId',
             element: <MaintenanceDetail />,
@@ -84,6 +92,7 @@ export default function Service(){
         }
     }
 
+    // console.log(user)
     return(
         <>
             <section className={styles.main__user_info}>

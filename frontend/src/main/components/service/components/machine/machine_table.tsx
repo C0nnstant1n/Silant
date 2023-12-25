@@ -11,9 +11,11 @@ export default function MachineTable({machine}:IProps){
         const handleDetail = () => {
                 navigate(machine.id +'/' )
         }
+        // console.log(machine)
+
     return (
         <tr className={styles.table_string} onClick={handleDetail}>
-            <td>{machine.model_equipment.name}</td>
+            <td>{machine.machine_model.name}</td>
             <td>{machine.machine_serial_number}</td>
             <td>{machine.model_engine.name}</td>
             <td>{machine.engine_serial_number}</td>
@@ -28,7 +30,7 @@ export default function MachineTable({machine}:IProps){
             <td>{machine.consignee}</td>
             <td>{machine.delivery_address}</td>
             <td>{machine.equipment}</td>
-            <td>{machine.client}</td>
+            <td>{machine.client.name}</td>
             <td>{machine.service_company.name}</td>
         </tr>
     )

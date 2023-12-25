@@ -1,5 +1,7 @@
 from django.db.models import Q
 from rest_framework import viewsets
+from rest_framework.permissions import DjangoModelPermissions
+
 from .serializer import MaintenanceSerializer
 from .models import MaintenanceModel
 
@@ -7,6 +9,7 @@ from .models import MaintenanceModel
 class MaintenanceViewSet(viewsets.ModelViewSet):
     queryset = MaintenanceModel.objects.all()
     serializer_class = MaintenanceSerializer
+    permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):
         user = self.request.user

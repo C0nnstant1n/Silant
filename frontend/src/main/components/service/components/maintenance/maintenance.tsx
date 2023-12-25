@@ -1,7 +1,7 @@
 import {maintenanceApi} from "../../../../../redux/maintenance.ts";
 import styles from "../../../search_result/result.module.scss";
 import MaintenanceTable from "./maintenance_table.tsx";
-import {IMainentance} from "../../../../../configs/intarfaces.ts";
+import {IMaintenance} from "../../../../../configs/intarfaces.ts";
 
 
 export default function Maintenance(){
@@ -49,7 +49,7 @@ export default function Maintenance(){
                                     </thead>
                                     <tbody>
                                         {maintenance && maintenance.results
-                                            .map((table: IMainentance) =>
+                                            .map((table: IMaintenance) =>
                                                 <MaintenanceTable maintenance={table} key={table.id} />)}
                                     </tbody>
                                 </table>
