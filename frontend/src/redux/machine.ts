@@ -6,15 +6,17 @@ import {csrftoken} from "../scripts/get_coockies.ts";
 export const machineApi = createApi({
     reducerPath: "machineApi",
     baseQuery: fetchBaseQuery({baseUrl: BACKAND_URL,}),
+    tagTypes : ['machine'],
     endpoints: (build) => ({
         getMachines: build.query<IResponse, string>({
             query: () => ({
                 url: MACHINE_URL,
                 credentials: "include",
-            })
+            }),
+            providesTags: result => ['machine']
         }),
         getMachine: build.query<IMachine, string>({
-            query: (arg: string)=> ({
+            query: (arg: number)=> ({
                 url: MACHINE_URL + arg,
                 credentials: 'include',
             })
@@ -28,7 +30,31 @@ export const machineApi = createApi({
                 },
                 credentials: 'include',
                 body: machine
-            })
+            }),
+            invalidatesTags: ['machine']
+        }),
+        deleteMachine: build.mutation<IMachine, IMachine>({
+            query: (machine)=> ({
+                url: MACHINE_URL + machine.id + '/',
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                credentials: 'include',
+            }),
+            invalidatesTags: ['machine']
+        }),
+        updateMachine: build.mutation<IMachine, IMachine>({
+            query: (machine)=> ({
+                url: MACHINE_URL + machine.id + '/',
+                method: 'PUT',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                credentials: 'include',
+                body: machine
+            }),
+            invalidatesTags: ['machine']
         }),
     })
 })

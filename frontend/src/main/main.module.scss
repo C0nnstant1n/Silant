@@ -44,10 +44,10 @@ main{
       }
     }
   }
-  .main__article, .result_container, .main__user_info{
-    margin: 1rem 0;
+  .main__article, .main_container, .main__user_info{
+    margin: 0.5rem 0;
     width: 90%;
-    min-height: 3rem;
+    min-height: 2rem;
     background-color: white;
     border-radius: 0.5rem;
     text-align: center;
@@ -58,7 +58,10 @@ main{
     justify-content: center;
     align-items: center;
     h3 {
-      margin: 0 1rem;
+      margin: 0 0.4rem;
+    }
+    p {
+      margin: 0 0.4rem;
     }
   }
 
@@ -66,45 +69,11 @@ main{
     margin: 0;
   }
 
-  .result_container{
+  .main_container{
     flex-grow: 1;
-    .search__buttons{
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      flex-wrap: wrap;
-      a{
-        min-width: 140px;
-        margin-top: 1rem;
-        border-radius: 0.4rem;
-        border: 1px solid $main-color1;
-        padding: 0.6em 1.2em;
-        font-size: 1rem;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: $main-color3;
-        color: $main-color1;
-        cursor: pointer;
-        transition: border-color 0.25s;
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
-        &:hover{
-          color: $main-color2;
-          border: 1px solid $main-color2;
-        }
-      }
-    }
-
-    .create_link{
-      margin: 2rem 0;
-    }
   }
-  .main__search_result{
+  .container_content{
     //height: 100%;
     overflow: overlay;
-  }
-  .error_page{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }

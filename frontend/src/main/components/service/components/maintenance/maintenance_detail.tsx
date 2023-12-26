@@ -30,49 +30,35 @@ export default function MaintenanceDetail(){
                                 <>
                                     <div className={styles2.search_result__detail}>
                                         <div className={styles2.detail__descriptions}>
-                                            <section>
-                                                <p className={styles2.label}>Заводской номер:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>Заводской номер:</p>
                                                 <p className={styles2.text}>{data && data.machine}</p>
                                             </section>
-                                            <section>
-                                                <p className={styles2.label}>Вид ТО:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>Вид ТО:</p>
                                                 <NavLink to={`type/${data && data.maintenance_type.id}`} className={({isActive, isPending})=>
                                                     isPending ? `${styles2.description_link_pending}` : isActive ?
                                                         `${styles2.description_link_active}` : ''}>
                                                     {data && data.maintenance_type.name}</NavLink>
                                             </section>
-                                            <section>
-                                                <p className={styles2.label}>Дата проведения ТО:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>Дата проведения ТО:</p>
                                                 <p>{data && data.maintenance_date}</p>
                                             </section>
-                                            <section>
-                                                <p className={styles2.label}>Наработка м/час:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>Наработка м/час:</p>
                                                 <p>{data && data.operating_time}</p>
                                             </section>
-                                            <section>
-                                                <p className={styles2.label}>№ Заказ наряда:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>№ Заказ наряда:</p>
                                                 <p>{data && data.order_number}</p>
                                             </section>
-                                            <section>
-                                                <p className={styles2.label}>Дата заказ-наряда:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>Дата заказ-наряда:</p>
                                                 <p>{data && data.order_data}</p>
                                             </section>
-                                            <section>
-                                                <p className={styles2.label}>Организация проводившая ТО:
-
-                                                </p>
+                                            <section className={styles2.form_section}>
+                                                <p className={styles2.label}>Организация проводившая ТО:</p>
                                                 <NavLink to={`company/${data && data.service_company.id}`}
                                                          className={({isActive, isPending})=>
                                                              isPending ? `${styles2.description_link_pending}` : isActive ?

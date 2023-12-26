@@ -14,10 +14,11 @@ class MaintenanceViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
-        queryset = (MaintenanceModel.objects.
-                    filter(Q(machine__client=user) | Q(machine__service_company__user=user)).
-                    order_by('-maintenance_date'))
         if 'Manager' in group:
             return MaintenanceModel.objects.all().order_by('-maintenance_date')
+        print('query')
+        queryset = (MaintenanceModel.objects.
+                    filter(Q(machine__client__user=user) | Q(machine__service_company__user=user)).
+                    order_by('-maintenance_date'))
         print(queryset)
         return queryset

@@ -10,11 +10,11 @@ export default function Signin(){
     // console.log(location);
 
     const params = new URLSearchParams(location.search);
-    let from = params.get("from") || "/";
+    const from = params.get("from") || "/";
 
     const navigation = useNavigation();
-    let isLogginIn = navigation.formData?.get("login") != null;
-    let actionData = useActionData() as { error: string } | undefined;
+    const isLogginIn = navigation.formData?.get("login") != null;
+    const actionData = useActionData() as { error: string } | undefined;
 
     const [loginCheck, setLoginCheck] = useState(false);
     const [passwordCheck, setPasswordCheck] = useState(false);

@@ -1,38 +1,16 @@
 @import "../../../../../vars.scss";
 .search_result__detail{
   display: flex;
+  flex-direction: column;
   align-items: center;
+
+  .error{
+    border: 1px solid $main-color2;
+  }
   .detail__descriptions{
-    margin: 0 1rem;
-    section {
-      margin-bottom: 0.7rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-width: 20rem;
-      min-height: 2.2rem;
-      background-color: $main-color3;
-      border: 1px solid $main-color1;
-      border-radius: 0.3rem;
-      p {
-        margin: 0 1rem;
-      }
-      a {
-        margin: 0 1rem;
-      }
-      .description_link_active{
-        color: $main-color2;
-      }
-      .description_link_pending{
-        color: yellow;
-      }
-      .label{
-        font-weight: bold;
-        .text{
-          font-weight: normal;
-        }
-      }
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
   .detail__spec{
     width: -webkit-fill-available;

@@ -1,7 +1,9 @@
-import styles2 from "../maintenance/maintenance.module.scss";
+import buttonStyle from '../../../../../assets/styles/buttons.module.scss';
+import formStyle from '../../../../../assets/styles/form.module.scss'
 import {handbooksApi} from "../../../../../redux/handbooks.ts";
 import {IHandbook} from "../../../../../configs/intarfaces.ts";
 import {machineApi} from "../../../../../redux/machine.ts";
+import {useNavigate} from "react-router-dom";
 
 export default function CreateMachine(){
     const {data: models} = handbooksApi.useGetAllMachineModelQuery('')
@@ -11,130 +13,136 @@ export default function CreateMachine(){
     const {data: steerings} = handbooksApi.useGetAllSteeringAxleQuery('')
     const {data: clients} = handbooksApi.useGetAllClientsQuery('')
     const {data: companies} = handbooksApi.useGetAllOrganizationQuery('')
-    // console.log(engines)
-    // let a: IMachine = {}
+
+    const navigate = useNavigate()
     const [
         createMachine,
         {error: createError,
-            isSuccess: createSucsess}
+            isSuccess: createSuccess}
     ]
         = machineApi.useCreateMachineMutation()
-    console.log(createError, createSucsess)
+    // console.log(createError, createSuccess)
     const handleCreate = async (e) => {
         e.preventDefault()
-        let data = new FormData(e.target)
-        let machine = {}
-        data.forEach(function (
-            value, key
-        ){
+        const data = new FormData(e.target)
+        const machine = {}
+        data.forEach(function (value, key){
             machine[key] = value
             })
         createMachine(machine)
     }
+
+    if (createError) {
+        if ('data' in createError){
+            console.log(createError.data)
+        }
+    }
+    // console.log(formStyle)
+
     return (
         <>
-            <div className={styles2.search_result__detail}>
-                <div className={styles2.detail__descriptions}>
-                    <form onSubmit={handleCreate}>
-                        <section>
-                            <p className={styles2.label}>№ контракта:</p>
-                            <input type="text" name='supply_contract'/>
+                    <form className={formStyle.form} onSubmit={handleCreate}>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>№ контракта:</p>
+                            <input required type="textarea" name='supply_contract'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Модель:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Модель:</p>
                             <select name="machine_model">
                                 {models && models.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Зав. № машины:</p>
-                            <input type="text" name='machine_serial_number'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Зав. № машины:</p>
+                            <input required type="text" name='machine_serial_number'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Модель двигателя:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Модель двигателя:</p>
                             <select name="model_engine">
                                 {engines && engines.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Зав. № двигателя:</p>
-                            <input type="text" name='engine_serial_number'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Зав. № двигателя:</p>
+                            <input required type="text" name='engine_serial_number'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Модель трансмиссии:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Модель трансмиссии:</p>
                             <select name="model_transmission">
                                 {transmissions && transmissions.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Зав. № трансмиссии:</p>
-                            <input type="text" name='transmission_serial_number'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Зав. № трансмиссии:</p>
+                            <input required type="text" name='transmission_serial_number'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Модель ведущего моста:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Модель ведущего моста:</p>
                             <select name="model_drive_axle">
                                 {drives && drives.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Зав. № ведущего моста:</p>
-                            <input type="text" name='drive_axle_serial_number'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Зав. № ведущего моста:</p>
+                            <input required type="text" name='drive_axle_serial_number'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Модель управляемого моста:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Модель управляемого моста:</p>
                             <select name="steering_axle">
                                 {steerings && steerings.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
+                        </section >
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Зав. № управляемого моста:</p>
+                            <input required  type="text" name='steering_axle_serial_number'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Зав. № управляемого моста:</p>
-                            <input type="text" name='steering_axle_serial_number'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Дата отгрузки с завода:</p>
+                            <input required type="date" name='date_shipped_from_factory'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Дата отгрузки с завода:</p>
-                            <input type="date" name='date_shipped_from_factory'/>
-                        </section>
-                        <section>
-                            <p className={styles2.label}>Покупатель:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Покупатель:</p>
                             <select name="client">
                                 {clients && clients.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Грузополучатель (конечный потребитель):</p>
-                            <input type="text" name='consignee'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Грузополучатель (конечный потребитель):</p>
+                            <input required  type="text" name='consignee'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Адрес поставки:</p>
-                            <input type="text" name='delivery_address'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Адрес поставки:</p>
+                            <input required type="text" name='delivery_address'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Комплектация (доп. опции):</p>
-                            <input type="text" name='equipment'/>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Комплектация (доп. опции):</p>
+                            <input required type="text" name='equipment'/>
                         </section>
-                        <section>
-                            <p className={styles2.label}>Сервисная компания:</p>
+                        <section className={formStyle.form_section}>
+                            <p className={formStyle.label}>Сервисная компания:</p>
                             <select name="service_company">
                                 {companies && companies.results.map((res: IHandbook) =>
                                     <option value={res.id} key={res.id}>{res.name}</option>
                                 )}
                             </select>
                         </section>
-                        <button type="submit">create</button>
+                        <div className={buttonStyle.buttons_container}>
+                            <button className={buttonStyle.button} type="submit">Сохранить машину</button>
+                        </div>
+
                     </form>
-                </div>
-            </div>
+            {createSuccess ? navigate("/service/info") : null}
         </>)
 }

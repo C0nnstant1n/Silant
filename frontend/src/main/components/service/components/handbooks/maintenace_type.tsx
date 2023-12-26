@@ -5,12 +5,12 @@ import styles from "../../../search_result/result.module.scss";
 
 export default function MaintenanceType(){
     const location = useLocation();
-    let path = location.pathname.replace(/.+?type./, '')
+    const path = location.pathname.replace(/.+?type./, '')
     // console.log(path)
     const {
         data,
         error,
-        isLoading} = handbooksApi.useGetTypeQuery(path)
+        isLoading} = handbooksApi.useGetMaintenanceQuery(path)
     // console.log(data, error, isLoading)
     return (
         <>

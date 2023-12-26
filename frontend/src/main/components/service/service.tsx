@@ -1,4 +1,5 @@
 import styles from '../../main.module.scss'
+import buttonStyles from '../../../assets/styles/buttons.module.scss'
 import {NavLink, Outlet,} from "react-router-dom";
 import {protectedLoader} from "../../../scripts/loaders.ts";
 import Info from "./components/machine/info.tsx";
@@ -103,14 +104,14 @@ export default function Service(){
             <section className={styles.main__article}>
                 <p>Информация о комплектации и технических характеристиках Вашей техники</p>
             </section>
-            <div className={styles.result_container}>
-                <nav className={styles.search__buttons}>
-                    <NavLink to='info'>Общая информация</NavLink>
-                    <NavLink to='to'>ТО</NavLink>
-                    <NavLink to='complaints'>Рекламации</NavLink>
+            <div className={styles.main_container}>
+                <nav className={buttonStyles.buttons_container}>
+                    <NavLink className={buttonStyles.button} to='info'>Общая информация</NavLink>
+                    <NavLink className={buttonStyles.button} to='to'>ТО</NavLink>
+                    <NavLink className={buttonStyles.button} to='complaints'>Рекламации</NavLink>
                 </nav>
                 <hr/>
-                <section className={styles.main__search_result}>
+                <section className={styles.container_content}>
                     <Outlet/>
                 </section>
             </div>

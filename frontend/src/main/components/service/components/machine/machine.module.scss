@@ -1,0 +1,58 @@
+@import '../../../../../vars.scss';
+.detail {
+  display: grid;
+  grid-template-columns: auto auto;
+  @media (max-width: 910px) {
+    grid-template-columns: auto;
+  }
+  .detail_wrapper{
+    display: flex;
+    flex-direction: column;
+    .detail_section {
+      margin: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-width: 20rem;
+      min-height: 2.2rem;
+      background-color: $main-color3;
+      border: 1px solid $main-color1;
+      border-radius: 0.3rem;
+      box-shadow: 0 0 16px 0 rgba(22, 62, 108, 0.3);
+      .data{
+        display: flex;
+        align-items: center;
+        margin: 0.5rem;
+      }
+    }
+    p {
+      margin: 0 1rem;
+    }
+    span {
+      margin: 0 1rem;
+    }
+    a {
+      margin: 0 1rem;
+    }
+
+    .label{
+      font-weight: bold;
+      .text{
+        font-weight: normal;
+      }
+    }
+    .popup_button{
+      display: contents;
+      height: 1rem;
+      width: 1rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+    .popup {
+      display: none;
+    }
+    .popdown{
+      display: inherit;
+    }
+  }
+}

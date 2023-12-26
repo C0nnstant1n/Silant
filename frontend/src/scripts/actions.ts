@@ -2,8 +2,8 @@ import {LoaderFunctionArgs, redirect} from "react-router-dom";
 
 
 async function findAction({ request }: LoaderFunctionArgs) {
-    let formData = await request.formData();
-    let serial_number = formData.get("machine_serial_number") as string | null;
+    const formData = await request.formData();
+    const serial_number = formData.get("machine_serial_number") as string | null;
     if (!serial_number){
         return { error: "Введите заводской номер вашего оборудования"}
     }

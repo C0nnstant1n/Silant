@@ -1,6 +1,6 @@
 import {IMachine} from "../../../../../configs/intarfaces.ts";
 import {useNavigate} from "react-router-dom";
-import styles from "../../../search_result/result.module.scss";
+import styles from "../../../../../assets/styles/table.module.scss";
 
 
 interface IProps {
@@ -11,7 +11,6 @@ export default function MachineTable({machine}:IProps){
         const handleDetail = () => {
                 navigate(machine.id +'/' )
         }
-        // console.log(machine)
 
     return (
         <tr className={styles.table_string} onClick={handleDetail}>

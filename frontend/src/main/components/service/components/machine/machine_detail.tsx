@@ -1,14 +1,27 @@
 import {machineApi} from "../../../../../redux/machine.ts";
-import styles from "../../../search_result/result.module.scss";
-import {NavLink, Outlet, useLocation} from "react-router-dom";
-import styles2 from "../maintenance/maintenance.module.scss";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import styles from './machine.module.scss'
+import buttonsStyles from '../../../../../assets/styles/buttons.module.scss'
+import React from "react";
+import Detail from "./detail.tsx";
 
 export default function MachineDetail(){
     const location = useLocation();
+    const navigate = useNavigate()
     const path = location.pathname.replace(/^\D+/g, '')
     // console.log(path)
     const {data, error, isLoading} = machineApi.useGetMachineQuery(path)
-
+    const [remove, {isSuccess: deleteSucsess}] = machineApi.useDeleteMachineMutation()
+    const handleDelete = async (e: React.MouseEvent) => {
+        e.preventDefault()
+        data ? remove(data) : null
+    }
+    const content = []
+    if (data){
+        for (const i in data){
+            i != 'id' ? content.push([i, data[i]]) : null
+        }
+    }
 
     return (
         <>
@@ -28,84 +41,22 @@ export default function MachineDetail(){
                             )
                             : (
                                 <>
-                                    <div className={styles2.search_result__detail}>
-                                        <div className={styles2.detail__descriptions}>
-                                            <section>
-                                                <p className={styles2.label}>Модель:</p>
-                                                <p className={styles2.text}>{data && data.machine_model.name}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Зав. № машины:</p>
-                                                <p className={styles2.text}>{data && data.machine_serial_number}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Модель двигателя:</p>
-                                                <p className={styles2.text}>{data && data.model_engine.name}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Зав. № двигателя:</p>
-                                                <p className={styles2.text}>{data && data.engine_serial_number}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Модель трансмиссии:</p>
-                                                <p className={styles2.text}>{data && data.model_transmission.name}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Зав. № трансмиссии:</p>
-                                                <p className={styles2.text}>{data && data.transmission_serial_number}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Модель ведущего моста:</p>
-                                                <p className={styles2.text}>{data && data.model_drive_axle.name}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Зав. № ведущего:</p>
-                                                <p className={styles2.text}>{data && data.drive_axle_serial_number}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Модель управляемого моста:</p>
-                                                <p className={styles2.text}>{data && data.steering_axle.name}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Зав. № управляемого моста:</p>
-                                                <p className={styles2.text}>{data && data.steering_axle_serial_number}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Дата отгрузки с завода:</p>
-                                                <p className={styles2.text}>{data && data.date_shipped_from_factory}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Покупатель:</p>
-                                                <p className={styles2.text}>{data && data.client.name}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Грузополучатель (конечный потребитель):</p>
-                                                <p className={styles2.text}>{data && data.consignee}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Адрес поставки:</p>
-                                                <p className={styles2.text}>{data && data.delivery_address}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Комплектация (доп. опции):</p>
-                                                <p className={styles2.text}>{data && data.equipment}</p>
-                                            </section>
-                                            <section>
-                                                <p className={styles2.label}>Сервисная компания:</p>
-                                                <NavLink to={`company/${data && data.service_company.id}`}
-                                                         className={({isActive, isPending})=>
-                                                             isPending ? `${styles2.description_link_pending}` : isActive ?
-                                                                 `${styles2.description_link}` : ''}
-                                                >{data && data.service_company.name}</NavLink>
-                                            </section>
-
-
-                                            <button>Редактировать</button>
+                                    <div className={styles.search_result__detail}>
+                                        <div className={styles.detail}>
+                                            {content ? content.map((data) =>
+                                                <Detail data={data} key={data[0]}/>
+                                            ): null}
                                         </div>
-                                        <div className={styles2.detail__spec}>
+                                        <div className={styles.detail__spec}>
                                             <Outlet/>
+
+                                        </div>
+                                        <div className={buttonsStyles.buttons_container}>
+                                            <button className={buttonsStyles.button}>Редактировать машину</button>
+                                            <button className={buttonsStyles.button} onClick={handleDelete}>Удалить машину</button>
                                         </div>
                                     </div>
+                                    {deleteSucsess ? navigate('/service/info') : null}
                                 </>)
                     )
             )}

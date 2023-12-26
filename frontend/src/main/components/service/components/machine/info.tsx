@@ -1,5 +1,7 @@
 import {machineApi} from "../../../../../redux/machine.ts";
-import styles from "../../../search_result/result.module.scss";
+import styles from './machine.module.scss'
+import buttonStyles from  '../../../../../assets/styles/buttons.module.scss'
+import tableStyle from '../../../../../assets/styles/table.module.scss'
 import {IMachine} from "../../../../../configs/intarfaces.ts";
 import MachineTable from "./machine_table.tsx";
 import {Link} from "react-router-dom";
@@ -35,7 +37,7 @@ export default function Info(){
                                 </div>
                             </div>
                             :
-                            < table className={styles.result_table}>
+                            < table className={tableStyle.result_table}>
                                 < thead>
                                 < tr>
                                     <td>Модель техники</td>
@@ -48,7 +50,7 @@ export default function Info(){
                                     <td>Зав. № ведущего моста</td>
                                     <td>Модель управляемого моста</td>
                                     <td>Зав. № управляемого моста</td>
-                                    <td>№ договора поставки, дата</td>
+                                    <td>№ договора поставки</td>
                                     <td>Дата отгрузки с завода</td>
                                     <td>Грузополучатель (конечный потребитель)</td>
                                     <td>Адрес поставки (эксплуатации)</td>
@@ -63,16 +65,16 @@ export default function Info(){
                                 </tbody>
                             </table>)
                 )}
-            <nav className={styles.search_result__buttons}>
+
                 {
                     user && user.group === 'Manager' ?
-                        <>
-
-                        <Link className={styles.create_link} to={'/service/create_machine'}>
+                        <div className={buttonStyles.buttons_container}>
+                        <Link className={buttonStyles.button} to={'/service/create_machine'}>
                             Добавить машину</Link>
-                        </> : null
+                        </div>
+                        : null
                 }
-            </nav>
+
         </>
     )
 }

@@ -5,8 +5,8 @@ import TString from "./TString.tsx";
 import {IShMachine} from "../../../configs/intarfaces.ts";
 
 export default function ResultShMachine(){
-    let location = useLocation();
-    let params = new URLSearchParams(location.search);
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
     // console.log(params.get('id'))
 
         const {data: machine, error, isLoading} =

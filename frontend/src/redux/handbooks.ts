@@ -71,7 +71,7 @@ export const handbooksApi = createApi({
                 credentials: 'include',
             })
         }),
-        getMainentenance: build.query<IHandbook, string>({
+        getMaintenance: build.query<IHandbook, string>({
             query: (url_arg) => ({
                 url: TYPEOFMAINTENANCE + url_arg + '/',
                 credentials: 'include',

@@ -1,0 +1,42 @@
+@import '../../vars.scss';
+
+.form{
+  display: grid;
+  grid-template-columns: auto auto;
+  @media (max-width: 910px){
+    grid-template-columns: auto;
+  }
+  .form_section {
+    margin: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 20rem;
+    min-height: 2.2rem;
+    background-color: $main-color3;
+    border: 1px solid $main-color1;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 16px 0 rgba(22, 62, 108, 0.3);
+    input select{
+      margin-right: 1rem;
+      min-height: 1.5rem;
+      border-radius: 4px;
+      text-align: center;
+      &:invalid {
+        border: 1px solid $main-color2;
+      }
+    }
+    p {
+      margin: 0 1rem;
+    }
+    a {
+      margin: 0 1rem;
+    }
+    .label{
+      font-weight: bold;
+      .text{
+        font-weight: normal;
+      }
+    }
+  }
+}

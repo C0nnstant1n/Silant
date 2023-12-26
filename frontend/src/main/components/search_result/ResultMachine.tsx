@@ -1,22 +1,11 @@
 import styles from "./result.module.scss"
-import {useLocation} from "react-router-dom";
 import {shmachineApi} from "../../../redux/shmachine.ts";
 import TString from "./TString.tsx";
 import {IShMachine} from "../../../configs/intarfaces.ts";
-import {username} from "../../../scripts/get_coockies.ts";
 
 export default function Result(){
-    let location = useLocation();
-    let params = new URLSearchParams(location.search);
-
-    // console.log(params)
-    if (!params.size && !username) {
-        return null
-    }
-
     const {data: machine, error, isLoading} = shmachineApi.useGetMachineQuery('')
-    console.log(error)
-    console.log(machine)
+
     return(
     (isLoading && !machine) ?
         <div className={styles.search_result__container}>
@@ -38,21 +27,21 @@ export default function Result(){
                     <tr>
                         <td>№ п/п</td>
                         <td>Модель техники</td>
-                    <td>Зав. № машины</td>
-                    <td>Модель Двигателя</td>
-                    <td>Зав. № Двигателя</td>
-                    <td>Модель трансмиссии (производитель, артикул)</td>
-                    <td>Зав. № трансмиссии</td>
-                    <td>Модель ведущего моста</td>
-                    <td>Зав. № ведущего моста</td>
-                    <td>Модель управляемого моста</td>
-                    <td>Зав. № управляемого моста</td>
-                    <td>Дата отгрузки с завода</td>
-                    <td>Покупатель</td>
-                    <td>Грузополучатель</td>
-                    <td>Адрес поставки (эксплуатации)</td>
-                    <td>Комплектация (доп. опции)</td>
-                    <td>Сервисная компания</td>
+                        <td>Зав. № машины</td>
+                        <td>Модель Двигателя</td>
+                        <td>Зав. № Двигателя</td>
+                        <td>Модель трансмиссии (производитель, артикул)</td>
+                        <td>Зав. № трансмиссии</td>
+                        <td>Модель ведущего моста</td>
+                        <td>Зав. № ведущего моста</td>
+                        <td>Модель управляемого моста</td>
+                        <td>Зав. № управляемого моста</td>
+                        <td>Дата отгрузки с завода</td>
+                        <td>Покупатель</td>
+                        <td>Грузополучатель</td>
+                        <td>Адрес поставки (эксплуатации)</td>
+                        <td>Комплектация (доп. опции)</td>
+                        <td>Сервисная компания</td>
                 </tr>
                 </thead>
                 <tbody>
