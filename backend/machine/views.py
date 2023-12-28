@@ -17,10 +17,9 @@ class GetMachineViewSet(viewsets.ModelViewSet):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
 
-        print(user, group)
         if 'Manager' in group:
-            print('manager')
             return Machine.objects.all().order_by('-date_shipped_from_factory')
+
         return (Machine.objects.filter(Q(client__user=user) | Q(service_company__user=user)).
                 order_by('-date_shipped_from_factory'))
 

@@ -50,7 +50,7 @@ interface IMaintenance {
     "maintenance_date": string,
     "operating_time": string,
     "order_number": number,
-    "order_data": string,
+    "order_date": string,
     "maintenance_type": IHandbook,
     "machine": string,
     "service_company": IHandbook
@@ -64,10 +64,10 @@ interface IComplaint {
     "spare_parts": string,
     "recovery_date": string,
     "equipment_downtime": number,
-    "failure_node": string,
-    "recovery_method": string,
-    "machine": string,
-    "service_company": string
+    "failure_node": IHandbook,
+    "recovery_method": IHandbook,
+    "machine": IMachine,
+    "service_company": IHandbook
 }
 
 interface IResponse {

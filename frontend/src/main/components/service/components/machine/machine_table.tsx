@@ -9,7 +9,7 @@ interface IProps {
 export default function MachineTable({machine}:IProps){
         const navigate = useNavigate();
         const handleDetail = () => {
-                navigate(machine.id +'/' )
+                navigate(`${machine.id}`)
         }
 
     return (

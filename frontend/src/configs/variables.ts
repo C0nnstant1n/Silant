@@ -17,5 +17,29 @@ const machineDict = {
     service_company: 'Сервисная компания',
     supply_contract: '№ договора поставки',
 }
+const maintenanceDict = [
+    ['maintenance_date', 'Дата Проведения ТО'],
+    ['operating_time', 'Наработка, м/час'],
+    ['order_number' , '№ Заказ-наряда'],
+    ['order_date','Дата Заказ-наряда'],
+    ['maintenance_type', 'Вид ТО'],
+    ['machine',  'Зав. № машины'],
+    ['service_company' , 'Организация проводившая ТО'],
+]
 
-export {machineDict}
+const complaintDict = {
+    id: 'number',
+    date_refusal: 'Дата отказа',
+    operating_time: 'Наработка, м/час',
+    description: 'Описание отказа',
+    spare_parts: 'Используемые запасные части',
+    recovery_date: 'Дата восстановления',
+    equipment_downtime: 'Время простоя',
+    failure_node: 'Узел отказа',
+    recovery_method: 'Способ восстановления',
+    machine: 'Зав. № машины',
+    service_company: 'Сервисная компания'
+}
+
+
+export {machineDict, maintenanceDict, complaintDict}

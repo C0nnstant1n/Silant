@@ -2,13 +2,12 @@ from django.db.models import Q
 from rest_framework import viewsets
 from rest_framework.permissions import DjangoModelPermissions
 
-from .serializer import MaintenanceSerializer
+from .serializer import GetMaintenanceSerializer, SetMaintenanceSerializer
 from .models import MaintenanceModel
 
 
-class MaintenanceViewSet(viewsets.ModelViewSet):
-    queryset = MaintenanceModel.objects.all()
-    serializer_class = MaintenanceSerializer
+class GetMaintenanceViewSet(viewsets.ModelViewSet):
+    serializer_class = GetMaintenanceSerializer
     permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self):
@@ -16,9 +15,15 @@ class MaintenanceViewSet(viewsets.ModelViewSet):
         group = user.groups.values_list('name', flat=True)
         if 'Manager' in group:
             return MaintenanceModel.objects.all().order_by('-maintenance_date')
-        print('query')
+
         queryset = (MaintenanceModel.objects.
                     filter(Q(machine__client__user=user) | Q(machine__service_company__user=user)).
                     order_by('-maintenance_date'))
-        print(queryset)
+
         return queryset
+
+
+class SetMaintenanceViewSet(viewsets.ModelViewSet):
+    queryset = MaintenanceModel.objects.all()
+    serializer_class = SetMaintenanceSerializer
+    permission_classes = [DjangoModelPermissions]

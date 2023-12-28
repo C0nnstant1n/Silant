@@ -1,6 +1,6 @@
 import {IMaintenance} from "../../../../../configs/intarfaces.ts";
 import {useNavigate} from "react-router-dom";
-import styles from "../../../search_result/result.module.scss";
+import tableStyle from '../../../../../assets/styles/table.module.scss'
 
 interface IProps{
     maintenance: IMaintenance
@@ -11,7 +11,7 @@ export default function MaintenanceTable({maintenance}: IProps){
         navigate(maintenance.id +'/' )
     }
     return (
-        <tr className={styles.table_string} onClick={handleDetail}>
+        <tr className={tableStyle.table_string} onClick={handleDetail}>
             <td>{maintenance.machine}</td>
             <td>{maintenance.maintenance_type.name}</td>
             <td>{maintenance.maintenance_date}</td>

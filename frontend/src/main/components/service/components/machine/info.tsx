@@ -1,5 +1,5 @@
 import {machineApi} from "../../../../../redux/machine.ts";
-import styles from './machine.module.scss'
+import styles from '../detail.module.scss'
 import buttonStyles from  '../../../../../assets/styles/buttons.module.scss'
 import tableStyle from '../../../../../assets/styles/table.module.scss'
 import {IMachine} from "../../../../../configs/intarfaces.ts";

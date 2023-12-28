@@ -9,7 +9,7 @@ import ResultShMachine from "./main/components/search_result/ResultShMachine.tsx
 import {findAction} from "./scripts/actions.ts";
 import {Provider} from "react-redux";
 import {store} from "./redux";
-import {service} from "./main/components/service/service.tsx";
+import {service} from './main/routes.tsx';
 import {authenticatedLoader} from "./scripts/loaders.ts";
 
 

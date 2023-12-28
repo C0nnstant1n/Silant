@@ -1,22 +1,60 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {IMaintenance, IResponse} from "../configs/intarfaces.ts";
-import {BACKAND_URL, MAINTENANCE_URL} from "../configs/urls.ts";
+import {BACKAND_URL, MAINTENANCE_URL, SETMAINTENANCE_URL} from "../configs/urls.ts";
+import {csrftoken} from "../scripts/get_coockies.ts";
 
-export const maintenanceApi = createApi(({
+export const maintenanceApi = createApi({
     reducerPath: 'maintenanceApi',
     baseQuery: fetchBaseQuery({baseUrl: BACKAND_URL}),
+    tagTypes: ['maintenance'],
     endpoints: (build) => ({
         getMaintenance: build.query<IResponse, string>({
             query: () => ({
                 url: MAINTENANCE_URL,
                 credentials: 'include',
-            })
+            }),
+            providesTags: result => ['maintenance']
         }),
         getMaintenanceDetail: build.query<IMaintenance, string>({
             query: (arg: string)=> ({
                 url: MAINTENANCE_URL + arg,
                 credentials: 'include',
             })
+        }),
+        deleteMaintenance: build.mutation<IMaintenance, IMaintenance>({
+            query:(maintenance) =>({
+                url: SETMAINTENANCE_URL + maintenance.id + '/',
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrftoken as string
+                },
+                credentials: 'include',
+            }),
+            invalidatesTags: ['maintenance']
+        }),
+        createMaintenance: build.mutation<IMaintenance, IMaintenance>({
+            query: (maintenance) => ({
+                url: SETMAINTENANCE_URL,
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken as string
+                },
+                credentials: 'include',
+                body: maintenance
+            }),
+            invalidatesTags: ['maintenance']
+        }),
+        updateMaintenance: build.mutation<IMaintenance, IMaintenance>({
+            query: (maintenance) => ({
+                url: SETMAINTENANCE_URL + maintenance.id +'/',
+                method: 'PUT',
+                headers: {
+                    'X-CSRFToken': csrftoken as string
+                },
+                credentials: 'include',
+                body: maintenance
+            }),
+            invalidatesTags: ['maintenance']
         })
     })
-}))
+})

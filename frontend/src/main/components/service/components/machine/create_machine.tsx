@@ -3,7 +3,7 @@ import formStyle from '../../../../../assets/styles/form.module.scss'
 import {handbooksApi} from "../../../../../redux/handbooks.ts";
 import {IHandbook} from "../../../../../configs/intarfaces.ts";
 import {machineApi} from "../../../../../redux/machine.ts";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function CreateMachine(){
     const {data: models} = handbooksApi.useGetAllMachineModelQuery('')
@@ -29,6 +29,7 @@ export default function CreateMachine(){
         data.forEach(function (value, key){
             machine[key] = value
             })
+        // console.log(machine)
         createMachine(machine)
     }
 
@@ -140,9 +141,11 @@ export default function CreateMachine(){
                         </section>
                         <div className={buttonStyle.buttons_container}>
                             <button className={buttonStyle.button} type="submit">Сохранить машину</button>
+                            <Link to={'/service/info'} className={buttonStyle.button}>Отмена</Link>
                         </div>
 
                     </form>
-            {createSuccess ? navigate("/service/info") : null}
+            <div style={{display: "none"}}>{createSuccess ?
+                setTimeout(()=>navigate("/service/info"), 1000) : null}</div>
         </>)
 }

@@ -1,16 +1,23 @@
 from rest_framework import serializers
-
-from handbooks.models import RecoveryMethod, ServiceCompany, NatureOfFailure
-from machine.models import MachineModel
+from handbooks.serializer import RecoveryMethodSerializer, ServiceCompanySerializer, NatureOfFailureSerializer
+from machine.models import MachineModel, Machine
+from machine.serializer import GetMachineSerializer
 from .models import ComplaintsModel
 
 
-class ComplaintsSerializer(serializers.ModelSerializer):
-    machine = serializers.SlugRelatedField(queryset=MachineModel.objects.all(), slug_field='machine_serial_number')
-    recovery_method = serializers.SlugRelatedField(queryset=RecoveryMethod.objects.all(), slug_field='name')
-    service_company = serializers.SlugRelatedField(queryset=ServiceCompany.objects.all(), slug_field='name')
-    failure_node = serializers.SlugRelatedField(queryset=NatureOfFailure.objects.all(), slug_field='name')
+class GetComplaintsSerializer(serializers.ModelSerializer):
+    machine = GetMachineSerializer()
+    recovery_method = RecoveryMethodSerializer(read_only=True)
+    service_company = ServiceCompanySerializer(read_only=True)
+    failure_node = NatureOfFailureSerializer(read_only=True)
 
+    class Meta:
+        model = ComplaintsModel
+        depth = 1
+        fields = '__all__'
+
+
+class SetComplaintsModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = ComplaintsModel
         fields = '__all__'

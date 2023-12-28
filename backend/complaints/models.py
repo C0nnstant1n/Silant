@@ -5,7 +5,7 @@ from handbooks.models import RecoveryMethod, ServiceCompany, NatureOfFailure
 
 class ComplaintsModel(models.Model):
     date_refusal = models.DateField()
-    operating_time = models.DecimalField(max_digits=10, decimal_places=2)
+    operating_time = models.IntegerField()
     failure_node = models.ForeignKey(NatureOfFailure, on_delete=models.CASCADE)
     description = models.TextField()
     recovery_method = models.ForeignKey(RecoveryMethod, on_delete=models.CASCADE)

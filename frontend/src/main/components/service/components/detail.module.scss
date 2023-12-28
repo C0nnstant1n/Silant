@@ -1,4 +1,4 @@
-@import '../../../../../vars.scss';
+@import '../../../../vars';
 .detail {
   display: grid;
   grid-template-columns: auto auto;
@@ -47,12 +47,16 @@
       width: 1rem;
       margin-right: 1rem;
       cursor: pointer;
+      font-size: 1.4rem;
+      color: $button-color;
+      font-weight: bold;
     }
     .popup {
       display: none;
     }
     .popdown{
-      display: inherit;
+      display: flow;
+
     }
   }
 }

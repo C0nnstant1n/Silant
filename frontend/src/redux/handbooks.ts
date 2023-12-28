@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
     BACKAND_URL, CLIENT_URL, DRIVE_AXLE_URL,
-    ENGINE_URL,
+    ENGINE_URL, FAILURE_URL,
     HANDBOOKS_URL, MACHINE_MODEL_URL, RECOVERYMETHOD, SERVICECOMPANY, STEERING_AXLE, TRANSMISSION_URL,
     TYPEOFMAINTENANCE
 } from "../configs/urls.ts";
@@ -116,6 +116,12 @@ export const handbooksApi = createApi({
         getAllClients: build.query<IResponse, string>({
             query: () => ({
                 url: CLIENT_URL,
+                credentials: 'include',
+            })
+        }),
+        getAllFailure: build.query<IResponse, string>({
+            query: () => ({
+                url: FAILURE_URL,
                 credentials: 'include',
             })
         }),

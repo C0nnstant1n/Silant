@@ -2,13 +2,18 @@ import {maintenanceApi} from "../../../../../redux/maintenance.ts";
 import styles from "../../../search_result/result.module.scss";
 import MaintenanceTable from "./maintenance_table.tsx";
 import {IMaintenance} from "../../../../../configs/intarfaces.ts";
+import tableStyle from '../../../../../assets/styles/table.module.scss'
+import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
+import {Link} from "react-router-dom";
+import {userApi} from "../../../../../redux/user.ts";
 
 
 export default function Maintenance(){
     const {
         data: maintenance,
-        error,
         isLoading} = maintenanceApi.useGetMaintenanceQuery('')
+
+    const {data: user} = userApi.useGetUserQuery('')
 
     return(
         <>
@@ -17,16 +22,6 @@ export default function Maintenance(){
                     <div className={styles.search_result__container}>
                         <div className={styles.loading}><h3>Загрузка</h3></div>
                     </div>
-                    :
-                    (
-                        error && !maintenance ?
-                            (
-                                <div className={styles.search_result__container}>
-                                    <div className={styles.error}>
-                                        <h2>Ошибка Загрузки</h2>
-                                    </div>
-                                </div>
-                            )
                             :
                             (maintenance && !maintenance.count ?
                                 <div className={styles.search_result__container}>
@@ -35,7 +30,7 @@ export default function Maintenance(){
                                     </div>
                                 </div>
                                 :
-                                <table className={styles.result_table}>
+                                <table className={tableStyle.result_table}>
                                     <thead>
                                     <tr>
                                         <td>Зав. № машины</td>
@@ -53,8 +48,16 @@ export default function Maintenance(){
                                                 <MaintenanceTable maintenance={table} key={table.id} />)}
                                     </tbody>
                                 </table>
-                            )
+
                     )
+            }
+            {
+                user && user.group === 'Manager' ?
+                    <div className={buttonStyles.buttons_container}>
+                        <Link className={buttonStyles.button} to={'/service/create_to'}>
+                            Добавить ТО</Link>
+                    </div>
+                    : null
             }
         </>
     )
