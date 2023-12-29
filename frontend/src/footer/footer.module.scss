@@ -1,17 +1,18 @@
 footer {
-  .footer__logo{
-    img{
+  .footer__logo {
+    img {
       margin-left: 1rem;
-    width: 100px;
-    height: 100px;}
+      width: 100px;
+      height: 100px;
+    }
   }
-  .footer__container{
+  .footer__container {
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 3rem;
   }
-  .footer__copyright{
+  .footer__copyright {
     margin-right: 1rem;
     text-align: right;
   }

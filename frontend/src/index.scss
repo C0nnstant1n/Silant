@@ -1,4 +1,4 @@
-@import './vars.scss';
+@import "./vars.scss";
 
 html {
   height: 100%;
@@ -12,10 +12,11 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    hr{
+    hr {
       color: $main-color1;
     }
-    header, footer {
+    header,
+    footer {
       display: flex;
       height: 100px;
       justify-content: space-between;
@@ -23,10 +24,9 @@ body {
       margin: 1rem;
       background-color: $main-color3;
       border-radius: 0.5rem;
-
     }
-    main{
-      .active{
+    main {
+      .active {
         color: $main-color2;
         border: 1px solid $main-color2;
       }
@@ -45,11 +45,13 @@ a {
   color: $main-color1;
   text-decoration: none;
 }
-a:hover{
+a:hover {
   color: $main-color2;
   text-decoration: none;
 }
 
-@media (max-width: 800px){
-  h2{margin: 0.3px 0}
+@media (max-width: 800px) {
+  h2 {
+    margin: 0.3px 0;
+  }
 }

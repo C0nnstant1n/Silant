@@ -24,19 +24,4 @@ class Machine(models.Model):
     service_company = models.ForeignKey(ServiceCompany, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.machine_model}"
-
-    # class HandBookModel(models.Model):
-    #     name = models.TextField(max_length=256)
-    #     # machine_model = models.ForeignKey(MachineModel, on_delete=models.CASCADE)
-    #     engine_model = models.ForeignKey(ModelOfEngine, on_delete=models.CASCADE)
-    #     transmission_model = models.ForeignKey(ModelOfTransmission, on_delete=models.CASCADE)
-    #     drive_axle_model = models.ForeignKey(ModelOfDriveAxle, on_delete=models.CASCADE)
-    #     steering_axle_model = models.ForeignKey(ModelOfSteeringAxle, on_delete=models.CASCADE)
-    #     maintenance_type = models.ForeignKey(TypeOfMaintenance, on_delete=models.CASCADE)
-    #     failure = models.ForeignKey(NatureOfFailure, on_delete=models.CASCADE)
-    #     recovery_method = models.ForeignKey(RecoveryMethod, on_delete=models.CASCADE)
-    #     service_company = models.ForeignKey(ServiceCompany, on_delete=models.CASCADE)
-    #
-    #     def __str__(self):
-    #         return f"{self.name} - {self.engine_model} - {self}"
+        return f"{self.machine_model} зводской номер {self.machine_serial_number}"

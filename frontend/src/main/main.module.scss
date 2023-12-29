@@ -1,6 +1,6 @@
-@import '../vars.scss';
+@import "../vars.scss";
 
-main{
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ main{
     width: 80%;
     color: $main-color1;
   }
-  .main__form{
+  .main__form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,13 +23,14 @@ main{
       width: 70%;
       text-align: center;
     }
-    .search_form{
+    .search_form {
       max-width: 60%;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
 
-      .form__input, .form__button{
+      .form__input,
+      .form__button {
         min-width: 300px;
         max-width: 40%;
         margin: 1rem;
@@ -38,13 +39,15 @@ main{
         text-align: center;
         box-shadow: 0 0 20px 0 rgba(22, 62, 108, 0.3);
       }
-      .form__button{
+      .form__button {
         min-width: 100px;
         max-width: 15%;
       }
     }
   }
-  .main__article, .main_container, .main__user_info{
+  .main__article,
+  .main_container,
+  .main__user_info {
     margin: 0.5rem 0;
     width: 90%;
     min-height: 2rem;
@@ -65,15 +68,20 @@ main{
     }
   }
 
-  .main__article{
+  .main__article {
     margin: 0;
   }
 
-  .main_container{
+  .main_container {
     flex-grow: 1;
   }
-  .container_content{
+  .container_content {
     //height: 100%;
     overflow: overlay;
+  }
+  .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

@@ -1,7 +1,10 @@
 from django.contrib.auth.models import Group
+from django.views.generic import ListView
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import generics
+
+from .filters import MachineFilter
 from .serializer import GetMachineSerializer, SharedMachineSerializer, PostMachineSerializer
 from .models import Machine
 from django_filters.rest_framework import DjangoFilterBackend
@@ -16,15 +19,20 @@ class GetMachineViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
-
+        print(user, '  ', user.groups.values_list('name', flat=True))
         if 'Manager' in group:
-            return Machine.objects.all().order_by('-date_shipped_from_factory')
+            print('manager')
+            queryset = Machine.objects.all().order_by('-date_shipped_from_factory')
+            self.filterset = MachineFilter(self.request.GET, queryset)
+            return self.filterset.qs
 
-        return (Machine.objects.filter(Q(client__user=user) | Q(service_company__user=user)).
-                order_by('-date_shipped_from_factory'))
+        queryset = (Machine.objects.filter(Q(client__user=user) |
+                                           Q(service_company__user=user)).order_by('-date_shipped_from_factory'))
+        self.filterset = MachineFilter(self.request.GET, queryset)
+        return self.filterset.qs
 
 
-class PostMachineViewSet(DjangoModelPermissions, viewsets.ModelViewSet):
+class PostMachineViewSet(viewsets.ModelViewSet):
     queryset = Machine.objects.all()
     serializer_class = PostMachineSerializer
     permission_classes = [DjangoModelPermissions]
