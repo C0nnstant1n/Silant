@@ -19,15 +19,20 @@ class GetMachineViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
-        print(user, '  ', user.groups.values_list('name', flat=True))
+        if self.request.GET.get('ordered'):
+            ordered = self.request.GET.get('ordered')
+
+        else: ordered = '-date_shipped_from_factory'
+
+        print(self.request.query_params)
         if 'Manager' in group:
             print('manager')
-            queryset = Machine.objects.all().order_by('-date_shipped_from_factory')
+            queryset = Machine.objects.all().order_by(ordered)
             self.filterset = MachineFilter(self.request.GET, queryset)
             return self.filterset.qs
 
         queryset = (Machine.objects.filter(Q(client__user=user) |
-                                           Q(service_company__user=user)).order_by('-date_shipped_from_factory'))
+                                           Q(service_company__user=user)).order_by(ordered))
         self.filterset = MachineFilter(self.request.GET, queryset)
         return self.filterset.qs
 

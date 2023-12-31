@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IMaintenance, IResponse } from "../configs/intarfaces.ts";
+import { IMaintenance, IResponse } from "../main/configs/intarfaces.ts";
 import {
   BACKAND_URL,
   MAINTENANCE_URL,
   SETMAINTENANCE_URL,
-} from "../configs/urls.ts";
+} from "../main/configs/urls.ts";
 import { csrftoken } from "../scripts/get_coockies.ts";
 
 export const maintenanceApi = createApi({
@@ -13,8 +13,8 @@ export const maintenanceApi = createApi({
   tagTypes: ["maintenance"],
   endpoints: (build) => ({
     getMaintenance: build.query<IResponse, string>({
-      query: () => ({
-        url: MAINTENANCE_URL,
+      query: (search) => ({
+        url: MAINTENANCE_URL + search,
         credentials: "include",
       }),
       providesTags: (result) => ["maintenance"],
@@ -27,7 +27,7 @@ export const maintenanceApi = createApi({
     }),
     deleteMaintenance: build.mutation<IMaintenance, IMaintenance>({
       query: (maintenance) => ({
-        url: SETMAINTENANCE_URL + maintenance.id + "/",
+        url: SETMAINTENANCE_URL + maintenance.id,
         method: "DELETE",
         headers: {
           "X-CSRFToken": csrftoken as string,
@@ -50,7 +50,7 @@ export const maintenanceApi = createApi({
     }),
     updateMaintenance: build.mutation<IMaintenance, IMaintenance>({
       query: (maintenance) => ({
-        url: SETMAINTENANCE_URL + maintenance.id + "/",
+        url: SETMAINTENANCE_URL + maintenance.id,
         method: "PUT",
         headers: {
           "X-CSRFToken": csrftoken as string,

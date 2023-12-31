@@ -1,7 +1,7 @@
 import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import formStyle from "../../../../../assets/styles/form.module.scss";
 import { handbooksApi } from "../../../../../redux/handbooks.ts";
-import {IHandbook, IMachine} from "../../../../../configs/intarfaces.ts";
+import {IHandbook, IMachine} from "../../../../configs/intarfaces.ts";
 import { machineApi } from "../../../../../redux/machine.ts";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -40,7 +40,7 @@ export default function CreateMachine() {
 
   return (
     <>
-      <form className={formStyle.form} onSubmit={handleCreate}>
+      <form id='create_machine' className={formStyle.form} onSubmit={handleCreate}>
         <section className={formStyle.form_section}>
           <p className={formStyle.label}>№ контракта:</p>
           <input required type='textarea' name='supply_contract' />
@@ -160,18 +160,10 @@ export default function CreateMachine() {
               ))}
           </select>
         </section>
-        <div className={buttonStyle.buttons_container}>
-          <button className={buttonStyle.button} type='submit'>
-            Сохранить машину
-          </button>
-          <Link to={"/service/info"} className={buttonStyle.button}>
-            Отмена
-          </Link>
-        </div>
       </form>
-      <div>
+      <div style={{ display: "none" }}>
         {createSuccess
-          ? setTimeout(() => navigate("/service/complaints"), 700)
+          ? setTimeout(() => navigate("/service/info"), 700)
           : null}
       </div>
     </>

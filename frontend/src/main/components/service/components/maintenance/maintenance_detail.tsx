@@ -1,42 +1,29 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../detail.module.scss";
-import React, { useState } from "react";
+import popStyles from '../../../../main.module.scss'
+import { useState } from "react";
 import buttonsStyles from "../../../../../assets/styles/buttons.module.scss";
-import {userApi} from "../../../../../redux/user.ts";
 
 export default function MaintenanceDetail() {
   const location = useLocation();
   const path = location.pathname.replace(/^\D+/g, "");
   const navigate = useNavigate();
   const { data, isLoading } = maintenanceApi.useGetMaintenanceDetailQuery(path);
-  const [remove, { isSuccess: deleteSuccess }] =
-    maintenanceApi.useDeleteMaintenanceMutation();
 
-  const [popup, setPopup] = useState(styles.popup);
+  const [popup, setPopup] = useState(popStyles.popup);
   const handlePopUp = () => {
     popup.search(/popup/) > 0
-      ? setPopup(styles.popdown)
-      : setPopup(styles.popup);
+      ? setPopup(popStyles.popdown)
+      : setPopup(popStyles.popup);
   };
 
-  const [popup2, setPopup2] = useState(styles.popup);
+  const [popup2, setPopup2] = useState(popStyles.popup);
   const handlePopUp2 = () => {
     popup2.search(/popup/) > 0
-      ? setPopup2(styles.popdown)
-      : setPopup2(styles.popup);
+      ? setPopup2(popStyles.popdown)
+      : setPopup2(popStyles.popup);
   };
-
-  const handleDelete = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    data ? remove(data) : null;
-  };
-  const handleEdit = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    data ? navigate(`/service/edit_to/${data.id}`) : null;
-  };
-  const { data: user } = userApi.useGetUserQuery("");
-  const groups = ['Manager']
 
   return (
     <>
@@ -62,7 +49,7 @@ export default function MaintenanceDetail() {
                 <p className={styles.label}>Вид ТО:</p>
                 <div className={styles.data}>
                   <span>{data && data.maintenance_type.name}</span>
-                  <button className={styles.popup_button} onClick={handlePopUp}>
+                  <button className={buttonsStyles.popup_button} onClick={handlePopUp}>
                     {popup.search(/popup/) > 0 ? "˅" : "˄"}
                   </button>
                 </div>
@@ -113,7 +100,7 @@ export default function MaintenanceDetail() {
                     {data && data.service_company.name}
                   </span>
                   <button
-                    className={styles.popup_button}
+                    className={buttonsStyles.popup_button}
                     onClick={handlePopUp2}
                   >
                     {popup.search(/popup/) > 0 ? "˅" : "˄"}
@@ -125,20 +112,6 @@ export default function MaintenanceDetail() {
                   {data && data.service_company.description}
                 </p>
               </div>
-            </div>
-            <div className={buttonsStyles.buttons_container}>
-              <button className={buttonsStyles.button} onClick={handleEdit}>
-                Изменить ТО
-              </button>
-              {user && groups.includes(user.group) ?
-              <button className={buttonsStyles.button} onClick={handleDelete}>
-                Удалить TO
-              </button> : null}
-            </div>
-            <div style={{ display: "none" }}>
-              {deleteSuccess
-                ? setTimeout(() => navigate("/service/to"), 700)
-                : null}
             </div>
           </div>
         </>

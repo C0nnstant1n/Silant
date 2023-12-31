@@ -36,7 +36,7 @@ const service = {
       errorElement: <ErrorPage />,
     },
     {
-      path: "edit/:infoId",
+      path: "edit_machine/:infoId",
       element: <Edit />,
       errorElement: <ErrorPage />,
     },

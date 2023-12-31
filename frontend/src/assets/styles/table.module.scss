@@ -1,16 +1,23 @@
 @import '../../vars.scss';
 .result_table{
   width: 100%;
-  thead{
+  thead {
     font-weight: bold;
     tr{
-      border: 2px inset #163E6C;
+      border: 2px solid #163E6C;
       td{
         border: 2px inset #163E6C;
+        .table_header{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+        }
         &:hover{
-
+          background-color: $button-background;
         }
       }
+
     }
   }
   tbody{

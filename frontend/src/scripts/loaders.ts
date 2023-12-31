@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BACKAND_URL } from "../configs/urls.ts";
+import { BACKAND_URL } from "../main/configs/urls.ts";
 import { redirect } from "react-router-dom";
-import { IUser } from "../configs/intarfaces.ts";
+import { IUser } from "../main/configs/intarfaces.ts";
 
 async function protectedLoader() {
   const isAuthenticated = await axios

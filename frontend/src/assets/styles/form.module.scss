@@ -5,6 +5,7 @@
   grid-template-columns: auto auto;
   @media (max-width: 910px){
     grid-template-columns: auto;
+
   }
   .form_section {
     margin: 0.7rem;
@@ -37,6 +38,26 @@
       .text{
         font-weight: normal;
       }
+    }
+  }
+}
+.filters_wrapper{
+  .filters {
+    width: 20rem;
+    margin: 3px 1rem;
+    justify-self: center;
+
+    .filters_wrapper{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    @media (max-width: 450px){
+      justify-self: left;
+
+    }
+    @media (max-width: 500px){
+      width: 12rem;
     }
   }
 }

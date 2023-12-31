@@ -3,8 +3,8 @@ import {
   BACKAND_URL,
   CREATE_MACHINE_URL,
   MACHINE_URL,
-} from "../configs/urls.ts";
-import { IMachine, IResponse } from "../configs/intarfaces.ts";
+} from "../main/configs/urls.ts";
+import { IMachine, IResponse } from "../main/configs/intarfaces.ts";
 import { csrftoken } from "../scripts/get_coockies.ts";
 
 export const machineApi = createApi({
@@ -21,7 +21,7 @@ export const machineApi = createApi({
     }),
     getMachine: build.query<IMachine, string>({
       query: (arg: number) => ({
-        url: MACHINE_URL + arg + "/",
+        url: MACHINE_URL + arg,
         credentials: "include",
       }),
     }),
@@ -50,7 +50,7 @@ export const machineApi = createApi({
     }),
     updateMachine: build.mutation<IMachine, IMachine>({
       query: (machine) => ({
-        url: CREATE_MACHINE_URL + machine.id + "/",
+        url: CREATE_MACHINE_URL + machine.id,
         method: "PUT",
         headers: {
           "X-CSRFToken": csrftoken,

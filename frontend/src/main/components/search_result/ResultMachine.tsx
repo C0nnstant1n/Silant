@@ -1,7 +1,7 @@
 import styles from "./result.module.scss";
 import { shmachineApi } from "../../../redux/shmachine.ts";
 import TString from "./TString.tsx";
-import { IShMachine } from "../../../configs/intarfaces.ts";
+import { IShMachine } from "../../configs/intarfaces.ts";
 
 export default function Result() {
   const {

@@ -1,10 +1,8 @@
 import { machineApi } from "../../../../../redux/machine.ts";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import styles from "../detail.module.scss";
-import buttonsStyles from "../../../../../assets/styles/buttons.module.scss";
 import React from "react";
 import Detail from "../detail.tsx";
-import {userApi} from "../../../../../redux/user.ts";
 
 export default function MachineDetail() {
   const location = useLocation();
@@ -30,9 +28,6 @@ export default function MachineDetail() {
     data ? navigate(`/service/edit/${data.id}`) : null;
   };
 
-  const { data: user } = userApi.useGetUserQuery("");
-  const groups = ['Manager']
-
   return (
     <>
       {isLoading && !data ? (
@@ -52,15 +47,6 @@ export default function MachineDetail() {
             <div className={styles.detail__spec}>
               <Outlet />
             </div>
-            {user && groups.includes(user.group) ?
-            <div className={buttonsStyles.buttons_container}>
-              <button className={buttonsStyles.button} onClick={handleEdit}>
-                Редактировать машину
-              </button>
-              <button className={buttonsStyles.button} onClick={handleDelete}>
-                Удалить машину
-              </button>
-            </div> : null }
           </div>
           <div style={{ display: "none" }}>
             {deleteSuccess

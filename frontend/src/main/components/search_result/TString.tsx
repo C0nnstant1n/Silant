@@ -1,11 +1,11 @@
-import { IShMachine } from "../../../configs/intarfaces.ts";
-
+import { IShMachine } from "../../configs/intarfaces.ts";
+import tableStyle from '../../../assets/styles/table.module.scss'
 interface IProps {
   machine: IShMachine;
 }
 export default function TString({ machine }: IProps) {
   return (
-    <tr>
+    <tr className={tableStyle.table_string}>
       <td>{machine.id}</td>
       <td>{machine.machine_model}</td>
       <td>{machine.machine_serial_number}</td>

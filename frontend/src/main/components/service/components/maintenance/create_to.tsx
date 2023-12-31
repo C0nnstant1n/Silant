@@ -1,12 +1,12 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
 import formStyle from "../../../../../assets/styles/form.module.scss";
-import { maintenanceDict } from "../../../../../configs/variables.ts";
+import { maintenanceDict } from "../../../../configs/variables.ts";
 import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import {
   IHandbook,
   IMachine,
   IMaintenance,
-} from "../../../../../configs/intarfaces.ts";
+} from "../../../../configs/intarfaces.ts";
 import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { machineApi } from "../../../../../redux/machine.ts";
@@ -32,11 +32,15 @@ export default function CreateTO() {
     event.preventDefault();
     create(getData(event) as IMaintenance);
   };
+  const mapDict: string [][] =[]
+  for (const i in maintenanceDict){
+    mapDict.push([i, maintenanceDict[i]])
+  }
 
   return (
     <>
-      <form className={formStyle.form} onSubmit={handleCreate}>
-        {maintenanceDict.map((data) => (
+      <form id='create_to' className={formStyle.form} onSubmit={handleCreate}>
+        {mapDict.map((data) => (
           <div key={data[0]}>
             {data[0] == "service_company" || data[0] == "maintenance_type" ? (
               <section className={formStyle.form_section} key={data[0]}>
@@ -80,14 +84,6 @@ export default function CreateTO() {
             )}
           </div>
         ))}
-        <div className={buttonStyle.buttons_container}>
-          <button className={buttonStyle.button} type='submit'>
-            Создать ТО
-          </button>
-          <Link to={"/service/to"} className={buttonStyle.button}>
-            Отмена
-          </Link>
-        </div>
       </form>
       <div style={{ display: "none" }}>
         {createSuccess ? setTimeout(() => navigate("/service/to"), 700) : null}

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BACKAND_URL, SHARED_MACHINE_URL } from "../configs/urls.ts";
-import { IResponse } from "../configs/intarfaces.ts";
+import { BACKAND_URL, SHARED_MACHINE_URL } from "../main/configs/urls.ts";
+import { IResponse } from "../main/configs/intarfaces.ts";
 // import {sessionid, csrftoken} from "../scripts/get_coockies.ts";
 
 export const shmachineApi = createApi({

@@ -1,6 +1,8 @@
 import styles from "./detail.module.scss";
-import { machineDict } from "../../../../configs/variables.ts";
-import { complaintDict } from "../../../../configs/variables.ts";
+import popStyles from '../../../main.module.scss'
+import buttonStyles from '../../../../assets/styles/buttons.module.scss'
+import { machineDict } from "../../../configs/variables.ts";
+import { complaintDict } from "../../../configs/variables.ts";
 import { useState } from "react";
 
 interface IProps {
@@ -8,14 +10,13 @@ interface IProps {
 }
 
 export default function Detail({ data }: IProps) {
-  const [popup, setPopup] = useState(styles.popup);
-
+  const [popup, setPopup] = useState(popStyles.popdown);
   const dict = Object.assign(machineDict, complaintDict);
 
   const handlePopUp = () => {
     popup.search(/popup/) > 0
-      ? setPopup(styles.popdown)
-      : setPopup(styles.popup);
+      ? setPopup(popStyles.popdown)
+      : setPopup(popStyles.popup);
   };
 
   return (
@@ -30,14 +31,14 @@ export default function Detail({ data }: IProps) {
           ) : (
             <>
               <span>{data[1].name}</span>
-              <button className={styles.popup_button} onClick={handlePopUp}>
+              <button className={buttonStyles.popup_button} onClick={handlePopUp}>
                 {popup.search(/popup/) > 0 ? "˅" : "˄"}
               </button>
             </>
           )}
         </div>
       </section>
-      {data[1].length > 1 ? null : (
+      {data[1].length || (typeof data[1] == "number") || (data[0] == 'machine') ? null : (
         <p className={popup}>{data[1].description}</p>
       )}
     </div>

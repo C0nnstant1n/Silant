@@ -5,12 +5,20 @@ header {
       margin-left: 1rem;
       width: 100px;
       height: 100px;
+      @media (max-width: 440px) {
+        width: 60px;
+        height: 60px;
+      }
     }
   }
   .header__nav {
     display: flex;
     justify-content: center;
     gap: 3rem;
+    @media (max-width: 540px){
+      flex-wrap: wrap;
+      gap: 6px
+    }
   }
   h2 {
     text-align: center;
@@ -22,12 +30,16 @@ header {
     padding: 0.6em 1.2em;
     font-size: 1rem;
     font-weight: 500;
-    font-family: inherit;
     background-color: $main-color1;
     color: $main-color3;
     cursor: pointer;
     transition: border-color 0.25s;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    @media (max-width: 440px) {
+      margin: 0 1rem;
+      padding: 6px 6px;
+      border-radius: 4px;
+    }
   }
   .header__button:hover {
     border-color: $main-color2;
@@ -69,5 +81,12 @@ header {
         opacity: 1;
       }
     }
+    @media (max-width: 500px) {
+      margin: 0 1rem
+    }
+  }
+
+  header {
+    max-height: 200px;
   }
 }

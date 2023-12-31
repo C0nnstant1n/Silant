@@ -1,8 +1,9 @@
 import styles from "./result.module.scss";
+import tableStyle from '../../../assets/styles/table.module.scss'
 import { useLocation } from "react-router-dom";
 import { shmachineApi } from "../../../redux/shmachine.ts";
 import TString from "./TString.tsx";
-import { IShMachine } from "../../../configs/intarfaces.ts";
+import { IShMachine } from "../../configs/intarfaces.ts";
 
 export default function ResultShMachine() {
   const location = useLocation();
@@ -37,7 +38,7 @@ export default function ResultShMachine() {
         </div>
       </div>
     ) : (
-      <table className={styles.result_table}>
+      <table className={tableStyle.result_table}>
         <thead>
           <tr>
             <td>№ п / п </td>

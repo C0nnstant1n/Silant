@@ -1,4 +1,4 @@
-import { IMaintenance } from "../../../../../configs/intarfaces.ts";
+import { IMaintenance } from "../../../../configs/intarfaces.ts";
 import { useNavigate } from "react-router-dom";
 import tableStyle from "../../../../../assets/styles/table.module.scss";
 

@@ -1,18 +1,17 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
 import styles from "../../../search_result/result.module.scss";
 import MaintenanceTable from "./maintenance_table.tsx";
-import { IMaintenance } from "../../../../../configs/intarfaces.ts";
+import { IMaintenance } from "../../../../configs/intarfaces.ts";
 import tableStyle from "../../../../../assets/styles/table.module.scss";
-import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
-import {Link, useLocation} from "react-router-dom";
-import { userApi } from "../../../../../redux/user.ts";
+import {useLocation} from "react-router-dom";
+import TableHeaders from "../table_headers.tsx";
+import {maintenanceDict} from "../../../../configs/variables.ts";
 
 export default function Maintenance() {
-  const { data: maintenance, isLoading } =
-    maintenanceApi.useGetMaintenanceQuery("");
+  const path = useLocation()
 
-  const { data: user } = userApi.useGetUserQuery("");
-  const groups = ['Client', 'Manager', 'Service_Organization']
+  const { data: maintenance, isLoading } =
+    maintenanceApi.useGetMaintenanceQuery(path.search ? path.search: '');
 
   return (
     <>
@@ -32,13 +31,7 @@ export default function Maintenance() {
         <table className={tableStyle.result_table}>
           <thead>
             <tr>
-              <td>Зав. № машины</td>
-              <td>Вид ТО</td>
-              <td>Дата Проведения ТО</td>
-              <td>Наработка, м/час</td>
-              <td>№ Заказ-наряда</td>
-              <td>Дата Заказ-наряда</td>
-              <td>Организация проводившая ТО</td>
+              <TableHeaders dict={maintenanceDict} />
             </tr>
           </thead>
           <tbody>
@@ -49,13 +42,6 @@ export default function Maintenance() {
           </tbody>
         </table>
       )}
-      {user && groups.includes(user.group) ?
-        <div className={buttonStyles.buttons_container}>
-          <Link className={buttonStyles.button} to={"/service/create_to"}>
-            Добавить ТО
-          </Link>
-        </div>
-       : null}
     </>
   );
 }

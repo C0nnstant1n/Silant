@@ -12,8 +12,8 @@ import {
   STEERING_AXLE,
   TRANSMISSION_URL,
   TYPEOFMAINTENANCE,
-} from "../configs/urls.ts";
-import { IHandbook, IResponse } from "../configs/intarfaces.ts";
+} from "../main/configs/urls.ts";
+import { IHandbook, IResponse } from "../main/configs/intarfaces.ts";
 
 export const handbooksApi = createApi({
   reducerPath: "handbooksApi",

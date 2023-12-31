@@ -1,17 +1,18 @@
-import { IComplaint } from "../../../../../configs/intarfaces.ts";
+import { IComplaint } from "../../../../configs/intarfaces.ts";
 import { complaintsApi } from "../../../../../redux/complaints.ts";
 import tableStyles from "../../../../../assets/styles/table.module.scss";
 import ComplaintTable from "./complaint_table.tsx";
-import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
-import { Link } from "react-router-dom";
-import { userApi } from "../../../../../redux/user.ts";
+import {useLocation} from "react-router-dom";
+import {complaintDict} from "../../../../configs/variables.ts";
+import TableHeaders from "../table_headers.tsx";
 
 export default function Complaints() {
+  const path = useLocation()
+
   const { data: complains, isLoading } =
-    complaintsApi.useGetComplaintsQuery("");
+    complaintsApi.useGetComplaintsQuery(path.search ? path.search: '');
   // console.log(complains)
-  const { data: user } = userApi.useGetUserQuery("");
-  const groups = ['Manager', 'Service_Organization']
+
   return (
     <>
       {isLoading && !complains ? (
@@ -30,16 +31,7 @@ export default function Complaints() {
         <table className={tableStyles.result_table}>
           <thead>
             <tr>
-              <td>Зав. № машины</td>
-              <td>Дата отказа</td>
-              <td>Наработка, м/час</td>
-              <td>Узел отказа</td>
-              <td>Описание отказа</td>
-              <td>Способ восстановления</td>
-              <td>Используемые запасные части</td>
-              <td>Дата восстановления</td>
-              <td>Время простоя</td>
-              <td>Сервисная компания</td>
+              <TableHeaders dict={complaintDict}/>
             </tr>
           </thead>
           <tbody>
@@ -50,16 +42,6 @@ export default function Complaints() {
           </tbody>
         </table>
       )}
-      {user && groups.includes(user.group) ? (
-        <div className={buttonStyles.buttons_container}>
-          <Link
-            className={buttonStyles.button}
-            to={"/service/create_complaint"}
-          >
-            Написать рекламацию
-          </Link>
-        </div>
-      ) : null}
     </>
   );
 }

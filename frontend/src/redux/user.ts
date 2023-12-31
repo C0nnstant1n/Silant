@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BACKAND_URL, USER_URL } from "../configs/urls.ts";
-import { IUser } from "../configs/intarfaces.ts";
+import { BACKAND_URL, USER_URL } from "../main/configs/urls.ts";
+import { IUser } from "../main/configs/intarfaces.ts";
 
 export const userApi = createApi({
   reducerPath: "userApi",

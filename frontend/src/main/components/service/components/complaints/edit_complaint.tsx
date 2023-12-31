@@ -1,11 +1,12 @@
 import styles from "../detail.module.scss";
 import formStyle from "../../../../../assets/styles/form.module.scss";
-import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import Selector from "../selector.tsx";
 import { complaintsApi } from "../../../../../redux/complaints.ts";
-import { complaintDict } from "../../../../../configs/variables.ts";
-import { IComplaint } from "../../../../../configs/intarfaces.ts";
+import { complaintDict } from "../../../../configs/variables.ts";
+import { IComplaint } from "../../../../configs/intarfaces.ts";
+import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
+import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
 
 export default function EditComplaint() {
   const location = useLocation();
@@ -13,7 +14,7 @@ export default function EditComplaint() {
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
 
-  const { data } = complaintsApi.useGetComplaintQuery(path + "/");
+  const { data } = complaintsApi.useGetComplaintQuery(path);
   const [update, { isSuccess }] = complaintsApi.useUpdateComplaintsMutation();
   const content = [];
   if (data) {
@@ -41,46 +42,47 @@ export default function EditComplaint() {
     <>
       <form className={formStyle.form} onSubmit={handleUpdate}>
         {content.map((detail) => (
-          <div className={styles.detail_wrapper} key={detail[0]}>
-            <section className={formStyle.form_section}>
-              <p className={formStyle.label}>{complaintDict[detail[0]]}</p>
-              {detail[0] == "machine" ? (
-                <p>
-                  <b>{detail[1].machine_serial_number}</b>
-                </p>
-              ) : detail[1].length || typeof detail[1] == "number" ? (
-                <input
-                  required={detail[0] != "machine"}
-                  name={detail[0]}
-                  defaultValue={detail[1]}
-                  type={
-                    detail[0].search("date") >= 0
-                      ? "date"
-                      : detail[0] == "operating_time"
-                      ? "number"
-                      : "text"
-                  }
-                />
-              ) : (
-                <Selector name={[detail[0], detail[1].id]} />
-              )}
-            </section>
-          </div>
+            <div className={styles.detail_wrapper} key={detail[0]}>
+              <section className={formStyle.form_section}>
+                <p className={formStyle.label}>{complaintDict[detail[0]]}</p>
+                {detail[0] == "machine" ? (
+                    <p>
+                      <b>{detail[1].machine_serial_number}</b>
+                    </p>
+                ) : detail[1].length || typeof detail[1] == "number" ? (
+                    <input
+                        required={detail[0] != "machine"}
+                        name={detail[0]}
+                        defaultValue={detail[1]}
+                        type={
+                          detail[0].search("date") >= 0
+                              ? "date"
+                              : detail[0] == "operating_time"
+                                  ? "number"
+                                  : "text"
+                        }
+                    />
+                ) : (
+                    <Selector name={[detail[0], detail[1].id]}/>
+                )}
+              </section>
+            </div>
         ))}
         <div className={buttonStyle.buttons_container}>
-          <button className={buttonStyle.button} type='submit'>
+          <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
             Сохранить
           </button>
-          <Link to={"/service/complaints"} className={buttonStyle.button}>
+          <Link to={"/service/info"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
             Отмена
           </Link>
         </div>
       </form>
-      <div style={{ display: "none" }}>
+      <div style={{display: "none"}}>
         {isSuccess
-          ? setTimeout(() => navigate("/service/complaints"), 700)
-          : null}
+            ? setTimeout(() => navigate("/service/complaints"), 700)
+            : null}
       </div>
+
     </>
   );
 }

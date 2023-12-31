@@ -1,10 +1,10 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
 import formStyle from "../../../../../assets/styles/form.module.scss";
-import { IMaintenance } from "../../../../../configs/intarfaces.ts";
+import { IMaintenance } from "../../../../configs/intarfaces.ts";
 import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../detail.module.scss";
-import { maintenanceDict } from "../../../../../configs/variables.ts";
+import { maintenanceDict } from "../../../../configs/variables.ts";
 import Selector from "../selector.tsx";
 
 export default function EditTO() {
@@ -14,7 +14,7 @@ export default function EditTO() {
 
   const [update, { isSuccess: createSuccess }] =
     maintenanceApi.useUpdateMaintenanceMutation();
-  const { data: TO } = maintenanceApi.useGetMaintenanceDetailQuery(path + "/");
+  const { data: TO } = maintenanceApi.useGetMaintenanceDetailQuery(path);
 
   const navigate = useNavigate();
 
@@ -40,6 +40,11 @@ export default function EditTO() {
     update(maintenance as IMaintenance);
   };
 
+  const mapDict: string [][] =[]
+  for (const i in maintenanceDict){
+    mapDict.push([i, maintenanceDict[i]])
+  }
+
   return (
     <>
       <form className={formStyle.form} onSubmit={handleUpdate}>
@@ -47,7 +52,7 @@ export default function EditTO() {
           <div className={styles.detail_wrapper} key={detail[0]}>
             <section className={formStyle.form_section}>
               <p className={formStyle.label}>
-                {maintenanceDict.map((data) =>
+                {mapDict.map((data) =>
                   data[0] == detail[0] ? data[1] : ""
                 )}
               </p>

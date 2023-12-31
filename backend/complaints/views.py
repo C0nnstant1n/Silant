@@ -14,12 +14,17 @@ class GetComplaintsViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         group = user.groups.values_list('name', flat=True)
+        if self.request.GET.get('ordered'):
+            ordered = self.request.GET.get('ordered')
+        else:
+            ordered = 'date_refusal'
+
         if 'Manager' in group:
-            queryset = ComplaintsModel.objects.all().order_by('date_refusal')
+            queryset = ComplaintsModel.objects.all().order_by(ordered)
             self.fiterset = ComplaintFilter(self.request.GET, queryset)
             return self.fiterset.qs
         queryset = ComplaintsModel.objects.filter(
-            Q(machine__client__user=user) | Q(machine__service_company__user=user)).order_by('date_refusal')
+            Q(machine__client__user=user) | Q(machine__service_company__user=user)).order_by(ordered)
         self.fiterset = ComplaintFilter(self.request.GET, queryset)
         return self.fiterset.qs
 

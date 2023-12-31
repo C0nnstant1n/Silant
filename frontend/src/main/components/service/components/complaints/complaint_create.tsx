@@ -4,13 +4,12 @@ import {
   IComplaint,
   IHandbook,
   IMachine,
-} from "../../../../../configs/intarfaces.ts";
-import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
+} from "../../../../configs/intarfaces.ts";
 import { getData } from "../../../../../scripts/create.ts";
 import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import { machineApi } from "../../../../../redux/machine.ts";
-import { Link, useNavigate } from "react-router-dom";
-import { complaintDict } from "../../../../../configs/variables.ts";
+import { useNavigate } from "react-router-dom";
+import { complaintDict } from "../../../../configs/variables.ts";
 
 export default function CreateComplaint() {
   const navigate = useNavigate();
@@ -43,7 +42,7 @@ export default function CreateComplaint() {
 
   return (
     <>
-      <form className={formStyle.form} onSubmit={handleCreate}>
+      <form id='create_complaint' className={formStyle.form} onSubmit={handleCreate}>
         {complaint.map((data) => (
           <div key={data[0]}>
             {data[0] == "service_company" ||
@@ -93,14 +92,7 @@ export default function CreateComplaint() {
             )}
           </div>
         ))}
-        <div className={buttonStyle.buttons_container}>
-          <button className={buttonStyle.button} type='submit'>
-            Сохранить рекламацию
-          </button>
-          <Link to={"/service/complaints"} className={buttonStyle.button}>
-            Отмена
-          </Link>
-        </div>
+
       </form>
       <div style={{ display: "none" }}>
         {createSuccess

@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IComplaint, IResponse } from "../configs/intarfaces.ts";
+import { IComplaint, IResponse } from "../main/configs/intarfaces.ts";
 import {
   BACKAND_URL,
   COMPLAINTS_URL,
   SETCOMPLAINT_URL,
-} from "../configs/urls.ts";
+} from "../main/configs/urls.ts";
 import { csrftoken } from "../scripts/get_coockies.ts";
 
 export const complaintsApi = createApi({
@@ -13,8 +13,8 @@ export const complaintsApi = createApi({
   tagTypes: ["complaints"],
   endpoints: (build) => ({
     getComplaints: build.query<IResponse, string>({
-      query: () => ({
-        url: COMPLAINTS_URL,
+      query: (search) => ({
+        url: COMPLAINTS_URL + search,
         credentials: "include",
       }),
       providesTags: (result) => ["complaints"],
@@ -39,7 +39,7 @@ export const complaintsApi = createApi({
     }),
     updateComplaints: build.mutation<IComplaint, IComplaint>({
       query: (complaint) => ({
-        url: SETCOMPLAINT_URL + complaint.id + "/",
+        url: SETCOMPLAINT_URL + complaint.id,
         method: "PUT",
         headers: {
           "X-CSRFToken": csrftoken as string,

@@ -1,8 +1,10 @@
 import styles from "../../main.module.scss";
 import buttonStyles from "../../../assets/styles/buttons.module.scss";
-import {NavLink, Outlet, useLocation} from "react-router-dom";
+import {Link, NavLink, Outlet, useLocation} from "react-router-dom";
 import { userApi } from "../../../redux/user.ts";
-import FilterInputs from "./components/filters/filters.tsx";
+import FilterInputs from "./components/filters.tsx";
+import buttonStyle from "../../../assets/styles/buttons.module.scss";
+import ButtonsBlock from "./components/buttons.tsx";
 
 export default function Service() {
   const { data } = userApi.useGetUserQuery("");
@@ -42,24 +44,25 @@ export default function Service() {
       </section>
       <div className={styles.main_container}>
         <nav className={buttonStyles.buttons_container}>
-          <NavLink className={buttonStyles.button} to='info'>
+          <NavLink className={buttonStyles.button + ' ' + buttonStyles.big} to='info'>
             Общая информация
           </NavLink>
-          <NavLink className={buttonStyles.button} to='to'>
+          <NavLink className={buttonStyles.button + ' ' + buttonStyles.big} to='to'>
             ТО
           </NavLink>
-          <NavLink className={buttonStyles.button} to='complaints'>
+          <NavLink className={buttonStyles.button + ' ' + buttonStyles.big} to='complaints'>
             Рекламации
           </NavLink>
         </nav>
-        <hr />
-        {(location.pathname.endsWith('/info')||
-        location.pathname.endsWith('/to')||
-        location.pathname.endsWith('/complaints')) ?
-        <FilterInputs path={location.pathname}/>: null}
+        <hr/>
+        {(location.pathname.endsWith('/info') ||
+            location.pathname.endsWith('/to') ||
+            location.pathname.endsWith('/complaints')) ?
+            <FilterInputs path={location.pathname}/> : null}
         <section className={styles.container_content}>
-          <Outlet />
+          <Outlet/>
         </section>
+        <ButtonsBlock />
       </div>
     </>
   );

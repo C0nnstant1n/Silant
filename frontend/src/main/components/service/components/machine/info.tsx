@@ -1,36 +1,25 @@
 import { machineApi } from "../../../../../redux/machine.ts";
 import styles from "../detail.module.scss";
-import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
 import tableStyle from "../../../../../assets/styles/table.module.scss";
-import { IMachine } from "../../../../../configs/intarfaces.ts";
+import { IMachine } from "../../../../configs/intarfaces.ts";
 import MachineTable from "./machine_table.tsx";
-import {Link, useLocation} from "react-router-dom";
-import { userApi } from "../../../../../redux/user.ts";
+import {useLocation} from "react-router-dom";
+import {machineDict} from "../../../../configs/variables.ts";
+import TableHeaders from "../table_headers.tsx";
+
 
 export default function Info() {
   const path = useLocation()
   const {
     data: machine,
-    error,
     isLoading,
   } = machineApi.useGetMachinesQuery(path.search ? path.search: '');
-  // console.log(error)
-  // console.log(path.search)
-
-  const { data: user } = userApi.useGetUserQuery('');
   return (
-    <>
-      {isLoading && !machine ? (
-        <div className={styles.search_result__container}>
-          <div className={styles.loading}>
-            <h3>Загрузка</h3>
-          </div>
-        </div>
-      ) : error && !machine ? (
-        <div className={styles.search_result__container}>
-          <div className={styles.error}>
-            <h2>Ошибка Загрузки</h2>
-            {/*<p>{error.data.detail}</p>*/}
+      <>
+        {isLoading && !machine ? (
+            <div className={styles.search_result__container}>
+              <div className={styles.loading}>
+                <h3>Загрузка</h3>
           </div>
         </div>
       ) : machine && !machine.count ? (
@@ -43,23 +32,7 @@ export default function Info() {
         <table className={tableStyle.result_table}>
           <thead>
             <tr>
-              <td>Модель техники</td>
-              <td>Зав. № машины</td>
-              <td>Модель Двигателя</td>
-              <td>Зав. № Двигателя</td>
-              <td>Модель трансмиссии (производитель, артикул)</td>
-              <td>Зав. № трансмиссии</td>
-              <td>Модель ведущего моста</td>
-              <td>Зав. № ведущего моста</td>
-              <td>Модель управляемого моста</td>
-              <td>Зав. № управляемого моста</td>
-              <td>№ договора поставки</td>
-              <td>Дата отгрузки с завода</td>
-              <td>Грузополучатель (конечный потребитель)</td>
-              <td>Адрес поставки (эксплуатации)</td>
-              <td>Комплектация (доп. опции)</td>
-              <td>Клиент</td>
-              <td>Сервисная компания</td>
+              <TableHeaders dict={machineDict} />
             </tr>
           </thead>
           <tbody>
@@ -70,14 +43,6 @@ export default function Info() {
           </tbody>
         </table>
       )}
-
-      {user && user.group === "Manager" ? (
-        <div className={buttonStyles.buttons_container}>
-          <Link className={buttonStyles.button} to={"/service/create_machine"}>
-            Добавить машину
-          </Link>
-        </div>
-      ) : null}
     </>
   );
 }

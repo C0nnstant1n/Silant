@@ -3,9 +3,10 @@ import formStyle from "../../../../../assets/styles/form.module.scss";
 import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { machineApi } from "../../../../../redux/machine.ts";
-import { machineDict } from "../../../../../configs/variables.ts";
+import { machineDict } from "../../../../configs/variables.ts";
 import Selector from "../selector.tsx";
-import { IMachine } from "../../../../../configs/intarfaces.ts";
+import { IMachine } from "../../../../configs/intarfaces.ts";
+import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
 
 export default function Edit() {
   const location = useLocation();
@@ -55,10 +56,10 @@ export default function Edit() {
             </div>
           ))}
           <div className={buttonStyle.buttons_container}>
-            <button className={buttonStyle.button} type='submit'>
+            <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
               Сохранить
             </button>
-            <Link to={"/service/info"} className={buttonStyle.button}>
+            <Link to={"/service/info"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
               Отмена
             </Link>
           </div>
