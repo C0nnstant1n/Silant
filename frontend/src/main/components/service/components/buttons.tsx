@@ -8,25 +8,25 @@ export default function ButtonsBlock() {
     const location = useLocation()
     const path = location.pathname.replace(/^\D+/g, "");
     const {data:user} = userApi.useGetUserQuery('')
-    console.log(path)
+    // console.log(path)
 
-    const info = (name: string) =>{
+    const info = (name: string, to:string) =>{
         return (
             <div className={buttonStyle.buttons_container}>
-                <Link to={"/service/create_machine"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
+                <Link to={to} className={buttonStyle.button + ' ' + buttonStyles.medium}>
                     {name}
                 </Link>
             </div>
         )
     }
 
-    const  create = (name: string) => {
+    const  create = (name: string, to: string) => {
         return (
             <div className={buttonStyle.buttons_container}>
-                <button form='create_machine' className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
+                <button form={to} className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
                     {name}
                 </button>
-                <Link to={"/service/info"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
+                <Link to={location.pathname} className={buttonStyle.button + ' ' + buttonStyles.medium}>
                     Отмена
                 </Link>
             </div>
@@ -50,23 +50,23 @@ export default function ButtonsBlock() {
 
     if (user) {
         if (location.pathname.endsWith('/info') && user.group == 'Manager')
-            return info('Добавить Машину')
+            return info('Добавить Машину', "create_machine")
 
         if (location.pathname.endsWith('/to')) {
-            return info("Добавить ТО")
+            return info("Добавить ТО", 'create_to')
         }
         if (location.pathname.endsWith('/complaints') &&
             (user.group == 'Manager' || user.group == 'service_company')) {
-            return info("Добавить Рекламацию")
+            return info("Добавить Рекламацию", 'create_complaint')
         }
         if (location.pathname.endsWith('/create_machine') && (user.group == 'Manager')){
-            return create('Сохранить Машину')
+            return create('Сохранить Машину', 'create_machine')
         }
         if (location.pathname.endsWith('/create_to')){
-            return create("Сохранить ТО")
+            return create("Сохранить ТО", 'create_to')
         }
         if (location.pathname.endsWith('/create_complaint') && (user.group == 'Manager' || user.group == 'service_company')){
-            return create("Сохранить Рекламацию")
+            return create("Сохранить Рекламацию", 'create_complaint')
         }
         if (path && location.pathname.search('info') > 0){
             return detail('machine','Машину')

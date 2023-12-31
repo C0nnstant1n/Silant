@@ -26,7 +26,7 @@ export default function Edit() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const machine: { [index: string]: any } = {};
+    const machine: { [index: string]: IMachine } = {};
     data.forEach(function (value, key) {
       machine[key] = value;
     });

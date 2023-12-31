@@ -1,9 +1,8 @@
-import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import formStyle from "../../../../../assets/styles/form.module.scss";
 import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import {IHandbook, IMachine} from "../../../../configs/intarfaces.ts";
 import { machineApi } from "../../../../../redux/machine.ts";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateMachine() {
   const { data: models } = handbooksApi.useGetAllMachineModelQuery("");

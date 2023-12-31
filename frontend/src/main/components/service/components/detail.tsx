@@ -1,17 +1,17 @@
 import styles from "./detail.module.scss";
 import popStyles from '../../../main.module.scss'
 import buttonStyles from '../../../../assets/styles/buttons.module.scss'
-import { machineDict } from "../../../configs/variables.ts";
-import { complaintDict } from "../../../configs/variables.ts";
 import { useState } from "react";
+import {summary_dictionary} from "../../../configs/variables.ts";
+import {IMachine} from "../../../configs/intarfaces.ts";
 
 interface IProps {
-  data: [[index: string], any];
+  data: [[index: string], IMachine];
 }
 
 export default function Detail({ data }: IProps) {
   const [popup, setPopup] = useState(popStyles.popdown);
-  const dict = Object.assign(machineDict, complaintDict);
+  const dict = summary_dictionary
 
   const handlePopUp = () => {
     popup.search(/popup/) > 0

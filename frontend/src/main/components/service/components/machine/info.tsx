@@ -9,6 +9,7 @@ import TableHeaders from "../table_headers.tsx";
 
 
 export default function Info() {
+  // console.log(machineDict)
   const path = useLocation()
   const {
     data: machine,

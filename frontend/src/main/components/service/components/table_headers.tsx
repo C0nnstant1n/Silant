@@ -13,7 +13,7 @@ export default function TableHeaders({dict}: IProps){
     const [direction, setDirection] = useState(false)
     const path = useLocation()
     const navigate = useNavigate()
-    // console.log(path)
+    // console.log(dict)
     const handleOrder = (e) => {
         setDirection(!direction)
         const to = actionOrder(e, {dict}, path, direction)

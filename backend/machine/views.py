@@ -24,7 +24,7 @@ class GetMachineViewSet(viewsets.ModelViewSet):
 
         else: ordered = '-date_shipped_from_factory'
 
-        print(self.request.query_params)
+        # print(self.request.query_params)
         if 'Manager' in group:
             print('manager')
             queryset = Machine.objects.all().order_by(ordered)

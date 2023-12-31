@@ -42,7 +42,7 @@ export default function Selector({ name }: IProps) {
       useState(name.length > 1 ? name[1]: '');
 
 
-  const handleChange = (event: any) => {
+  const handleChange = (event) => {
     setDefault(event.target.value);
     event.preventDefault();
   };

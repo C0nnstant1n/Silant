@@ -40,10 +40,6 @@ main {
         box-shadow: 0 0 20px 0 rgba(22, 62, 108, 0.3);
 
       }
-      @media (max-width: 500px){
-        flex-wrap: wrap;
-      }
-
     }
     @media (max-width: 500px){
       h2 {
@@ -62,6 +58,9 @@ main {
     border-radius: 0.5rem;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(22, 62, 108, 0.3);
+    @media (max-width: 600px){
+      width: 96%;
+    }
   }
   .main__user_info {
     display: flex;

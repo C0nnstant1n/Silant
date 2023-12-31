@@ -13,7 +13,7 @@ import { complaintDict } from "../../../../configs/variables.ts";
 
 export default function CreateComplaint() {
   const navigate = useNavigate();
-  const [create, { isSuccess: createSuccess, isError, error }] =
+  const [create, { isSuccess: createSuccess }] =
     complaintsApi.useCreateComplaintsMutation();
 
   const { data: failure } = handbooksApi.useGetAllFailureQuery("");

@@ -9,8 +9,6 @@ export default function ComplaintDetail() {
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
   const { data, isLoading } = complaintsApi.useGetComplaintQuery(path);
-  const [remove, { isSuccess: deleteSuccess }] =
-    complaintsApi.useDeleteComplaintsMutation();
 
   const complaint = [];
   if (data) {

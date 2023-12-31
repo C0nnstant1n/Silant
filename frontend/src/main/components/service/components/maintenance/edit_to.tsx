@@ -28,7 +28,7 @@ export default function EditTO() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const maintenance: { [index: string]: any } = {};
+    const maintenance: { [index: string]: IMaintenance } = {};
     data.forEach(function (value, key) {
       maintenance[key] = value;
     });

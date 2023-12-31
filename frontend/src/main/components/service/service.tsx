@@ -1,9 +1,8 @@
 import styles from "../../main.module.scss";
 import buttonStyles from "../../../assets/styles/buttons.module.scss";
-import {Link, NavLink, Outlet, useLocation} from "react-router-dom";
+import {NavLink, Outlet, useLocation} from "react-router-dom";
 import { userApi } from "../../../redux/user.ts";
 import FilterInputs from "./components/filters.tsx";
-import buttonStyle from "../../../assets/styles/buttons.module.scss";
 import ButtonsBlock from "./components/buttons.tsx";
 
 export default function Service() {

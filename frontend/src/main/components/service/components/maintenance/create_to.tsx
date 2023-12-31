@@ -7,8 +7,7 @@ import {
   IMachine,
   IMaintenance,
 } from "../../../../configs/intarfaces.ts";
-import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { machineApi } from "../../../../../redux/machine.ts";
 import { getData } from "../../../../../scripts/create.ts";
 

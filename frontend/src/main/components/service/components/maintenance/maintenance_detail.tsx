@@ -1,5 +1,5 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import styles from "../detail.module.scss";
 import popStyles from '../../../../main.module.scss'
 import { useState } from "react";
@@ -8,7 +8,6 @@ import buttonsStyles from "../../../../../assets/styles/buttons.module.scss";
 export default function MaintenanceDetail() {
   const location = useLocation();
   const path = location.pathname.replace(/^\D+/g, "");
-  const navigate = useNavigate();
   const { data, isLoading } = maintenanceApi.useGetMaintenanceDetailQuery(path);
 
   const [popup, setPopup] = useState(popStyles.popup);

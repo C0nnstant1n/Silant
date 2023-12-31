@@ -24,11 +24,20 @@ body {
       margin: 1rem;
       background-color: $main-color3;
       border-radius: 0.5rem;
+      @media (max-width: 600px){
+        margin: 0;
+        a {
+          font-size: 0.8rem;
+        }
+      }
     }
     main {
       .active {
         color: $main-color2;
         border: 1px solid $main-color2;
+      }
+      @media (max-width: 600px){
+        margin: 4px;
       }
     }
   }

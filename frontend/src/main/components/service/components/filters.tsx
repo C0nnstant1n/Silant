@@ -29,7 +29,7 @@ export default function FilterInputs({path}: IProps){
         e.preventDefault()
         const formData = getData(e)
         let search_params = '?'
-        for (let i in formData){
+        for (const i in formData){
             formData[i] ? search_params += (i + '=' +formData[i] + '&') : null
         }
         // console.log(search_params)

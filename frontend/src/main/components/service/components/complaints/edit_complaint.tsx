@@ -26,7 +26,7 @@ export default function EditComplaint() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const complaint: { [index: string]: any } = {};
+    const complaint: { [index: string]: string } = {};
     formData.forEach(function (value, key) {
       complaint[key] = value;
     });
