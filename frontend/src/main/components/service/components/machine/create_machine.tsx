@@ -3,6 +3,8 @@ import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import {IHandbook, IMachine} from "../../../../configs/intarfaces.ts";
 import { machineApi } from "../../../../../redux/machine.ts";
 import { useNavigate } from "react-router-dom";
+import {BaseSyntheticEvent} from "react";
+import Loading from "../Loading.tsx";
 
 export default function CreateMachine() {
   const { data: models } = handbooksApi.useGetAllMachineModelQuery("");
@@ -16,10 +18,10 @@ export default function CreateMachine() {
   const navigate = useNavigate();
   const [
     createMachine,
-    { error: createError, isSuccess: createSuccess },
+    { error: createError, isSuccess: createSuccess, isLoading },
   ] = machineApi.useCreateMachineMutation();
   // console.log(createError, createSuccess)
-  const handleCreate = async (e) => {
+  const handleCreate = async (e: BaseSyntheticEvent) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const machine = {};
@@ -39,6 +41,7 @@ export default function CreateMachine() {
 
   return (
     <>
+      {isLoading ? <Loading suffix={'big'} /> :
       <form id='create_machine' className={formStyle.form} onSubmit={handleCreate}>
         <section className={formStyle.form_section}>
           <p className={formStyle.label}>№ контракта:</p>
@@ -159,7 +162,7 @@ export default function CreateMachine() {
               ))}
           </select>
         </section>
-      </form>
+      </form>}
       <div style={{ display: "none" }}>
         {createSuccess
           ? setTimeout(() => navigate("/service/info"), 700)

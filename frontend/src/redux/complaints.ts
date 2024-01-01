@@ -17,7 +17,7 @@ export const complaintsApi = createApi({
         url: COMPLAINTS_URL + search,
         credentials: "include",
       }),
-      providesTags: (result) => ["complaints"],
+      providesTags: () => ["complaints"],
     }),
     getComplaint: build.query<IComplaint, string>({
       query: (arg: string) => ({
@@ -49,9 +49,9 @@ export const complaintsApi = createApi({
       }),
       invalidatesTags: ["complaints"],
     }),
-    deleteComplaints: build.mutation<IComplaint, IComplaint>({
+    deleteComplaints: build.mutation<IComplaint, string>({
       query: (complaint) => ({
-        url: SETCOMPLAINT_URL + String(complaint.id) + "/",
+        url: SETCOMPLAINT_URL + complaint,
         method: "DELETE",
         headers: {
           "X-CSRFToken": csrftoken as string,

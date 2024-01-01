@@ -10,10 +10,11 @@ import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import { machineApi } from "../../../../../redux/machine.ts";
 import { useNavigate } from "react-router-dom";
 import { complaintDict } from "../../../../configs/variables.ts";
+import Loading from "../Loading.tsx";
 
 export default function CreateComplaint() {
   const navigate = useNavigate();
-  const [create, { isSuccess: createSuccess }] =
+  const [create, { isSuccess: createSuccess, isLoading }] =
     complaintsApi.useCreateComplaintsMutation();
 
   const { data: failure } = handbooksApi.useGetAllFailureQuery("");
@@ -30,7 +31,7 @@ export default function CreateComplaint() {
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    create(getData(event) as IComplaint);
+    create(getData(event));
   };
 
   const complaint = [];
@@ -42,6 +43,7 @@ export default function CreateComplaint() {
 
   return (
     <>
+      {isLoading ? <Loading suffix={'big'} /> :
       <form id='create_complaint' className={formStyle.form} onSubmit={handleCreate}>
         {complaint.map((data) => (
           <div key={data[0]}>
@@ -93,7 +95,7 @@ export default function CreateComplaint() {
           </div>
         ))}
 
-      </form>
+      </form>}
       <div style={{ display: "none" }}>
         {createSuccess
           ? setTimeout(() => navigate("/service/complaints"), 700)

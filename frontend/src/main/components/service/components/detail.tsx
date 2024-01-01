@@ -3,16 +3,16 @@ import popStyles from '../../../main.module.scss'
 import buttonStyles from '../../../../assets/styles/buttons.module.scss'
 import { useState } from "react";
 import {summary_dictionary} from "../../../configs/variables.ts";
-import {IMachine} from "../../../configs/intarfaces.ts";
+import {IHandbook, IMachine} from "../../../configs/intarfaces.ts";
 
 interface IProps {
-  data: [[index: string], IMachine];
+  data: [string, string | IHandbook];
 }
 
 export default function Detail({ data }: IProps) {
   const [popup, setPopup] = useState(popStyles.popdown);
   const dict = summary_dictionary
-
+  // console.log(data)
   const handlePopUp = () => {
     popup.search(/popup/) > 0
       ? setPopup(popStyles.popdown)

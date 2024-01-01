@@ -6,13 +6,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../detail.module.scss";
 import { maintenanceDict } from "../../../../configs/variables.ts";
 import Selector from "../selector.tsx";
+import Loading from "../Loading.tsx";
 
 export default function EditTO() {
   const location = useLocation();
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
 
-  const [update, { isSuccess: createSuccess }] =
+  const [update, { isSuccess: createSuccess, isLoading }] =
     maintenanceApi.useUpdateMaintenanceMutation();
   const { data: TO } = maintenanceApi.useGetMaintenanceDetailQuery(path);
 
@@ -47,6 +48,7 @@ export default function EditTO() {
 
   return (
     <>
+      { isLoading ? <Loading suffix={'big'}/> :
       <form className={formStyle.form} onSubmit={handleUpdate}>
         {content.map((detail) => (
           <div className={styles.detail_wrapper} key={detail[0]}>
@@ -87,7 +89,7 @@ export default function EditTO() {
             Отмена
           </Link>
         </div>
-      </form>
+      </form>}
       <div style={{ display: "none" }}>
         {createSuccess ? setTimeout(() => navigate("/service/to"), 700) : null}
       </div>

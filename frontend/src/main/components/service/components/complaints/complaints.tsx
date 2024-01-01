@@ -5,22 +5,27 @@ import ComplaintTable from "./complaint_table.tsx";
 import {useLocation} from "react-router-dom";
 import {complaintDict} from "../../../../configs/variables.ts";
 import TableHeaders from "../table_headers.tsx";
+import Loading from "../Loading.tsx";
+import popup from "../../../../../assets/styles/popup.module.scss";
 
 export default function Complaints() {
   const path = useLocation()
 
-  const { data: complains, isLoading } =
-    complaintsApi.useGetComplaintsQuery(path.search ? path.search: '');
+  const { data: complains, isLoading, isFetching } =
+    complaintsApi.useGetComplaintsQuery(path.search ? path.search : '');
   // console.log(complains)
 
   return (
     <>
-      {isLoading && !complains ? (
-        <div className={tableStyles.search_result__container}>
-          <div className={tableStyles.loading}>
-            <h3>Загрузка</h3>
+      {isFetching ?
+          <div className={popup.container + ' ' + popup.loading}>
+            <div className={popup.reveal_modal}>
+              <Loading suffix={'big'} />
+            </div>
           </div>
-        </div>
+          : null}
+      {isLoading && !complains ? (
+          <Loading suffix={'big'}/>
       ) : complains && !complains.count ? (
         <div>
           <div>

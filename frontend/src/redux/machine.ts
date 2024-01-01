@@ -17,10 +17,10 @@ export const machineApi = createApi({
         url: MACHINE_URL + search,
         credentials: "include",
       }),
-      providesTags: (result) => ["machine"],
+      providesTags: () => ["machine"],
     }),
-    getMachine: build.query<IMachine, string>({
-      query: (arg: number) => ({
+    getMachine: build.query<IMachine, number>({
+      query: (arg) => ({
         url: MACHINE_URL + arg,
         credentials: "include",
       }),
@@ -30,19 +30,19 @@ export const machineApi = createApi({
         url: CREATE_MACHINE_URL,
         method: "POST",
         headers: {
-          "X-CSRFToken": csrftoken,
+          "X-CSRFToken": csrftoken as string,
         },
         credentials: "include",
         body: machine,
       }),
       invalidatesTags: ["machine"],
     }),
-    deleteMachine: build.mutation<IMachine, IMachine>({
-      query: (machine) => ({
-        url: MACHINE_URL + machine.id + "/",
+    deleteMachine: build.mutation<IMachine, string>({
+      query: (arg) => ({
+        url: MACHINE_URL + arg,
         method: "DELETE",
         headers: {
-          "X-CSRFToken": csrftoken,
+          "X-CSRFToken": csrftoken as string,
         },
         credentials: "include",
       }),
@@ -53,7 +53,7 @@ export const machineApi = createApi({
         url: CREATE_MACHINE_URL + machine.id,
         method: "PUT",
         headers: {
-          "X-CSRFToken": csrftoken,
+          "X-CSRFToken": csrftoken as string,
         },
         credentials: "include",
         body: machine,

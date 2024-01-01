@@ -1,0 +1,39 @@
+@import "../../vars";
+
+
+.loading {
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+
+    animation-name: rotation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+.small {
+  img{
+    width: 1.1rem;
+  }
+}
+.medium {
+  img{
+    width: 6rem;
+  }
+}
+.big {
+  img{
+    width: 10rem;
+  }
+}

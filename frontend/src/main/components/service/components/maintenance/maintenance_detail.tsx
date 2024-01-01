@@ -4,6 +4,7 @@ import styles from "../detail.module.scss";
 import popStyles from '../../../../main.module.scss'
 import { useState } from "react";
 import buttonsStyles from "../../../../../assets/styles/buttons.module.scss";
+import Loading from "../Loading.tsx";
 
 export default function MaintenanceDetail() {
   const location = useLocation();
@@ -27,11 +28,7 @@ export default function MaintenanceDetail() {
   return (
     <>
       {isLoading && !data ? (
-        <div>
-          <div className={styles.loading}>
-            <h3>Загрузка</h3>
-          </div>
-        </div>
+        <Loading suffix={'big'} />
       ) : (
         <>
           <div className={styles.detail}>

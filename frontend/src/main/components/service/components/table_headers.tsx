@@ -1,12 +1,13 @@
 import tableStyle from "../../../../assets/styles/table.module.scss";
 import buttonStyles from "../../../../assets/styles/buttons.module.scss";
-import {useState} from "react";
+import {BaseSyntheticEvent, useState} from "react";
 import {actionOrder} from "../../../../scripts/actions.ts";
 import {useLocation, useNavigate} from "react-router-dom";
-import {IComplaint, IMachine, IMaintenance} from "../../../configs/intarfaces.ts";
+import {IComplainDict} from "../../../configs/intarfaces.ts";
+
 
 interface IProps {
-    dict: IMachine | IMaintenance | IComplaint
+    dict: IComplainDict
 }
 
 export default function TableHeaders({dict}: IProps){
@@ -14,9 +15,11 @@ export default function TableHeaders({dict}: IProps){
     const path = useLocation()
     const navigate = useNavigate()
     // console.log(dict)
-    const handleOrder = (e) => {
+    const handleOrder = (e: BaseSyntheticEvent) => {
+        // console.log(e.target.previousElementSibling)
         setDirection(!direction)
         const to = actionOrder(e, {dict}, path, direction)
+        // console.log('to - ', to)
         navigate(to)
     }
 

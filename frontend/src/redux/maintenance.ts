@@ -17,7 +17,7 @@ export const maintenanceApi = createApi({
         url: MAINTENANCE_URL + search,
         credentials: "include",
       }),
-      providesTags: (result) => ["maintenance"],
+      providesTags: () => ["maintenance"],
     }),
     getMaintenanceDetail: build.query<IMaintenance, string>({
       query: (arg: string) => ({
@@ -25,9 +25,9 @@ export const maintenanceApi = createApi({
         credentials: "include",
       }),
     }),
-    deleteMaintenance: build.mutation<IMaintenance, IMaintenance>({
+    deleteMaintenance: build.mutation<IMaintenance, string>({
       query: (maintenance) => ({
-        url: SETMAINTENANCE_URL + maintenance.id,
+        url: SETMAINTENANCE_URL + maintenance,
         method: "DELETE",
         headers: {
           "X-CSRFToken": csrftoken as string,

@@ -1,5 +1,6 @@
 import { LoaderFunctionArgs, redirect } from "react-router-dom";
-import {IMachine} from "../main/configs/intarfaces.ts";
+import {BaseSyntheticEvent} from "react";
+import {IComplaint} from "../main/configs/intarfaces.ts";
 
 async function findAction({ request }: LoaderFunctionArgs) {
   const formData = await request.formData();
@@ -13,14 +14,25 @@ async function findAction({ request }: LoaderFunctionArgs) {
 }
 
 interface IProps {
-  dict: IMachine
+  dict: { [key:string]: IComplaint }
 }
 
+interface IPath {
+  pathname: string;
+  search: string;
+  hash: string;
+}
 
-const actionOrder = (e, {dict}: IProps, path, direction: boolean) => {
+const actionOrder = (e: BaseSyntheticEvent, {dict}: IProps, path: IPath, direction: boolean) => {
   // console.log(e.target)
+  let value  = ''
+  const tar = e.target.innerText
+  if (tar.length > 1){
+    value = e.target.innerText
+  }else {
+    value = e.target.previousElementSibling.innerText
+  }
 
-  const value = e.target.innerText
   const target = Object.keys(dict).find(key =>
       dict[key] === value)
   if (path.search){

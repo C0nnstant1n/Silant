@@ -77,6 +77,19 @@ interface IResponse {
   results: [];
 }
 
+interface IComplainDict {
+  readonly date_refusal: string;
+  readonly machine: string;
+  readonly operating_time: string;
+  readonly failure_node: string;
+  readonly description: string;
+  readonly recovery_method: string;
+  readonly spare_parts: string;
+  readonly recovery_date: string;
+  readonly equipment_downtime: string;
+  readonly service_company: string;
+}
+
 export type {
   IResponse,
   IShMachine,
@@ -85,4 +98,5 @@ export type {
   IComplaint,
   IHandbook,
   IUser,
+    IComplainDict
 };

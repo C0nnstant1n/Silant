@@ -6,21 +6,26 @@ import tableStyle from "../../../../../assets/styles/table.module.scss";
 import {useLocation} from "react-router-dom";
 import TableHeaders from "../table_headers.tsx";
 import {maintenanceDict} from "../../../../configs/variables.ts";
+import Loading from "../Loading.tsx";
+import popup from "../../../../../assets/styles/popup.module.scss";
 
 export default function Maintenance() {
   const path = useLocation()
 
-  const { data: maintenance, isLoading } =
+  const { data: maintenance, isLoading, isFetching } =
     maintenanceApi.useGetMaintenanceQuery(path.search ? path.search: '');
 
   return (
     <>
-      {isLoading && !maintenance ? (
-        <div className={styles.search_result__container}>
-          <div className={styles.loading}>
-            <h3>Загрузка</h3>
+      {isFetching ?
+          <div className={popup.container + ' ' + popup.loading}>
+            <div className={popup.reveal_modal}>
+              <Loading suffix={'big'} />
+            </div>
           </div>
-        </div>
+          : null}
+      {isLoading && !maintenance ? (
+        <Loading suffix={'big'} />
       ) : maintenance && !maintenance.count ? (
         <div className={styles.search_result__container}>
           <div>

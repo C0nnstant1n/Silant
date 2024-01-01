@@ -4,9 +4,9 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import Selector from "../selector.tsx";
 import { complaintsApi } from "../../../../../redux/complaints.ts";
 import { complaintDict } from "../../../../configs/variables.ts";
-import { IComplaint } from "../../../../configs/intarfaces.ts";
 import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
+import Loading from "../Loading.tsx";
 
 export default function EditComplaint() {
   const location = useLocation();
@@ -15,7 +15,7 @@ export default function EditComplaint() {
   // console.log(path)
 
   const { data } = complaintsApi.useGetComplaintQuery(path);
-  const [update, { isSuccess }] = complaintsApi.useUpdateComplaintsMutation();
+  const [update, { isSuccess, isLoading }] = complaintsApi.useUpdateComplaintsMutation();
   const content = [];
   if (data) {
     for (const i in data) {
@@ -36,7 +36,7 @@ export default function EditComplaint() {
     }
 
     // console.log(complaint)
-    update(complaint as IComplaint);
+    update(complaint);
   };
   return (
     <>
@@ -70,7 +70,7 @@ export default function EditComplaint() {
         ))}
         <div className={buttonStyle.buttons_container}>
           <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
-            Сохранить
+            {isLoading ? <Loading suffix={'small'} /> : 'Сохранить'}
           </button>
           <Link to={"/service/info"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
             Отмена
@@ -82,7 +82,6 @@ export default function EditComplaint() {
             ? setTimeout(() => navigate("/service/complaints"), 700)
             : null}
       </div>
-
     </>
   );
 }

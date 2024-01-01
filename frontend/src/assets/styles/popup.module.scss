@@ -1,0 +1,27 @@
+@import "../../vars.scss";
+.container {
+  width: 80%;
+  height: 50%;
+  top: calc(50% - 25%); // half of width
+  left: calc(50% - 40%); // half of height
+  position: absolute;
+  visibility: visible;
+  display: block;
+  border-radius: 0.5rem;
+  background-color: rgba(235, 230, 214, 0.7); /* complimenting your modal colors */
+}
+.container:target {
+  visibility: visible;
+  display: block;
+}
+.reveal_modal {
+  position: relative;
+  margin: 0 auto;
+  top: 35%;
+}
+.loading {
+  box-shadow: inset 0 0 40px 0 $main-color1;
+}
+.error {
+  box-shadow: inset 0 0 40px 0 $main-color2;
+}

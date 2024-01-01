@@ -92,5 +92,7 @@ const summary_dictionary = {
   maintenance_type: "Вид ТО",
 }
 
+
+
 export { machineDict, maintenanceDict, complaintDict, machines_filters,
   complaints_filters, maintenances_filters, summary_dictionary };

@@ -1,4 +1,4 @@
-import { IComplaint } from "../../../../configs/intarfaces.ts";
+import {IComplaint} from "../../../../configs/intarfaces.ts";
 import { useNavigate } from "react-router-dom";
 import tableStyles from "../../../../../assets/styles/table.module.scss";
 

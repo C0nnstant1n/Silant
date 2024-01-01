@@ -5,14 +5,14 @@ import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import {
   IHandbook,
   IMachine,
-  IMaintenance,
 } from "../../../../configs/intarfaces.ts";
 import { useNavigate } from "react-router-dom";
 import { machineApi } from "../../../../../redux/machine.ts";
 import { getData } from "../../../../../scripts/create.ts";
+import Loading from "../Loading.tsx";
 
 export default function CreateTO() {
-  const [create, { isSuccess: createSuccess }] =
+  const [create, { isSuccess: createSuccess, isLoading }] =
     maintenanceApi.useCreateMaintenanceMutation();
 
   const { data: companies } = handbooksApi.useGetAllOrganizationQuery("");
@@ -29,7 +29,7 @@ export default function CreateTO() {
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    create(getData(event) as IMaintenance);
+    create(getData(event));
   };
   const mapDict: string [][] =[]
   for (const i in maintenanceDict){
@@ -38,6 +38,8 @@ export default function CreateTO() {
 
   return (
     <>
+      {isLoading ? <Loading suffix={'big'}/> :
+
       <form id='create_to' className={formStyle.form} onSubmit={handleCreate}>
         {mapDict.map((data) => (
           <div key={data[0]}>
@@ -83,7 +85,7 @@ export default function CreateTO() {
             )}
           </div>
         ))}
-      </form>
+      </form> }
       <div style={{ display: "none" }}>
         {createSuccess ? setTimeout(() => navigate("/service/to"), 700) : null}
       </div>
