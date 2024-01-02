@@ -5,6 +5,7 @@ import { machineApi } from "../../../../../redux/machine.ts";
 import { useNavigate } from "react-router-dom";
 import {BaseSyntheticEvent} from "react";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function CreateMachine() {
   const { data: models } = handbooksApi.useGetAllMachineModelQuery("");
@@ -18,7 +19,7 @@ export default function CreateMachine() {
   const navigate = useNavigate();
   const [
     createMachine,
-    { error: createError, isSuccess: createSuccess, isLoading },
+    { error: createError, isSuccess: createSuccess, isLoading, isError, error },
   ] = machineApi.useCreateMachineMutation();
   // console.log(createError, createSuccess)
   const handleCreate = async (e: BaseSyntheticEvent) => {
@@ -42,6 +43,7 @@ export default function CreateMachine() {
   return (
     <>
       {isLoading ? <Loading suffix={'big'} /> :
+          isError ? <ErrorPage error={error}/> :
       <form id='create_machine' className={formStyle.form} onSubmit={handleCreate}>
         <section className={formStyle.form_section}>
           <p className={formStyle.label}>№ контракта:</p>

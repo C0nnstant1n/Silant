@@ -7,6 +7,7 @@ import { complaintDict } from "../../../../configs/variables.ts";
 import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function EditComplaint() {
   const location = useLocation();
@@ -15,7 +16,7 @@ export default function EditComplaint() {
   // console.log(path)
 
   const { data } = complaintsApi.useGetComplaintQuery(path);
-  const [update, { isSuccess, isLoading }] = complaintsApi.useUpdateComplaintsMutation();
+  const [update, { isSuccess, isLoading, isError, error }] = complaintsApi.useUpdateComplaintsMutation();
   const content = [];
   if (data) {
     for (const i in data) {
@@ -40,6 +41,7 @@ export default function EditComplaint() {
   };
   return (
     <>
+      {isError ? <ErrorPage error={error}/> :
       <form className={formStyle.form} onSubmit={handleUpdate}>
         {content.map((detail) => (
             <div className={styles.detail_wrapper} key={detail[0]}>
@@ -72,11 +74,11 @@ export default function EditComplaint() {
           <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
             {isLoading ? <Loading suffix={'small'} /> : 'Сохранить'}
           </button>
-          <Link to={"/service/info"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
+          <Link to={"/service/complaints"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
             Отмена
           </Link>
         </div>
-      </form>
+      </form>}
       <div style={{display: "none"}}>
         {isSuccess
             ? setTimeout(() => navigate("/service/complaints"), 700)

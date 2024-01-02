@@ -10,9 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { machineApi } from "../../../../../redux/machine.ts";
 import { getData } from "../../../../../scripts/create.ts";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function CreateTO() {
-  const [create, { isSuccess: createSuccess, isLoading }] =
+  const [create, { isSuccess: createSuccess, isLoading, isError, error }] =
     maintenanceApi.useCreateMaintenanceMutation();
 
   const { data: companies } = handbooksApi.useGetAllOrganizationQuery("");
@@ -39,7 +40,7 @@ export default function CreateTO() {
   return (
     <>
       {isLoading ? <Loading suffix={'big'}/> :
-
+          isError ? <ErrorPage error={error}/> :
       <form id='create_to' className={formStyle.form} onSubmit={handleCreate}>
         {mapDict.map((data) => (
           <div key={data[0]}>

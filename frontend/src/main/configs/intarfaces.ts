@@ -58,11 +58,11 @@ interface IMaintenance {
 
 interface IComplaint {
   id?: number;
+  recovery_date: string;
   date_refusal: string;
   operating_time: number;
   description: string;
   spare_parts: string;
-  recovery_date: string;
   equipment_downtime: number;
   failure_node: IHandbook | string;
   recovery_method: IHandbook | string;

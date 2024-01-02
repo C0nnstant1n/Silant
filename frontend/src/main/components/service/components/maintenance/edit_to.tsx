@@ -7,13 +7,15 @@ import styles from "../detail.module.scss";
 import { maintenanceDict } from "../../../../configs/variables.ts";
 import Selector from "../selector.tsx";
 import Loading from "../Loading.tsx";
+import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
+import ErrorPage from "../../../../error.tsx";
 
 export default function EditTO() {
   const location = useLocation();
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
 
-  const [update, { isSuccess: createSuccess, isLoading }] =
+  const [update, { isSuccess: createSuccess, isLoading, isError,error  }] =
     maintenanceApi.useUpdateMaintenanceMutation();
   const { data: TO } = maintenanceApi.useGetMaintenanceDetailQuery(path);
 
@@ -48,7 +50,7 @@ export default function EditTO() {
 
   return (
     <>
-      { isLoading ? <Loading suffix={'big'}/> :
+      { isLoading ? <Loading suffix={'big'}/> : isError ? <ErrorPage error={error}/> :
       <form className={formStyle.form} onSubmit={handleUpdate}>
         {content.map((detail) => (
           <div className={styles.detail_wrapper} key={detail[0]}>
@@ -82,10 +84,10 @@ export default function EditTO() {
           </div>
         ))}
         <div className={buttonStyle.buttons_container}>
-          <button className={buttonStyle.button} type='submit'>
+          <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
             Сохранить ТО
           </button>
-          <Link to={"/service/to"} className={buttonStyle.button}>
+          <Link to={"/service/to"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
             Отмена
           </Link>
         </div>

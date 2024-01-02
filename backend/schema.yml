@@ -1,0 +1,5546 @@
+openapi: 3.0.3
+info:
+  title: Silant
+  version: 1.0.0
+  description: Silant backend for Django REST Framework
+paths:
+  /api/client/:
+    get:
+      operationId: api_client_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedClientList'
+          description: ''
+    post:
+      operationId: api_client_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+  /api/client/{id}/:
+    get:
+      operationId: api_client_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    put:
+      operationId: api_client_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    patch:
+      operationId: api_client_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedClient'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedClient'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedClient'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    delete:
+      operationId: api_client_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/complaints/:
+    get:
+      operationId: api_complaints_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedGetComplaintsList'
+          description: ''
+    post:
+      operationId: api_complaints_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetComplaints'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetComplaints'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GetComplaints'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetComplaints'
+          description: ''
+  /api/complaints/{id}/:
+    get:
+      operationId: api_complaints_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetComplaints'
+          description: ''
+    put:
+      operationId: api_complaints_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetComplaints'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetComplaints'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GetComplaints'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetComplaints'
+          description: ''
+    patch:
+      operationId: api_complaints_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGetComplaints'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGetComplaints'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGetComplaints'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetComplaints'
+          description: ''
+    delete:
+      operationId: api_complaints_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/drive_axle/:
+    get:
+      operationId: api_drive_axle_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDriveAxleList'
+          description: ''
+    post:
+      operationId: api_drive_axle_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+  /api/drive_axle/{id}/:
+    get:
+      operationId: api_drive_axle_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+    put:
+      operationId: api_drive_axle_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+    patch:
+      operationId: api_drive_axle_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriveAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriveAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriveAxle'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+    delete:
+      operationId: api_drive_axle_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/engine/:
+    get:
+      operationId: api_engine_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEngineList'
+          description: ''
+    post:
+      operationId: api_engine_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Engine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+  /api/engine/{id}/:
+    get:
+      operationId: api_engine_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+    put:
+      operationId: api_engine_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Engine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+    patch:
+      operationId: api_engine_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEngine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEngine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEngine'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+    delete:
+      operationId: api_engine_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/failures/:
+    get:
+      operationId: api_failures_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedNatureOfFailureList'
+          description: ''
+    post:
+      operationId: api_failures_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+  /api/failures/{id}/:
+    get:
+      operationId: api_failures_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+    put:
+      operationId: api_failures_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+    patch:
+      operationId: api_failures_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedNatureOfFailure'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedNatureOfFailure'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedNatureOfFailure'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+    delete:
+      operationId: api_failures_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/client/:
+    get:
+      operationId: api_handbooks_client_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedClientList'
+          description: ''
+    post:
+      operationId: api_handbooks_client_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+  /api/handbooks/client/{id}/:
+    get:
+      operationId: api_handbooks_client_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    put:
+      operationId: api_handbooks_client_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    patch:
+      operationId: api_handbooks_client_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedClient'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedClient'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedClient'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+    delete:
+      operationId: api_handbooks_client_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this client.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/drive_axle/:
+    get:
+      operationId: api_handbooks_drive_axle_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDriveAxleList'
+          description: ''
+    post:
+      operationId: api_handbooks_drive_axle_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+  /api/handbooks/drive_axle/{id}/:
+    get:
+      operationId: api_handbooks_drive_axle_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+    put:
+      operationId: api_handbooks_drive_axle_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DriveAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+    patch:
+      operationId: api_handbooks_drive_axle_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDriveAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDriveAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDriveAxle'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriveAxle'
+          description: ''
+    delete:
+      operationId: api_handbooks_drive_axle_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of drive axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/engine/:
+    get:
+      operationId: api_handbooks_engine_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEngineList'
+          description: ''
+    post:
+      operationId: api_handbooks_engine_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Engine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+  /api/handbooks/engine/{id}/:
+    get:
+      operationId: api_handbooks_engine_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+    put:
+      operationId: api_handbooks_engine_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Engine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Engine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+    patch:
+      operationId: api_handbooks_engine_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEngine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEngine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEngine'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Engine'
+          description: ''
+    delete:
+      operationId: api_handbooks_engine_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of engine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/failures/:
+    get:
+      operationId: api_handbooks_failures_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedNatureOfFailureList'
+          description: ''
+    post:
+      operationId: api_handbooks_failures_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+  /api/handbooks/failures/{id}/:
+    get:
+      operationId: api_handbooks_failures_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+    put:
+      operationId: api_handbooks_failures_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NatureOfFailure'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+    patch:
+      operationId: api_handbooks_failures_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedNatureOfFailure'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedNatureOfFailure'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedNatureOfFailure'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NatureOfFailure'
+          description: ''
+    delete:
+      operationId: api_handbooks_failures_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this nature of failure.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/machine_model/:
+    get:
+      operationId: api_handbooks_machine_model_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMachineModelList'
+          description: ''
+    post:
+      operationId: api_handbooks_machine_model_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+  /api/handbooks/machine_model/{id}/:
+    get:
+      operationId: api_handbooks_machine_model_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+    put:
+      operationId: api_handbooks_machine_model_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+    patch:
+      operationId: api_handbooks_machine_model_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMachineModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMachineModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMachineModel'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+    delete:
+      operationId: api_handbooks_machine_model_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/recovery_method/:
+    get:
+      operationId: api_handbooks_recovery_method_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRecoveryMethodList'
+          description: ''
+    post:
+      operationId: api_handbooks_recovery_method_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+  /api/handbooks/recovery_method/{id}/:
+    get:
+      operationId: api_handbooks_recovery_method_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+    put:
+      operationId: api_handbooks_recovery_method_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+    patch:
+      operationId: api_handbooks_recovery_method_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRecoveryMethod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRecoveryMethod'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRecoveryMethod'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+    delete:
+      operationId: api_handbooks_recovery_method_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/service_company/:
+    get:
+      operationId: api_handbooks_service_company_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedServiceCompanyList'
+          description: ''
+    post:
+      operationId: api_handbooks_service_company_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+  /api/handbooks/service_company/{id}/:
+    get:
+      operationId: api_handbooks_service_company_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+    put:
+      operationId: api_handbooks_service_company_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+    patch:
+      operationId: api_handbooks_service_company_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceCompany'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+    delete:
+      operationId: api_handbooks_service_company_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/steering_axle/:
+    get:
+      operationId: api_handbooks_steering_axle_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSteeringAxleList'
+          description: ''
+    post:
+      operationId: api_handbooks_steering_axle_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+  /api/handbooks/steering_axle/{id}/:
+    get:
+      operationId: api_handbooks_steering_axle_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+    put:
+      operationId: api_handbooks_steering_axle_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+    patch:
+      operationId: api_handbooks_steering_axle_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSteeringAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSteeringAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSteeringAxle'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+    delete:
+      operationId: api_handbooks_steering_axle_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/transmission/:
+    get:
+      operationId: api_handbooks_transmission_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTransmissionList'
+          description: ''
+    post:
+      operationId: api_handbooks_transmission_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+  /api/handbooks/transmission/{id}/:
+    get:
+      operationId: api_handbooks_transmission_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+    put:
+      operationId: api_handbooks_transmission_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+    patch:
+      operationId: api_handbooks_transmission_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTransmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTransmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTransmission'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+    delete:
+      operationId: api_handbooks_transmission_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/handbooks/type_of_maintenance/:
+    get:
+      operationId: api_handbooks_type_of_maintenance_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTypeOfMaintenanceList'
+          description: ''
+    post:
+      operationId: api_handbooks_type_of_maintenance_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+  /api/handbooks/type_of_maintenance/{id}/:
+    get:
+      operationId: api_handbooks_type_of_maintenance_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+    put:
+      operationId: api_handbooks_type_of_maintenance_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+    patch:
+      operationId: api_handbooks_type_of_maintenance_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTypeOfMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTypeOfMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTypeOfMaintenance'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+    delete:
+      operationId: api_handbooks_type_of_maintenance_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/machine_model/:
+    get:
+      operationId: api_machine_model_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMachineModelList'
+          description: ''
+    post:
+      operationId: api_machine_model_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+  /api/machine_model/{id}/:
+    get:
+      operationId: api_machine_model_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+    put:
+      operationId: api_machine_model_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MachineModel'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+    patch:
+      operationId: api_machine_model_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMachineModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMachineModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMachineModel'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineModel'
+          description: ''
+    delete:
+      operationId: api_machine_model_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/machines/:
+    get:
+      operationId: api_machines_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedGetMachineList'
+          description: ''
+    post:
+      operationId: api_machines_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GetMachine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMachine'
+          description: ''
+  /api/machines/{id}/:
+    get:
+      operationId: api_machines_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMachine'
+          description: ''
+    put:
+      operationId: api_machines_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GetMachine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMachine'
+          description: ''
+    patch:
+      operationId: api_machines_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGetMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGetMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGetMachine'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMachine'
+          description: ''
+    delete:
+      operationId: api_machines_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/maintenance/:
+    get:
+      operationId: api_maintenance_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedGetMaintenanceList'
+          description: ''
+    post:
+      operationId: api_maintenance_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GetMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMaintenance'
+          description: ''
+  /api/maintenance/{id}/:
+    get:
+      operationId: api_maintenance_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMaintenance'
+          description: ''
+    put:
+      operationId: api_maintenance_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GetMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GetMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMaintenance'
+          description: ''
+    patch:
+      operationId: api_maintenance_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGetMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGetMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGetMaintenance'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMaintenance'
+          description: ''
+    delete:
+      operationId: api_maintenance_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/post_machines/:
+    get:
+      operationId: api_post_machines_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPostMachineList'
+          description: ''
+    post:
+      operationId: api_post_machines_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostMachine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMachine'
+          description: ''
+  /api/post_machines/{id}/:
+    get:
+      operationId: api_post_machines_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMachine'
+          description: ''
+    put:
+      operationId: api_post_machines_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostMachine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMachine'
+          description: ''
+    patch:
+      operationId: api_post_machines_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPostMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPostMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPostMachine'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostMachine'
+          description: ''
+    delete:
+      operationId: api_post_machines_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/recovery_method/:
+    get:
+      operationId: api_recovery_method_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRecoveryMethodList'
+          description: ''
+    post:
+      operationId: api_recovery_method_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+  /api/recovery_method/{id}/:
+    get:
+      operationId: api_recovery_method_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+    put:
+      operationId: api_recovery_method_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecoveryMethod'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+    patch:
+      operationId: api_recovery_method_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRecoveryMethod'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRecoveryMethod'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRecoveryMethod'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryMethod'
+          description: ''
+    delete:
+      operationId: api_recovery_method_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recovery method.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/service_company/:
+    get:
+      operationId: api_service_company_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedServiceCompanyList'
+          description: ''
+    post:
+      operationId: api_service_company_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+  /api/service_company/{id}/:
+    get:
+      operationId: api_service_company_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+    put:
+      operationId: api_service_company_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ServiceCompany'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+    patch:
+      operationId: api_service_company_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceCompany'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceCompany'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceCompany'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCompany'
+          description: ''
+    delete:
+      operationId: api_service_company_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this service company.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/set_complaint/:
+    get:
+      operationId: api_set_complaint_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSetComplaintsModelList'
+          description: ''
+    post:
+      operationId: api_set_complaint_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetComplaintsModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetComplaintsModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetComplaintsModel'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetComplaintsModel'
+          description: ''
+  /api/set_complaint/{id}/:
+    get:
+      operationId: api_set_complaint_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this complaints model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetComplaintsModel'
+          description: ''
+    put:
+      operationId: api_set_complaint_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this complaints model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetComplaintsModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetComplaintsModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetComplaintsModel'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetComplaintsModel'
+          description: ''
+    patch:
+      operationId: api_set_complaint_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this complaints model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSetComplaintsModel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSetComplaintsModel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSetComplaintsModel'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetComplaintsModel'
+          description: ''
+    delete:
+      operationId: api_set_complaint_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this complaints model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/set_maintenance/:
+    get:
+      operationId: api_set_maintenance_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSetMaintenanceList'
+          description: ''
+    post:
+      operationId: api_set_maintenance_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetMaintenance'
+          description: ''
+  /api/set_maintenance/{id}/:
+    get:
+      operationId: api_set_maintenance_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this maintenance model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetMaintenance'
+          description: ''
+    put:
+      operationId: api_set_maintenance_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this maintenance model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetMaintenance'
+          description: ''
+    patch:
+      operationId: api_set_maintenance_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this maintenance model.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSetMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSetMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSetMaintenance'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetMaintenance'
+          description: ''
+    delete:
+      operationId: api_set_maintenance_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this maintenance model.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/shmachines/:
+    get:
+      operationId: api_shmachines_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: machine_serial_number
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSharedMachineList'
+          description: ''
+    post:
+      operationId: api_shmachines_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SharedMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SharedMachine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedMachine'
+          description: ''
+  /api/shmachines/{id}/:
+    get:
+      operationId: api_shmachines_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedMachine'
+          description: ''
+    put:
+      operationId: api_shmachines_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SharedMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SharedMachine'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedMachine'
+          description: ''
+    patch:
+      operationId: api_shmachines_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSharedMachine'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSharedMachine'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSharedMachine'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedMachine'
+          description: ''
+    delete:
+      operationId: api_shmachines_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this machine.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/steering_axle/:
+    get:
+      operationId: api_steering_axle_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSteeringAxleList'
+          description: ''
+    post:
+      operationId: api_steering_axle_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+  /api/steering_axle/{id}/:
+    get:
+      operationId: api_steering_axle_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+    put:
+      operationId: api_steering_axle_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SteeringAxle'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+    patch:
+      operationId: api_steering_axle_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSteeringAxle'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSteeringAxle'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSteeringAxle'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SteeringAxle'
+          description: ''
+    delete:
+      operationId: api_steering_axle_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of steering axle.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/transmission/:
+    get:
+      operationId: api_transmission_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTransmissionList'
+          description: ''
+    post:
+      operationId: api_transmission_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+  /api/transmission/{id}/:
+    get:
+      operationId: api_transmission_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+    put:
+      operationId: api_transmission_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transmission'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+    patch:
+      operationId: api_transmission_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTransmission'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTransmission'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTransmission'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transmission'
+          description: ''
+    delete:
+      operationId: api_transmission_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this model of transmission.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/type_of_maintenance/:
+    get:
+      operationId: api_type_of_maintenance_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTypeOfMaintenanceList'
+          description: ''
+    post:
+      operationId: api_type_of_maintenance_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+  /api/type_of_maintenance/{id}/:
+    get:
+      operationId: api_type_of_maintenance_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+    put:
+      operationId: api_type_of_maintenance_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TypeOfMaintenance'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+    patch:
+      operationId: api_type_of_maintenance_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTypeOfMaintenance'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTypeOfMaintenance'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTypeOfMaintenance'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfMaintenance'
+          description: ''
+    delete:
+      operationId: api_type_of_maintenance_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this type of maintenance.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    DriveAxle:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    Engine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    GetComplaints:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine:
+          $ref: '#/components/schemas/GetMachine'
+        recovery_method:
+          allOf:
+          - $ref: '#/components/schemas/RecoveryMethod'
+          readOnly: true
+        service_company:
+          allOf:
+          - $ref: '#/components/schemas/ServiceCompany'
+          readOnly: true
+        failure_node:
+          allOf:
+          - $ref: '#/components/schemas/NatureOfFailure'
+          readOnly: true
+        date_refusal:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        description:
+          type: string
+        spare_parts:
+          type: string
+        recovery_date:
+          type: string
+          format: date
+        equipment_downtime:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+      required:
+      - date_refusal
+      - description
+      - equipment_downtime
+      - failure_node
+      - id
+      - machine
+      - operating_time
+      - recovery_date
+      - recovery_method
+      - service_company
+      - spare_parts
+    GetMachine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine_model:
+          $ref: '#/components/schemas/MachineModel'
+        machine_serial_number:
+          type: string
+          title: Зав. № машины
+          maxLength: 128
+        model_engine:
+          $ref: '#/components/schemas/Engine'
+        engine_serial_number:
+          type: string
+          title: Зав. № Двигателя
+          maxLength: 256
+        model_transmission:
+          $ref: '#/components/schemas/Transmission'
+        transmission_serial_number:
+          type: string
+          title: Зав. № трансмиссии
+          maxLength: 256
+        model_drive_axle:
+          $ref: '#/components/schemas/DriveAxle'
+        drive_axle_serial_number:
+          type: string
+          title: Зав. № ведущего моста
+          maxLength: 256
+        steering_axle:
+          $ref: '#/components/schemas/SteeringAxle'
+        steering_axle_serial_number:
+          type: string
+          title: Зав. № управляемого моста
+          maxLength: 256
+        supply_contract:
+          type: string
+          title: № договора поставки
+          maxLength: 256
+        date_shipped_from_factory:
+          type: string
+          format: date
+          title: Дата отгрузки с завода
+        consignee:
+          type: string
+          title: Грузополучатель (конечный потребитель)
+          maxLength: 256
+        delivery_address:
+          type: string
+          title: Адрес поставки (эксплуатации)
+          maxLength: 256
+        equipment:
+          type: string
+          title: Комплектация (доп. опции)
+          maxLength: 256
+        client:
+          $ref: '#/components/schemas/Client'
+        service_company:
+          $ref: '#/components/schemas/ServiceCompany'
+      required:
+      - client
+      - consignee
+      - date_shipped_from_factory
+      - delivery_address
+      - drive_axle_serial_number
+      - engine_serial_number
+      - id
+      - machine_model
+      - machine_serial_number
+      - model_drive_axle
+      - model_engine
+      - model_transmission
+      - service_company
+      - steering_axle
+      - steering_axle_serial_number
+      - supply_contract
+      - transmission_serial_number
+    GetMaintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        maintenance_type:
+          $ref: '#/components/schemas/TypeOfMaintenance'
+        service_company:
+          $ref: '#/components/schemas/ServiceCompany'
+        machine:
+          type: string
+          title: Зав. № машины
+        maintenance_date:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        order_number:
+          type: string
+          maxLength: 128
+        order_date:
+          type: string
+          format: date
+      required:
+      - id
+      - machine
+      - maintenance_date
+      - maintenance_type
+      - order_date
+      - order_number
+      - service_company
+    MachineModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    NatureOfFailure:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    PaginatedClientList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Client'
+    PaginatedDriveAxleList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DriveAxle'
+    PaginatedEngineList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Engine'
+    PaginatedGetComplaintsList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetComplaints'
+    PaginatedGetMachineList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetMachine'
+    PaginatedGetMaintenanceList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetMaintenance'
+    PaginatedMachineModelList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineModel'
+    PaginatedNatureOfFailureList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/NatureOfFailure'
+    PaginatedPostMachineList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostMachine'
+    PaginatedRecoveryMethodList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecoveryMethod'
+    PaginatedServiceCompanyList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceCompany'
+    PaginatedSetComplaintsModelList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SetComplaintsModel'
+    PaginatedSetMaintenanceList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SetMaintenance'
+    PaginatedSharedMachineList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SharedMachine'
+    PaginatedSteeringAxleList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SteeringAxle'
+    PaginatedTransmissionList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transmission'
+    PaginatedTypeOfMaintenanceList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TypeOfMaintenance'
+    PatchedClient:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+    PatchedDriveAxle:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedEngine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedGetComplaints:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine:
+          $ref: '#/components/schemas/GetMachine'
+        recovery_method:
+          allOf:
+          - $ref: '#/components/schemas/RecoveryMethod'
+          readOnly: true
+        service_company:
+          allOf:
+          - $ref: '#/components/schemas/ServiceCompany'
+          readOnly: true
+        failure_node:
+          allOf:
+          - $ref: '#/components/schemas/NatureOfFailure'
+          readOnly: true
+        date_refusal:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        description:
+          type: string
+        spare_parts:
+          type: string
+        recovery_date:
+          type: string
+          format: date
+        equipment_downtime:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+    PatchedGetMachine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine_model:
+          $ref: '#/components/schemas/MachineModel'
+        machine_serial_number:
+          type: string
+          title: Зав. № машины
+          maxLength: 128
+        model_engine:
+          $ref: '#/components/schemas/Engine'
+        engine_serial_number:
+          type: string
+          title: Зав. № Двигателя
+          maxLength: 256
+        model_transmission:
+          $ref: '#/components/schemas/Transmission'
+        transmission_serial_number:
+          type: string
+          title: Зав. № трансмиссии
+          maxLength: 256
+        model_drive_axle:
+          $ref: '#/components/schemas/DriveAxle'
+        drive_axle_serial_number:
+          type: string
+          title: Зав. № ведущего моста
+          maxLength: 256
+        steering_axle:
+          $ref: '#/components/schemas/SteeringAxle'
+        steering_axle_serial_number:
+          type: string
+          title: Зав. № управляемого моста
+          maxLength: 256
+        supply_contract:
+          type: string
+          title: № договора поставки
+          maxLength: 256
+        date_shipped_from_factory:
+          type: string
+          format: date
+          title: Дата отгрузки с завода
+        consignee:
+          type: string
+          title: Грузополучатель (конечный потребитель)
+          maxLength: 256
+        delivery_address:
+          type: string
+          title: Адрес поставки (эксплуатации)
+          maxLength: 256
+        equipment:
+          type: string
+          title: Комплектация (доп. опции)
+          maxLength: 256
+        client:
+          $ref: '#/components/schemas/Client'
+        service_company:
+          $ref: '#/components/schemas/ServiceCompany'
+    PatchedGetMaintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        maintenance_type:
+          $ref: '#/components/schemas/TypeOfMaintenance'
+        service_company:
+          $ref: '#/components/schemas/ServiceCompany'
+        machine:
+          type: string
+          title: Зав. № машины
+        maintenance_date:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        order_number:
+          type: string
+          maxLength: 128
+        order_date:
+          type: string
+          format: date
+    PatchedMachineModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedNatureOfFailure:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedPostMachine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine_serial_number:
+          type: string
+          title: Зав. № машины
+          maxLength: 128
+        engine_serial_number:
+          type: string
+          title: Зав. № Двигателя
+          maxLength: 256
+        transmission_serial_number:
+          type: string
+          title: Зав. № трансмиссии
+          maxLength: 256
+        drive_axle_serial_number:
+          type: string
+          title: Зав. № ведущего моста
+          maxLength: 256
+        steering_axle_serial_number:
+          type: string
+          title: Зав. № управляемого моста
+          maxLength: 256
+        supply_contract:
+          type: string
+          title: № договора поставки
+          maxLength: 256
+        date_shipped_from_factory:
+          type: string
+          format: date
+          title: Дата отгрузки с завода
+        consignee:
+          type: string
+          title: Грузополучатель (конечный потребитель)
+          maxLength: 256
+        delivery_address:
+          type: string
+          title: Адрес поставки (эксплуатации)
+          maxLength: 256
+        equipment:
+          type: string
+          title: Комплектация (доп. опции)
+          maxLength: 256
+        machine_model:
+          type: integer
+          title: Модель техники
+        model_engine:
+          type: integer
+          title: Модель Двигателя
+        model_transmission:
+          type: integer
+          title: Модель трансмиссии (производитель, артикул)
+        model_drive_axle:
+          type: integer
+          title: Модель ведущего моста
+        steering_axle:
+          type: integer
+          title: Модель управляемого моста
+        client:
+          type: integer
+          title: Клиент
+        service_company:
+          type: integer
+          title: Сервисная компания
+    PatchedRecoveryMethod:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedServiceCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedSetComplaintsModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        date_refusal:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        description:
+          type: string
+        spare_parts:
+          type: string
+        recovery_date:
+          type: string
+          format: date
+        equipment_downtime:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        failure_node:
+          type: integer
+        recovery_method:
+          type: integer
+        machine:
+          type: integer
+        service_company:
+          type: integer
+    PatchedSetMaintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine:
+          type: string
+          title: Зав. № машины
+        maintenance_date:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        order_number:
+          type: string
+          maxLength: 128
+        order_date:
+          type: string
+          format: date
+        maintenance_type:
+          type: integer
+        service_company:
+          type: integer
+    PatchedSharedMachine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine_model:
+          type: string
+        machine_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № машины
+        model_engine:
+          type: string
+        engine_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № Двигателя
+        model_transmission:
+          type: string
+        transmission_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № трансмиссии
+        model_drive_axle:
+          type: string
+        drive_axle_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № ведущего моста
+        steering_axle:
+          type: string
+        steering_axle_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № управляемого моста
+    PatchedSteeringAxle:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedTransmission:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PatchedTypeOfMaintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+    PostMachine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine_serial_number:
+          type: string
+          title: Зав. № машины
+          maxLength: 128
+        engine_serial_number:
+          type: string
+          title: Зав. № Двигателя
+          maxLength: 256
+        transmission_serial_number:
+          type: string
+          title: Зав. № трансмиссии
+          maxLength: 256
+        drive_axle_serial_number:
+          type: string
+          title: Зав. № ведущего моста
+          maxLength: 256
+        steering_axle_serial_number:
+          type: string
+          title: Зав. № управляемого моста
+          maxLength: 256
+        supply_contract:
+          type: string
+          title: № договора поставки
+          maxLength: 256
+        date_shipped_from_factory:
+          type: string
+          format: date
+          title: Дата отгрузки с завода
+        consignee:
+          type: string
+          title: Грузополучатель (конечный потребитель)
+          maxLength: 256
+        delivery_address:
+          type: string
+          title: Адрес поставки (эксплуатации)
+          maxLength: 256
+        equipment:
+          type: string
+          title: Комплектация (доп. опции)
+          maxLength: 256
+        machine_model:
+          type: integer
+          title: Модель техники
+        model_engine:
+          type: integer
+          title: Модель Двигателя
+        model_transmission:
+          type: integer
+          title: Модель трансмиссии (производитель, артикул)
+        model_drive_axle:
+          type: integer
+          title: Модель ведущего моста
+        steering_axle:
+          type: integer
+          title: Модель управляемого моста
+        client:
+          type: integer
+          title: Клиент
+        service_company:
+          type: integer
+          title: Сервисная компания
+      required:
+      - client
+      - consignee
+      - date_shipped_from_factory
+      - delivery_address
+      - drive_axle_serial_number
+      - engine_serial_number
+      - id
+      - machine_model
+      - machine_serial_number
+      - model_drive_axle
+      - model_engine
+      - model_transmission
+      - service_company
+      - steering_axle
+      - steering_axle_serial_number
+      - supply_contract
+      - transmission_serial_number
+    RecoveryMethod:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    ServiceCompany:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    SetComplaintsModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        date_refusal:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        description:
+          type: string
+        spare_parts:
+          type: string
+        recovery_date:
+          type: string
+          format: date
+        equipment_downtime:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        failure_node:
+          type: integer
+        recovery_method:
+          type: integer
+        machine:
+          type: integer
+        service_company:
+          type: integer
+      required:
+      - date_refusal
+      - description
+      - equipment_downtime
+      - failure_node
+      - id
+      - machine
+      - operating_time
+      - recovery_date
+      - recovery_method
+      - service_company
+      - spare_parts
+    SetMaintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine:
+          type: string
+          title: Зав. № машины
+        maintenance_date:
+          type: string
+          format: date
+        operating_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        order_number:
+          type: string
+          maxLength: 128
+        order_date:
+          type: string
+          format: date
+        maintenance_type:
+          type: integer
+        service_company:
+          type: integer
+      required:
+      - id
+      - machine
+      - maintenance_date
+      - maintenance_type
+      - order_date
+      - order_number
+      - service_company
+    SharedMachine:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        machine_model:
+          type: string
+        machine_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № машины
+        model_engine:
+          type: string
+        engine_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № Двигателя
+        model_transmission:
+          type: string
+        transmission_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № трансмиссии
+        model_drive_axle:
+          type: string
+        drive_axle_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № ведущего моста
+        steering_axle:
+          type: string
+        steering_axle_serial_number:
+          type: string
+          readOnly: true
+          title: Зав. № управляемого моста
+      required:
+      - drive_axle_serial_number
+      - engine_serial_number
+      - id
+      - machine_model
+      - machine_serial_number
+      - model_drive_axle
+      - model_engine
+      - model_transmission
+      - steering_axle
+      - steering_axle_serial_number
+      - transmission_serial_number
+    SteeringAxle:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    Transmission:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    TypeOfMaintenance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

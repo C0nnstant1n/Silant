@@ -8,6 +8,7 @@ import {useLocation} from "react-router-dom";
 import {machineDict} from "../../../../configs/variables.ts";
 import TableHeaders from "../table_headers.tsx";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 
 export default function Info() {
@@ -15,22 +16,15 @@ export default function Info() {
   const path = useLocation()
   const {
     data: machine,
-    isLoading,
-      isFetching
+    isLoading, isError, error
   } = machineApi.useGetMachinesQuery(path.search ? path.search: '');
   // console.log('loading - ', isLoading, 'fetching -',isFetching)
   return (
       <>
-        {isFetching ?
-            <div className={popup.container + ' ' + popup.loading}>
-              <div className={popup.reveal_modal}>
-                <Loading suffix={'big'} />
-              </div>
-            </div>
-            : null}
         {isLoading && !machine ? (
               <Loading suffix={"big"}/>
-      ) : machine && !machine.count ? (
+      ) : isError ? <ErrorPage error={error}/> :
+            machine && !machine.count ? (
         <div className={styles.search_result__container}>
           <div>
             <h2> По вашему запросу нет данных </h2>

@@ -11,10 +11,11 @@ import { machineApi } from "../../../../../redux/machine.ts";
 import { useNavigate } from "react-router-dom";
 import { complaintDict } from "../../../../configs/variables.ts";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function CreateComplaint() {
   const navigate = useNavigate();
-  const [create, { isSuccess: createSuccess, isLoading }] =
+  const [create, { isSuccess: createSuccess, isLoading, isError, error }] =
     complaintsApi.useCreateComplaintsMutation();
 
   const { data: failure } = handbooksApi.useGetAllFailureQuery("");
@@ -44,6 +45,7 @@ export default function CreateComplaint() {
   return (
     <>
       {isLoading ? <Loading suffix={'big'} /> :
+          isError ? <ErrorPage error={error}/> :
       <form id='create_complaint' className={formStyle.form} onSubmit={handleCreate}>
         {complaint.map((data) => (
           <div key={data[0]}>

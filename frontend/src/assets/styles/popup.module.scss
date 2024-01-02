@@ -2,22 +2,23 @@
 .container {
   width: 80%;
   height: 50%;
-  top: calc(50% - 25%); // half of width
+  top: 50%; // half of width
   left: calc(50% - 40%); // half of height
   position: absolute;
   visibility: visible;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   border-radius: 0.5rem;
-  background-color: rgba(235, 230, 214, 0.7); /* complimenting your modal colors */
-}
-.container:target {
-  visibility: visible;
-  display: block;
+  background-color: rgba(235, 230, 214, 0.8); /* complimenting your modal colors */
 }
 .reveal_modal {
   position: relative;
+  width: 100%;
   margin: 0 auto;
-  top: 35%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 .loading {
   box-shadow: inset 0 0 40px 0 $main-color1;

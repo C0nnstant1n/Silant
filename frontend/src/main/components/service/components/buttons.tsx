@@ -7,6 +7,8 @@ import {BaseSyntheticEvent, useState} from "react";
 import {complaintsApi} from "../../../../redux/complaints.ts";
 import {maintenanceApi} from "../../../../redux/maintenance.ts";
 import Loading from "./Loading.tsx";
+import ErrorPage from "../../../error.tsx";
+import popupStyle from '../../../../assets/styles/popup.module.scss'
 
 
 export default function ButtonsBlock() {
@@ -17,11 +19,27 @@ export default function ButtonsBlock() {
     const [status, setStatus] = useState(false)
     // console.log(path)
 
-    const [removeMachine, { isSuccess: machineDeleteSuccess, isLoading: machineLoading, }] =
+    const [removeMachine, {
+        isSuccess: machineDeleteSuccess,
+        isLoading: machineLoading,
+        isError: isMachineError,
+        error: machineError,
+        reset: resetMachine }] =
         machineApi.useDeleteMachineMutation();
-    const [removeTO, { isSuccess: deleteTOSuccess, isLoading: maintenanceLoading }] =
+    const [removeTO, {
+        isSuccess: deleteTOSuccess,
+        isLoading: maintenanceLoading,
+        isError: isMaintenanceError,
+        error: maintenanceError,
+        reset: resetMaintenance }] =
         maintenanceApi.useDeleteMaintenanceMutation();
-    const [removeComplaint, { isSuccess: complaintDeleteSuccess, isLoading: complaintLoading }] =
+    const [removeComplaint, {
+        isSuccess: complaintDeleteSuccess,
+        isLoading: complaintLoading,
+        isError: isComplaintError,
+        error: complaintError,
+        reset: resetComlaint
+        }] =
         complaintsApi.useDeleteComplaintsMutation();
 
     const handleDelete = async (e: BaseSyntheticEvent) => {
@@ -61,12 +79,21 @@ export default function ButtonsBlock() {
     }
 
     const  create = (name: string, to: string) => {
+        let redirectPath = ""
+        if (location.pathname.endsWith('to')){
+            redirectPath = 'to'
+        }else if (location.pathname.endsWith('info')){
+            redirectPath = 'info'
+        }else if (location.pathname.endsWith('complaint')){
+            redirectPath = 'complaints'
+        }
         return (
             <div className={buttonStyle.buttons_container}>
                 <button form={to} className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
                     {name}
                 </button>
-                <Link to={location.pathname} className={buttonStyle.button + ' ' + buttonStyles.medium}>
+
+                <Link to={redirectPath} className={buttonStyle.button + ' ' + buttonStyles.medium}>
                     Отмена
                 </Link>
             </div>
@@ -74,12 +101,51 @@ export default function ButtonsBlock() {
     }
     const detail = (name:string, text: string) => {
         return (
-            <div className={buttonStyle.buttons_container}>
-                {user.group}
-                {user && (user.group == 'Service_Organization' || user && user.group == 'Manager') ?
-                <Link to={`edit_${name}/${path}`} className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
-                    {path}Изменить {text}
-                </Link>: null}
+            <>
+                {isMachineError  ?
+                <div className={popupStyle.container}>
+                    <div className={popupStyle.reveal_modal}>
+                        <ErrorPage error={machineError}/>
+                        <div className={buttonStyle.buttons_container}>
+                            <button className={buttonStyle.button + ' ' + buttonStyles.medium}
+                                    onClick={resetMachine}>X
+                            </button>
+                        </div>
+
+                    </div>
+                </div> :
+                    isMaintenanceError ?
+                        <div className={popupStyle.container}>
+                            <div className={popupStyle.reveal_modal}>
+                                <ErrorPage error={maintenanceError}/>
+                                <button className={buttonStyle.button + ' ' + buttonStyles.medium}
+                                        onClick={resetMaintenance}>X
+                                </button>
+                            </div>
+                        </div> :
+                        isComplaintError ?
+                            <div className={popupStyle.container}>
+                                <div className={popupStyle.reveal_modal}>
+                                    <ErrorPage error={complaintError}/>
+                                    <button className={buttonStyle.button + ' ' + buttonStyles.medium}
+                                            onClick={resetMachine}>X
+                                    </button>
+                                </div>
+                            </div> :
+
+                            <div className={buttonStyle.buttons_container}>
+                                {(location.pathname.search('info') > 0)  && (user && user.group == 'Manager')?
+                    <Link to={`edit_${name}/${path}`} className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
+                        Изменить {text}
+                    </Link> : null }
+                {(location.pathname.search('complaints') > 0)  && (user && (user.group == 'Manager' || user.group == 'Service_Organization'))?
+                    <Link to={`edit_${name}/${path}`} className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
+                       Изменить {text}
+                    </Link> : null}
+                {(location.pathname.search('to') < 10) && (location.pathname.search('to') > 0) ?
+                    <Link to={`edit_${name}/${path}`} className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
+                        Изменить {text}
+                    </Link> : null}
                 {user && user.group == 'Manager' ?
                     <button
                         id={`${name},${path}`}
@@ -87,14 +153,16 @@ export default function ButtonsBlock() {
                             onClick={handleDelete}>
                         {machineLoading || maintenanceLoading || complaintLoading ?
                             <Loading suffix={'small'}/> : `Удалить ${text}`}
-                    </button> : null
+                    </button>: null
+
                 }
                 <div style={{ display: "none" }}>
                   {status && machineDeleteSuccess ? redirect(`info`) : null}
                     {status && complaintDeleteSuccess ? redirect(`complaints`) : null}
                     {status && deleteTOSuccess ? redirect(`to`) : null}
                 </div>
-            </div>
+            </div>}
+            </>
         )
     }
 
@@ -106,7 +174,7 @@ export default function ButtonsBlock() {
             return info("Добавить ТО", 'create_to')
         }
         if (location.pathname.endsWith('/complaints') &&
-            (user.group == 'Manager' || user.group == 'service_company')) {
+            (user.group == 'Manager' || user.group == 'Service_Organization')) {
             return info("Добавить Рекламацию", 'create_complaint')
         }
         if (location.pathname.endsWith('/create_machine') && (user.group == 'Manager')){
@@ -115,7 +183,7 @@ export default function ButtonsBlock() {
         if (location.pathname.endsWith('/create_to')){
             return create("Сохранить ТО", 'create_to')
         }
-        if (location.pathname.endsWith('/create_complaint') && (user.group == 'Manager' || user.group == 'service_company')){
+        if (location.pathname.endsWith('/create_complaint') && (user.group == 'Manager' || user.group == 'Service_Organization')){
             return create("Сохранить Рекламацию", 'create_complaint')
         }
         if (path && location.pathname.search('info') > 0){

@@ -7,7 +7,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-family: PT-Astra-Sans_Regular, sans-serif;
+  font-family: $font-stack;
   #root {
     height: 100%;
     display: flex;
@@ -45,9 +45,11 @@ body {
 
 @font-face {
   src: url(./assets/PTAstraSans/PT-Astra-Sans_Regular.ttf);
-  src: url(./assets/PTAstraSans/PT-Astra-Sans_Bold.ttf);
+  font-family: 'PT Astra Sans';
+}
+@font-face {
   src: url(./assets/PTAstraSans/PT-Astra-Sans_Bold-Italic.ttf);
-  src: url(./assets/PTAstraSans/PT-Astra-Sans_Italic.ttf);
+  font-family: 'PT Astra Sans BI';
 }
 
 a {

@@ -29,15 +29,15 @@ const maintenanceDict = {
 }
 
 const complaintDict = {
-  date_refusal: "Дата отказа",
   machine: "Зав. № машины",
+  recovery_date: "Дата восстановления",
+  date_refusal: "Дата отказа",
+  equipment_downtime: "Время простоя",
   operating_time: "Наработка, м/час",
   failure_node: "Узел отказа",
   description: "Описание отказа",
   recovery_method: "Способ восстановления",
   spare_parts: "Используемые запасные части",
-  recovery_date: "Дата восстановления",
-  equipment_downtime: "Время простоя",
   service_company: "Сервисная компания",
 };
 
@@ -78,10 +78,10 @@ const summary_dictionary = {
   service_company: "Сервисная компания",
   supply_contract: "№ договора поставки",
   date_refusal: "Дата отказа",
+  recovery_date: "Дата восстановления",
   operating_time: "Наработка, м/час",
   description: "Описание отказа",
   spare_parts: "Используемые запасные части",
-  recovery_date: "Дата восстановления",
   equipment_downtime: "Время простоя",
   failure_node: "Узел отказа",
   recovery_method: "Способ восстановления",

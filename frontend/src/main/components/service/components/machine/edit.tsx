@@ -8,6 +8,7 @@ import Selector from "../selector.tsx";
 import { IMachine } from "../../../../configs/intarfaces.ts";
 import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function Edit() {
   const location = useLocation();
@@ -15,7 +16,7 @@ export default function Edit() {
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
   const { data } = machineApi.useGetMachineQuery(path);
-  const [update, { isSuccess, isLoading }] = machineApi.useUpdateMachineMutation();
+  const [update, { isSuccess, isLoading, isError, error }] = machineApi.useUpdateMachineMutation();
 
   const content = [];
   if (data) {
@@ -38,7 +39,8 @@ export default function Edit() {
 
   return (
     <>
-      { isLoading ? <Loading suffix={'big'} /> : content ? (
+      { isLoading ? <Loading suffix={'big'} /> :
+          isError ? <ErrorPage error={error}/> : content ? (
         <form className={formStyle.form} onSubmit={handleUpdate}>
           {content.map((detail) => (
             <div className={styles.detail_wrapper} key={detail[0]}>

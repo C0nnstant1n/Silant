@@ -5,7 +5,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 import styles from "./login.module.scss";
-import { useState } from "react";
+import React, { useState } from "react";
 import google from "../../../assets/google_button.svg";
 import yandex from "../../../assets/yandex_button.svg";
 

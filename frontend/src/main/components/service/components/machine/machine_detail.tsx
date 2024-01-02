@@ -3,13 +3,14 @@ import { Outlet, useLocation} from "react-router-dom";
 import styles from "../detail.module.scss";
 import Detail from "../detail.tsx";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function MachineDetail() {
   const location = useLocation();
   // const navigate = useNavigate();
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
-  const { data, isLoading, isFetching,  } = machineApi.useGetMachineQuery(path);
+  const { data, isLoading, isError, error,  } = machineApi.useGetMachineQuery(path);
 
   const content = [];
   if (data) {
@@ -17,13 +18,11 @@ export default function MachineDetail() {
       i != "id" ? content.push([i, data[i]]) : null;
     }
   }
-
-
   return (
     <>
-      {isLoading || isFetching && !data ? (
+      {isLoading && !data ? (
           <Loading suffix={'big'} />
-      ) : (
+      ) : isError ? <ErrorPage error={error}/> : (
         <>
           <div className={styles.search_result__detail}>
             <div className={styles.detail}>

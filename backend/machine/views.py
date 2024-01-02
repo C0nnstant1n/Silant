@@ -22,8 +22,9 @@ class GetMachineViewSet(viewsets.ModelViewSet):
         if self.request.GET.get('ordered'):
             ordered = self.request.GET.get('ordered')
 
-        else: ordered = '-date_shipped_from_factory'
-
+        else:
+            ordered = '-date_shipped_from_factory'
+        print(user)
         # print(self.request.query_params)
         if 'Manager' in group:
             print('manager')

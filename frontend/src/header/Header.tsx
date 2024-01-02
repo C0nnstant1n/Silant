@@ -22,7 +22,7 @@ export default function Header() {
           <div className={styles.account__name}>
             <span>{data.user}</span>
             <a
-              href='http://127.0.0.1:8000/logout'
+              href='http://127.0.0.1:8000/accounts/logout'
               className={styles.account__name_button}
             >
               выход

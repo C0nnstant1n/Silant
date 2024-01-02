@@ -7,26 +7,23 @@ import {complaintDict} from "../../../../configs/variables.ts";
 import TableHeaders from "../table_headers.tsx";
 import Loading from "../Loading.tsx";
 import popup from "../../../../../assets/styles/popup.module.scss";
+import ErrorPage from "../../../../error.tsx";
 
 export default function Complaints() {
   const path = useLocation()
 
-  const { data: complains, isLoading, isFetching } =
+  const { data: complains, isLoading, isError,error } =
     complaintsApi.useGetComplaintsQuery(path.search ? path.search : '');
   // console.log(complains)
 
   return (
     <>
-      {isFetching ?
-          <div className={popup.container + ' ' + popup.loading}>
-            <div className={popup.reveal_modal}>
-              <Loading suffix={'big'} />
-            </div>
-          </div>
-          : null}
+
       {isLoading && !complains ? (
           <Loading suffix={'big'}/>
-      ) : complains && !complains.count ? (
+      ) : isError ? <ErrorPage error={error}/> :
+
+          !complains || !complains.count ? (
         <div>
           <div>
             <h2> По вашему запросу нет данных </h2>

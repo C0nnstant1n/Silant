@@ -16,10 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
-# from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework import routers
-
 from Silant import logout
 from complaints.urls import router as complaints_router
 from maintenance.urls import router as maintenance_router
@@ -35,12 +33,12 @@ router.registry.extend(handbooks_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
-    # path('api/swagger-ui/schema/', SpectacularAPIView.as_view(), name='schema'),
-    # path('api/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/swagger-ui/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('', include('handbooks.urls')),
-    path('', include('setCookie.urls')),
+    path('', include('accounts.urls')),
     path('logout', logout.logout_view, name='logout')
 ]

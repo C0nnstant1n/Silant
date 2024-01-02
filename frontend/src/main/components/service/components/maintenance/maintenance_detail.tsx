@@ -5,11 +5,12 @@ import popStyles from '../../../../main.module.scss'
 import { useState } from "react";
 import buttonsStyles from "../../../../../assets/styles/buttons.module.scss";
 import Loading from "../Loading.tsx";
+import ErrorPage from "../../../../error.tsx";
 
 export default function MaintenanceDetail() {
   const location = useLocation();
   const path = location.pathname.replace(/^\D+/g, "");
-  const { data, isLoading } = maintenanceApi.useGetMaintenanceDetailQuery(path);
+  const { data, isLoading, isError, error } = maintenanceApi.useGetMaintenanceDetailQuery(path);
 
   const [popup, setPopup] = useState(popStyles.popup);
   const handlePopUp = () => {
@@ -29,7 +30,7 @@ export default function MaintenanceDetail() {
     <>
       {isLoading && !data ? (
         <Loading suffix={'big'} />
-      ) : (
+      ) : isError ? <ErrorPage error={error}/> :(
         <>
           <div className={styles.detail}>
             <div className={styles.detail_wrapper}>
