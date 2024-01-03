@@ -10,6 +10,7 @@ __Запуск:__
 - python manage.py runserver
 - rest api доступен по адресу <http://127.0.0.1:8000/api/>
 - swagger - <http://127.0.0.1:8000/swagger-ui>, отсюда же можно получить OpenApi Schema
+- email backend настроен ны вывод письма в консоль, т.к Яндекс блокирует спам))
 
 ### Клиентская часть(React, Redux, React Router )
 __Установка:__
