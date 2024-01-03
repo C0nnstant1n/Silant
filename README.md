@@ -3,6 +3,7 @@
 
 ### Серверная часть(Python, Django, RestFramework, Swagger, OpenApi Schema):
 __Установка:__
+- требуется  Python 3.10 и выше
 - pip install -r requirements.txt
 
 __Запуск:__ 
