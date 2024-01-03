@@ -24,6 +24,7 @@ export const complaintsApi = createApi({
         url: COMPLAINTS_URL + arg,
         credentials: "include",
       }),
+      providesTags: () => ["complaints"],
     }),
     createComplaints: build.mutation<IComplaint, IComplaint>({
       query: (complaint) => ({

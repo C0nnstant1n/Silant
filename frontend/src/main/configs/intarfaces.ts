@@ -71,9 +71,9 @@ interface IComplaint {
 }
 
 interface IResponse {
-  count: number;
-  next: number | null;
-  previous: number | null;
+  "count": number,
+  "next": string | null,
+  "previous": string | null,
   results: [];
 }
 

@@ -44,3 +44,10 @@
   color: $button-color;
   font-weight: bold;
 }
+.arrow_up, .arrow_down{
+  width: 1.5rem;
+  aspect-ratio: 1;
+}
+.arrow_down {
+  transform: rotate(180deg);
+}

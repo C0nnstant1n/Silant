@@ -1,7 +1,6 @@
 import { complaintsApi } from "../../../../../redux/complaints.ts";
 import formStyle from "../../../../../assets/styles/form.module.scss";
 import {
-  IComplaint,
   IHandbook,
   IMachine,
 } from "../../../../configs/intarfaces.ts";
@@ -46,63 +45,75 @@ export default function CreateComplaint() {
     <>
       {isLoading ? <Loading suffix={'big'} /> :
           isError ? <ErrorPage error={error}/> :
-      <form id='create_complaint' className={formStyle.form} onSubmit={handleCreate}>
-        {complaint.map((data) => (
-          <div key={data[0]}>
-            {data[0] == "service_company" ||
-            data[0] == "failure_node" ||
-            data[0] == "recovery_method" ? (
-              <section className={formStyle.form_section} key={data[0]}>
-                <p className={formStyle.label}>{data[1]}:</p>
-                <select name={data[0]}>
-                  {handbooks[data[0]] &&
-                    handbooks[data[0]].results.map((data: IHandbook) => (
-                      <option value={data.id} key={data.name + data.id}>
-                        {data.name}
-                      </option>
-                    ))}
-                </select>
-              </section>
-            ) : data[0] == "machine" ? (
-              <section className={formStyle.form_section} key={data[0]}>
-                <p className={formStyle.label}>{data[1]}:</p>
-                <select name={data[0]}>
-                  {handbooks[data[0]] &&
-                    handbooks[data[0]].results.map((data: IMachine) => (
-                      <option
-                        value={data.id}
-                        key={data.machine_serial_number + data.id}
-                      >
-                        {data.machine_serial_number}
-                      </option>
-                    ))}
-                </select>
-              </section>
-            ) : (
-              <section className={formStyle.form_section}>
-                <p className={formStyle.label}>{data[1]}</p>
-                <input
-                  required
-                  type={
-                    data[0].search("date") >= 0
-                      ? "date"
-                      : data[0] == "operating_time"
-                      ? "number"
-                      : "text"
-                  }
-                  name={data[0]}
-                />
-              </section>
-            )}
-          </div>
-        ))}
-
-      </form>}
+              <form id='create_complaint' className={formStyle.form} onSubmit={handleCreate}>
+                {complaint.map((data) =>
+                    (
+                    <div key={data[0]}>
+                      {data[0] == "service_company" ||
+                      data[0] == "failure_node" ||
+                      data[0] == "recovery_method" ?
+                          (
+                          <section className={formStyle.form_section} key={data[0]}>
+                            <p className={formStyle.label}>{data[1]}:</p>
+                            <select name={data[0]}>
+                              {handbooks[data[0]] &&
+                                  handbooks[data[0]].results.map(
+                                      (data: IHandbook) => (
+                                      <option value={data.id} key={data.name + data.id}>
+                                        {data.name}
+                                      </option>
+                                      )
+                                  )
+                              }
+                            </select>
+                          </section>
+                          )
+                          : data[0] == "machine" ?
+                              (
+                                  <section className={formStyle.form_section} key={data[0]}>
+                                    <p className={formStyle.label}>{data[1]}:</p>
+                                    <select name={data[0]}>
+                                      {
+                                        handbooks[data[0]] &&
+                                          handbooks[data[0]].results.map(
+                                              (data: IMachine) => (
+                                              <option value={data.id}
+                                                      key={data.machine_serial_number + data.id}>
+                                                {data.machine_serial_number}
+                                              </option>
+                                              )
+                                          )
+                                      }
+                                    </select>
+                                  </section>
+                              )
+                              :
+                              (
+                                  <>
+                                  {
+                                  (data[0] != "equipment_downtime") ?
+                                        (
+                                          <section className={formStyle.form_section}>
+                                            <p className={formStyle.label}>{data[1]}</p>
+                                            <input required
+                                                   type={data[0].search("date") >= 0 ? "date" : "text"}
+                                                   name={data[0]}/>
+                                          </section>
+                                        ) : null
+                                  }
+                                  </>
+                              )
+                      }
+                    </div>
+                    )
+                )
+                }
+              </form>}
       <div style={{ display: "none" }}>
-        {createSuccess
-          ? setTimeout(() => navigate("/service/complaints"), 700)
-          : null}
-      </div>
+                  {createSuccess
+                      ? setTimeout(() => navigate("/service/complaints"), 700)
+                      : null}
+                </div>
     </>
-  );
+  )
 }

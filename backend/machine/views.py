@@ -1,18 +1,15 @@
-from django.contrib.auth.models import Group
-from django.views.generic import ListView
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import generics
-
 from .filters import MachineFilter
 from .serializer import GetMachineSerializer, SharedMachineSerializer, PostMachineSerializer
 from .models import Machine
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
-from rest_framework.permissions import DjangoModelPermissions, IsAdminUser
+from rest_framework.permissions import DjangoModelPermissions
 
 
-class GetMachineViewSet(viewsets.ModelViewSet):
+class GetMachineViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     serializer_class = GetMachineSerializer
     permission_classes = [DjangoModelPermissions]
 
@@ -24,10 +21,9 @@ class GetMachineViewSet(viewsets.ModelViewSet):
 
         else:
             ordered = '-date_shipped_from_factory'
-        print(user)
+        # print(user)
         # print(self.request.query_params)
         if 'Manager' in group:
-            print('manager')
             queryset = Machine.objects.all().order_by(ordered)
             self.filterset = MachineFilter(self.request.GET, queryset)
             return self.filterset.qs
@@ -44,7 +40,7 @@ class PostMachineViewSet(viewsets.ModelViewSet):
     permission_classes = [DjangoModelPermissions]
 
 
-class SharedMachineViewSet(generics.ListAPIView, viewsets.ModelViewSet):
+class SharedMachineViewSet(generics.ListAPIView, viewsets.GenericViewSet, mixins.ListModelMixin):
     queryset = Machine.objects.all()
     serializer_class = SharedMachineSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)

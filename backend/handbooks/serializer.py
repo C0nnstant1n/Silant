@@ -63,12 +63,8 @@ class ServiceCompanySerializer(serializers.ModelSerializer):
 
 
 class ClientSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
-
     class Meta:
         model = Client
         fields = ['id', 'name', 'description']
 
-    def get_name(self, obj):
-        return '{} {}'.format(obj.user.first_name, obj.user.last_name)
 

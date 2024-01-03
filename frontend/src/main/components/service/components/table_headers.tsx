@@ -26,10 +26,10 @@ export default function TableHeaders({dict}: IProps){
     const header = []
     for (const head in dict){
         header.push(
-            <td className={tableStyle.table_header} onClick={handleOrder} key={dict[head]}>
-                <div className={tableStyle.table_header}>
-                    <p>{dict[head]}</p>
-                    <button className={buttonStyles.popup_button}>{direction ? "˅" : "˄"}</button>
+            <td className={tableStyle.table_header}  key={dict[head]}>
+                <div className={tableStyle.table_header} >
+                    <p onClick={handleOrder}>{dict[head]}</p>
+                    <button className={buttonStyles.popup_button} onClick={handleOrder}>{direction ? "˅" : "˄"}</button>
                 </div>
             </td>
         )

@@ -4,7 +4,7 @@ import Footer from "./footer/footer.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error-page.tsx";
 import Main from "./main/main.tsx";
-import ResultShMachine from "./main/components/search_result/ResultShMachine.tsx";
+import ResultShMachine from "./main/components/service/components/ResultShMachine.tsx";
 import { findAction } from "./scripts/actions.ts";
 import { Provider } from "react-redux";
 import { store } from "./redux";

@@ -8,6 +8,8 @@ import buttonStyle from "../../../../../assets/styles/buttons.module.scss";
 import buttonStyles from "../../../../../assets/styles/buttons.module.scss";
 import Loading from "../Loading.tsx";
 import ErrorPage from "../../../../error.tsx";
+import {getData} from "../../../../../scripts/create.ts";
+import {IMachine} from "../../../../configs/intarfaces.ts";
 
 export default function EditComplaint() {
   const location = useLocation();
@@ -26,16 +28,17 @@ export default function EditComplaint() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const complaint: { [index: string]: string } = {};
-    formData.forEach(function (value, key) {
-      complaint[key] = value;
-    });
+    // const formData = new FormData(e.target);
+    // const complaint: { [index: string]: string } = {};
+    // formData.forEach(function (value, key) {
+    //   complaint[key] = value;
+    // });
+    console.log(data.machine)
+    let complaint = getData(e)
     complaint["id"] = path;
     if (data) {
-      complaint["machine"] = data.machine.id;
+      complaint["machine"] = data.machine.id as IMachine;
     }
-
     // console.log(complaint)
     update(complaint);
   };
@@ -44,6 +47,7 @@ export default function EditComplaint() {
       {isError ? <ErrorPage error={error}/> :
       <form className={formStyle.form} onSubmit={handleUpdate}>
         {content.map((detail) => (
+            detail[0] != "equipment_downtime" ?
             <div className={styles.detail_wrapper} key={detail[0]}>
               <section className={formStyle.form_section}>
                 <p className={formStyle.label}>{complaintDict[detail[0]]}</p>
@@ -51,24 +55,28 @@ export default function EditComplaint() {
                     <p>
                       <b>{detail[1].machine_serial_number}</b>
                     </p>
-                ) : detail[1].length || typeof detail[1] == "number" ? (
-                    <input
-                        required={detail[0] != "machine"}
-                        name={detail[0]}
-                        defaultValue={detail[1]}
-                        type={
-                          detail[0].search("date") >= 0
-                              ? "date"
-                              : detail[0] == "operating_time"
-                                  ? "number"
-                                  : "text"
-                        }
-                    />
-                ) : (
-                    <Selector name={[detail[0], detail[1].id]}/>
-                )}
+                ) :
+
+                        detail[1].length || typeof detail[1] == "number" ? (
+                          <input
+                              required={detail[0] != "machine"}
+                              name={detail[0]}
+                              defaultValue={detail[1]}
+                              type={
+                                detail[0].search("date") >= 0
+                                    ? "date"
+                                    : detail[0] == "operating_time"
+                                        ? "number"
+                                        : "text"
+                              }
+                          />
+                        ) : (
+                            <Selector name={[detail[0], detail[1].id]}/>
+                        )
+
+                }
               </section>
-            </div>
+            </div> : null
         ))}
         <div className={buttonStyle.buttons_container}>
           <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>

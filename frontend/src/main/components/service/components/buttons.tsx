@@ -46,7 +46,8 @@ export default function ButtonsBlock() {
         e.preventDefault();
         setStatus(true)
         const params = e.target.id.split(',')
-        console.log(params)
+        // console.log(params)
+
         switch (params[0]){
             case 'machine':
                 removeMachine(params[1]);
@@ -108,7 +109,7 @@ export default function ButtonsBlock() {
                         <ErrorPage error={machineError}/>
                         <div className={buttonStyle.buttons_container}>
                             <button className={buttonStyle.button + ' ' + buttonStyles.medium}
-                                    onClick={resetMachine}>X
+                                    onClick={resetMachine}>закрыть
                             </button>
                         </div>
 
@@ -119,7 +120,7 @@ export default function ButtonsBlock() {
                             <div className={popupStyle.reveal_modal}>
                                 <ErrorPage error={maintenanceError}/>
                                 <button className={buttonStyle.button + ' ' + buttonStyles.medium}
-                                        onClick={resetMaintenance}>X
+                                        onClick={resetMaintenance}>закрыть
                                 </button>
                             </div>
                         </div> :
@@ -128,7 +129,7 @@ export default function ButtonsBlock() {
                                 <div className={popupStyle.reveal_modal}>
                                     <ErrorPage error={complaintError}/>
                                     <button className={buttonStyle.button + ' ' + buttonStyles.medium}
-                                            onClick={resetMachine}>X
+                                            onClick={resetComlaint}>закрыть
                                     </button>
                                 </div>
                             </div> :

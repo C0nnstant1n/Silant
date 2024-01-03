@@ -1,33 +1,74 @@
-{% extends "default.html" %}
-{% load i18n %}
+{% extends 'default.html' %}
+{% load static %}
 {% load allauth account %}
-{% block head_title %}
-    {% trans "Sign In" %}
-{% endblock head_title %}
-{% block content %}
-    {% element h1 %}
+{% load i18n %}
 
-    {% endelement %}
-    <p>
+
+{% block content %}
+    <div class='authorization'>
+    <div class='authorization__form'>
+        <div class='form__top'>
+            <div class='top__container'>
+                <h2>
+                    <a class='active_tab' href='#'>
+                        Войти
+                    </a>
+                </h2>
+                <hr/>
+            </div>
+            <div class='inactive_tab'>
+                <h2>
         {% blocktrans %}
-    <a href="{{ signup_url }}">sign up</a>{% endblocktrans %}
-    </p>
-    {% url 'account_login' as login_url %}
+                <a class="inactive_tab" href="{{ signup_url }}">Зарегистрироваться</a>{% endblocktrans %}
+                </h2>
+                <hr/>
+            </div>
+        </div>
+            {% url 'account_login' as login_url %}
     {% element form form=form method="post" action=login_url tags="entrance,login" %}
         {% slot body %}
             {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
+            <label for='login'>Логин</label>
+            <input
+                id='login'
+                name='login'
+                type='text'
+                required
+                minLength={8}
+            />
+            <label for='password'>Пароль</label>
+            <input
+                id='password'
+                name='password'
+                type='password'
+                minLength={7}
+                required
+            />
+
             {% if redirect_field_value %}
                 <input type="hidden"
                        name="{{ redirect_field_name }}"
                        value="{{ redirect_field_value }}" />
             {% endif %}
         {% endslot %}
-        {% slot actions %}
+            {% slot actions %}
             {% element button type="submit" tags="prominent,login" %}
                 {% trans "Sign In" %}
             {% endelement %}
-        {% endslot %}
+            {% endslot %}
+        
     {% endelement %}
+        <hr>
+{#        <a href='#'>Восстановить пароль</a>#}
+{##}
+{#        <div class='alternative_signin'>#}
+{#            <p>Войти через:</p>#}
+{#            <div class='alternative_signin_links'>#}
+{#                <img src="{% static 'img/google_button.svg'%}" alt="google"/>#}
+{#                <img src="{% static 'img/yandex_button.svg'%}" alt="yandex"/>#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+</div>
+
 {% endblock content %}

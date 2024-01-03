@@ -6,7 +6,6 @@ import {useLocation} from "react-router-dom";
 import {complaintDict} from "../../../../configs/variables.ts";
 import TableHeaders from "../table_headers.tsx";
 import Loading from "../Loading.tsx";
-import popup from "../../../../../assets/styles/popup.module.scss";
 import ErrorPage from "../../../../error.tsx";
 
 export default function Complaints() {

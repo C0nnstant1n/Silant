@@ -1,5 +1,5 @@
 import { handbooksApi } from "../../../../redux/handbooks.ts";
-import { IHandbook } from "../../../configs/intarfaces.ts";
+import {IHandbook, IMachine} from "../../../configs/intarfaces.ts";
 import { useState } from "react";
 import {summary_dictionary} from "../../../configs/variables.ts";
 import {useLocation} from "react-router-dom";
@@ -58,7 +58,7 @@ export default function Selector({ name }: IProps) {
               value={def} onChange={handleChange} name={name[0]}>
             <option value={''}>{summary_dictionary[name]}</option>
         {dict[name[0]] &&
-          dict[name[0]].results.map((res: IHandbook) => (
+          dict[name[0]].results.map((res: IHandbook | IMachine) => (
               [name[0]] == 'machine' ? (
                   <option value={res.id} key={res.id}>
                     {res.machine_serial_number}

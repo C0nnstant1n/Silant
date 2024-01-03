@@ -190,32 +190,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedGetComplaintsList'
           description: ''
-    post:
-      operationId: api_complaints_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetComplaints'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/GetComplaints'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/GetComplaints'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetComplaints'
-          description: ''
   /api/complaints/{id}/:
     get:
       operationId: api_complaints_retrieve
@@ -237,85 +211,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetComplaints'
           description: ''
-    put:
-      operationId: api_complaints_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetComplaints'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/GetComplaints'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/GetComplaints'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetComplaints'
-          description: ''
-    patch:
-      operationId: api_complaints_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedGetComplaints'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedGetComplaints'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedGetComplaints'
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetComplaints'
-          description: ''
-    delete:
-      operationId: api_complaints_destroy
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '204':
-          description: No response body
   /api/drive_axle/:
     get:
       operationId: api_drive_axle_list
@@ -2556,32 +2451,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedGetMachineList'
           description: ''
-    post:
-      operationId: api_machines_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetMachine'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/GetMachine'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/GetMachine'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMachine'
-          description: ''
   /api/machines/{id}/:
     get:
       operationId: api_machines_retrieve
@@ -2603,85 +2472,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetMachine'
           description: ''
-    put:
-      operationId: api_machines_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetMachine'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/GetMachine'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/GetMachine'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMachine'
-          description: ''
-    patch:
-      operationId: api_machines_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedGetMachine'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedGetMachine'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedGetMachine'
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMachine'
-          description: ''
-    delete:
-      operationId: api_machines_destroy
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '204':
-          description: No response body
   /api/maintenance/:
     get:
       operationId: api_maintenance_list
@@ -2710,32 +2500,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedGetMaintenanceList'
           description: ''
-    post:
-      operationId: api_maintenance_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetMaintenance'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/GetMaintenance'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/GetMaintenance'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMaintenance'
-          description: ''
   /api/maintenance/{id}/:
     get:
       operationId: api_maintenance_retrieve
@@ -2757,85 +2521,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/GetMaintenance'
           description: ''
-    put:
-      operationId: api_maintenance_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetMaintenance'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/GetMaintenance'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/GetMaintenance'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMaintenance'
-          description: ''
-    patch:
-      operationId: api_maintenance_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedGetMaintenance'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedGetMaintenance'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedGetMaintenance'
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMaintenance'
-          description: ''
-    delete:
-      operationId: api_maintenance_destroy
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - api
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '204':
-          description: No response body
   /api/post_machines/:
     get:
       operationId: api_post_machines_list
@@ -3659,137 +3344,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedSharedMachineList'
           description: ''
-    post:
-      operationId: api_shmachines_create
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SharedMachine'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SharedMachine'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SharedMachine'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SharedMachine'
-          description: ''
-  /api/shmachines/{id}/:
-    get:
-      operationId: api_shmachines_retrieve
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this machine.
-        required: true
-      tags:
-      - api
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      - {}
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SharedMachine'
-          description: ''
-    put:
-      operationId: api_shmachines_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this machine.
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SharedMachine'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SharedMachine'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SharedMachine'
-        required: true
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SharedMachine'
-          description: ''
-    patch:
-      operationId: api_shmachines_partial_update
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this machine.
-        required: true
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedSharedMachine'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedSharedMachine'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedSharedMachine'
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SharedMachine'
-          description: ''
-    delete:
-      operationId: api_shmachines_destroy
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this machine.
-        required: true
-      tags:
-      - api
-      security:
-      - basicAuth: []
-      - cookieAuth: []
-      responses:
-        '204':
-          description: No response body
   /api/steering_axle/:
     get:
       operationId: api_steering_axle_list
@@ -4274,7 +3828,7 @@ components:
           readOnly: true
         name:
           type: string
-          readOnly: true
+          maxLength: 256
         description:
           type: string
       required:
@@ -4492,6 +4046,21 @@ components:
       - id
       - name
     NatureOfFailure:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        description:
+          type: string
+      required:
+      - description
+      - id
+      - name
+    Nested:
       type: object
       properties:
         id:
@@ -4854,7 +4423,7 @@ components:
           readOnly: true
         name:
           type: string
-          readOnly: true
+          maxLength: 256
         description:
           type: string
     PatchedDriveAxle:
@@ -4879,133 +4448,6 @@ components:
           maxLength: 256
         description:
           type: string
-    PatchedGetComplaints:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        machine:
-          $ref: '#/components/schemas/GetMachine'
-        recovery_method:
-          allOf:
-          - $ref: '#/components/schemas/RecoveryMethod'
-          readOnly: true
-        service_company:
-          allOf:
-          - $ref: '#/components/schemas/ServiceCompany'
-          readOnly: true
-        failure_node:
-          allOf:
-          - $ref: '#/components/schemas/NatureOfFailure'
-          readOnly: true
-        date_refusal:
-          type: string
-          format: date
-        operating_time:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
-        description:
-          type: string
-        spare_parts:
-          type: string
-        recovery_date:
-          type: string
-          format: date
-        equipment_downtime:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
-    PatchedGetMachine:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        machine_model:
-          $ref: '#/components/schemas/MachineModel'
-        machine_serial_number:
-          type: string
-          title: Зав. № машины
-          maxLength: 128
-        model_engine:
-          $ref: '#/components/schemas/Engine'
-        engine_serial_number:
-          type: string
-          title: Зав. № Двигателя
-          maxLength: 256
-        model_transmission:
-          $ref: '#/components/schemas/Transmission'
-        transmission_serial_number:
-          type: string
-          title: Зав. № трансмиссии
-          maxLength: 256
-        model_drive_axle:
-          $ref: '#/components/schemas/DriveAxle'
-        drive_axle_serial_number:
-          type: string
-          title: Зав. № ведущего моста
-          maxLength: 256
-        steering_axle:
-          $ref: '#/components/schemas/SteeringAxle'
-        steering_axle_serial_number:
-          type: string
-          title: Зав. № управляемого моста
-          maxLength: 256
-        supply_contract:
-          type: string
-          title: № договора поставки
-          maxLength: 256
-        date_shipped_from_factory:
-          type: string
-          format: date
-          title: Дата отгрузки с завода
-        consignee:
-          type: string
-          title: Грузополучатель (конечный потребитель)
-          maxLength: 256
-        delivery_address:
-          type: string
-          title: Адрес поставки (эксплуатации)
-          maxLength: 256
-        equipment:
-          type: string
-          title: Комплектация (доп. опции)
-          maxLength: 256
-        client:
-          $ref: '#/components/schemas/Client'
-        service_company:
-          $ref: '#/components/schemas/ServiceCompany'
-    PatchedGetMaintenance:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        maintenance_type:
-          $ref: '#/components/schemas/TypeOfMaintenance'
-        service_company:
-          $ref: '#/components/schemas/ServiceCompany'
-        machine:
-          type: string
-          title: Зав. № машины
-        maintenance_date:
-          type: string
-          format: date
-        operating_time:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
-        order_number:
-          type: string
-          maxLength: 128
-        order_date:
-          type: string
-          format: date
     PatchedMachineModel:
       type: object
       properties:
@@ -5178,42 +4620,6 @@ components:
           type: integer
         service_company:
           type: integer
-    PatchedSharedMachine:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        machine_model:
-          type: string
-        machine_serial_number:
-          type: string
-          readOnly: true
-          title: Зав. № машины
-        model_engine:
-          type: string
-        engine_serial_number:
-          type: string
-          readOnly: true
-          title: Зав. № Двигателя
-        model_transmission:
-          type: string
-        transmission_serial_number:
-          type: string
-          readOnly: true
-          title: Зав. № трансмиссии
-        model_drive_axle:
-          type: string
-        drive_axle_serial_number:
-          type: string
-          readOnly: true
-          title: Зав. № ведущего моста
-        steering_axle:
-          type: string
-        steering_axle_serial_number:
-          type: string
-          readOnly: true
-          title: Зав. № управляемого моста
     PatchedSteeringAxle:
       type: object
       properties:
@@ -5450,35 +4856,45 @@ components:
           type: integer
           readOnly: true
         machine_model:
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
         machine_serial_number:
           type: string
-          readOnly: true
           title: Зав. № машины
+          maxLength: 128
         model_engine:
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
         engine_serial_number:
           type: string
-          readOnly: true
           title: Зав. № Двигателя
+          maxLength: 256
         model_transmission:
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
         transmission_serial_number:
           type: string
-          readOnly: true
           title: Зав. № трансмиссии
+          maxLength: 256
         model_drive_axle:
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
         drive_axle_serial_number:
           type: string
-          readOnly: true
           title: Зав. № ведущего моста
+          maxLength: 256
         steering_axle:
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/Nested'
+          readOnly: true
         steering_axle_serial_number:
           type: string
-          readOnly: true
           title: Зав. № управляемого моста
+          maxLength: 256
       required:
       - drive_axle_serial_number
       - engine_serial_number

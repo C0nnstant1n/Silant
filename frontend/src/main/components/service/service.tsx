@@ -4,6 +4,7 @@ import {NavLink, Outlet, useLocation} from "react-router-dom";
 import { userApi } from "../../../redux/user.ts";
 import FilterInputs from "./components/filters.tsx";
 import ButtonsBlock from "./components/buttons.tsx";
+import Pagination from "./components/pagination.tsx";
 
 export default function Service() {
   const { data } = userApi.useGetUserQuery("");

@@ -1,5 +1,5 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
-import styles from "../../../search_result/result.module.scss";
+import styles from "../../result.module.scss";
 import MaintenanceTable from "./maintenance_table.tsx";
 import { IMaintenance } from "../../../../configs/intarfaces.ts";
 import tableStyle from "../../../../../assets/styles/table.module.scss";
@@ -7,7 +7,6 @@ import {useLocation} from "react-router-dom";
 import TableHeaders from "../table_headers.tsx";
 import {maintenanceDict} from "../../../../configs/variables.ts";
 import Loading from "../Loading.tsx";
-import popup from "../../../../../assets/styles/popup.module.scss";
 import ErrorPage from "../../../../error.tsx";
 
 export default function Maintenance() {

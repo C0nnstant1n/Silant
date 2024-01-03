@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from django.db.models import Q
 from rest_framework.permissions import DjangoModelPermissions
 
@@ -7,7 +7,7 @@ from .serializer import GetComplaintsSerializer, SetComplaintsModelSerializer
 from .models import ComplaintsModel
 
 
-class GetComplaintsViewSet(viewsets.ModelViewSet):
+class GetComplaintsViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     serializer_class = GetComplaintsSerializer
     permission_classes = [DjangoModelPermissions]
 

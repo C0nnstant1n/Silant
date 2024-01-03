@@ -39,7 +39,7 @@ export const machineApi = createApi({
     }),
     deleteMachine: build.mutation<IMachine, string>({
       query: (arg) => ({
-        url: MACHINE_URL + arg,
+        url: CREATE_MACHINE_URL + arg,
         method: "DELETE",
         headers: {
           "X-CSRFToken": csrftoken as string,

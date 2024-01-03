@@ -1,5 +1,5 @@
 from django.db.models import Q
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.permissions import DjangoModelPermissions
 
 from .filters import MaintenanceFilterSet
@@ -7,7 +7,7 @@ from .serializer import GetMaintenanceSerializer, SetMaintenanceSerializer
 from .models import MaintenanceModel
 
 
-class GetMaintenanceViewSet(viewsets.ModelViewSet):
+class GetMaintenanceViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     serializer_class = GetMaintenanceSerializer
     permission_classes = [DjangoModelPermissions]
 
@@ -17,7 +17,8 @@ class GetMaintenanceViewSet(viewsets.ModelViewSet):
         if self.request.GET.get('ordered'):
             ordered = self.request.GET.get('ordered')
 
-        else: ordered = 'maintenance_date'
+        else:
+            ordered = 'maintenance_date'
 
         if 'Manager' in group:
             queryset = MaintenanceModel.objects.all().order_by(ordered)

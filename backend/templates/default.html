@@ -24,7 +24,7 @@
                 <div class="account">
                   <div class="account__name">
                     <span>{{user}}</span>
-                    <form method="post" action="{% url 'logout' %}">
+                    <form method="post" action="{% url 'account_logout' %}">
                         {% csrf_token %}
                         <button class="account__name_button" type="submit"> Выход</button>
                     </form>
