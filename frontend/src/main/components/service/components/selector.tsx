@@ -1,9 +1,9 @@
 import { handbooksApi } from "../../../../redux/handbooks.ts";
-import {IHandbook, IMachine} from "../../../configs/intarfaces.ts";
+import { IHandbook, IMachine } from "../../../configs/intarfaces.ts";
 import { useState } from "react";
-import {summary_dictionary} from "../../../configs/variables.ts";
-import {useLocation} from "react-router-dom";
-import {machineApi} from "../../../../redux/machine.ts";
+import { summary_dictionary } from "../../../configs/variables.ts";
+import { useLocation } from "react-router-dom";
+import { machineApi } from "../../../../redux/machine.ts";
 
 interface IProps {
   name: string[];
@@ -36,11 +36,9 @@ export default function Selector({ name }: IProps) {
     machine: machine,
   };
 
-  const path = useLocation()
+  const path = useLocation();
 
-  const [def, setDefault] =
-      useState(name.length > 1 ? name[1]: '');
-
+  const [def, setDefault] = useState(name.length > 1 ? name[1] : "");
 
   const handleChange = (event) => {
     setDefault(event.target.value);
@@ -50,24 +48,31 @@ export default function Selector({ name }: IProps) {
 
   return (
     <>
-      <select required={
-        path.pathname.endsWith('info') ? false :
-          path.pathname.endsWith('to') ? false :
-              !path.pathname.endsWith('complaints')
-      }
-              value={def} onChange={handleChange} name={name[0]}>
-            <option value={''}>{summary_dictionary[name]}</option>
+      <select
+        required={
+          path.pathname.endsWith("info")
+            ? false
+            : path.pathname.endsWith("to")
+            ? false
+            : !path.pathname.endsWith("complaints")
+        }
+        value={def}
+        onChange={handleChange}
+        name={name[0]}
+      >
+        <option value={""}>{summary_dictionary[name]}</option>
         {dict[name[0]] &&
-          dict[name[0]].results.map((res: IHandbook | IMachine) => (
-              [name[0]] == 'machine' ? (
-                  <option value={res.id} key={res.id}>
-                    {res.machine_serial_number}
-                  </option>
-              ):
-              < option value={res.id} key={res.id}>
-        {res.name}
-          </option>
-          ))}
+          dict[name[0]].results.map((res: IHandbook | IMachine) =>
+            [name[0]] == "machine" ? (
+              <option value={res.id} key={res.id}>
+                {res.machine_serial_number}
+              </option>
+            ) : (
+              <option value={res.id} key={res.id}>
+                {res.name}
+              </option>
+            )
+          )}
       </select>
     </>
   );

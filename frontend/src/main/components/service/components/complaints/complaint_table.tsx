@@ -1,4 +1,4 @@
-import {IComplaint} from "../../../../configs/intarfaces.ts";
+import { IComplaint } from "../../../../configs/intarfaces.ts";
 import { useNavigate } from "react-router-dom";
 import tableStyles from "../../../../../assets/styles/table.module.scss";
 
@@ -15,7 +15,6 @@ export default function ComplaintTable({ complaint }: IProps) {
   return (
     <>
       <tr className={tableStyles.table_string} onClick={handleDetail}>
-
         <td>{complaint.machine.machine_serial_number}</td>
         <td>{complaint.recovery_date}</td>
         <td>{complaint.date_refusal}</td>
@@ -25,8 +24,6 @@ export default function ComplaintTable({ complaint }: IProps) {
         <td>{complaint.description}</td>
         <td>{complaint.recovery_method.name}</td>
         <td>{complaint.spare_parts}</td>
-
-
         <td>{complaint.service_company.name}</td>
       </tr>
     </>

@@ -15,7 +15,7 @@ export default function EditTO() {
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
 
-  const [update, { isSuccess: createSuccess, isLoading, isError,error  }] =
+  const [update, { isSuccess: createSuccess, isLoading, isError, error }] =
     maintenanceApi.useUpdateMaintenanceMutation();
   const { data: TO } = maintenanceApi.useGetMaintenanceDetailQuery(path);
 
@@ -43,55 +43,64 @@ export default function EditTO() {
     update(maintenance as IMaintenance);
   };
 
-  const mapDict: string [][] =[]
-  for (const i in maintenanceDict){
-    mapDict.push([i, maintenanceDict[i]])
+  const mapDict: string[][] = [];
+  for (const i in maintenanceDict) {
+    mapDict.push([i, maintenanceDict[i]]);
   }
 
   return (
     <>
-      { isLoading ? <Loading suffix={'big'}/> : isError ? <ErrorPage error={error}/> :
-      <form className={formStyle.form} onSubmit={handleUpdate}>
-        {content.map((detail) => (
-          <div className={styles.detail_wrapper} key={detail[0]}>
-            <section className={formStyle.form_section}>
-              <p className={formStyle.label}>
-                {mapDict.map((data) =>
-                  data[0] == detail[0] ? data[1] : ""
-                )}
-              </p>
-              {detail[0] == "machine" ? (
-                <p>
-                  <b>{detail[1]}</b>
+      {isLoading ? (
+        <Loading suffix={"big"} />
+      ) : isError ? (
+        <ErrorPage error={error} />
+      ) : (
+        <form className={formStyle.form} onSubmit={handleUpdate}>
+          {content.map((detail) => (
+            <div className={styles.detail_wrapper} key={detail[0]}>
+              <section className={formStyle.form_section}>
+                <p className={formStyle.label}>
+                  {mapDict.map((data) => (data[0] == detail[0] ? data[1] : ""))}
                 </p>
-              ) : detail[1].length || typeof detail[1] == "number" ? (
-                <input
-                  required={detail[0] != "machine"}
-                  name={detail[0]}
-                  defaultValue={detail[1]}
-                  type={
-                    detail[0].search("date") >= 0
-                      ? "date"
-                      : detail[0] == "operating_time"
-                      ? "number"
-                      : "text"
-                  }
-                />
-              ) : (
-                <Selector name={[detail[0], detail[1].id]} />
-              )}
-            </section>
+                {detail[0] == "machine" ? (
+                  <p>
+                    <b>{detail[1]}</b>
+                  </p>
+                ) : detail[1].length || typeof detail[1] == "number" ? (
+                  <input
+                    required={detail[0] != "machine"}
+                    name={detail[0]}
+                    defaultValue={detail[1]}
+                    type={
+                      detail[0].search("date") >= 0
+                        ? "date"
+                        : detail[0] == "operating_time"
+                        ? "number"
+                        : "text"
+                    }
+                  />
+                ) : (
+                  <Selector name={[detail[0], detail[1].id]} />
+                )}
+              </section>
+            </div>
+          ))}
+          <div className={buttonStyle.buttons_container}>
+            <button
+              className={buttonStyle.button + " " + buttonStyles.medium}
+              type='submit'
+            >
+              Сохранить ТО
+            </button>
+            <Link
+              to={"/service/to"}
+              className={buttonStyle.button + " " + buttonStyles.medium}
+            >
+              Отмена
+            </Link>
           </div>
-        ))}
-        <div className={buttonStyle.buttons_container}>
-          <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
-            Сохранить ТО
-          </button>
-          <Link to={"/service/to"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
-            Отмена
-          </Link>
-        </div>
-      </form>}
+        </form>
+      )}
       <div style={{ display: "none" }}>
         {createSuccess ? setTimeout(() => navigate("/service/to"), 700) : null}
       </div>

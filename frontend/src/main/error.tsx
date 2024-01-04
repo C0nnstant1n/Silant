@@ -3,11 +3,10 @@ import { SerializedError } from "@reduxjs/toolkit";
 import styles from "./main.module.scss";
 
 interface IProps {
-    error: FetchBaseQueryError | SerializedError | undefined
+  error: FetchBaseQueryError | SerializedError | undefined;
 }
 
-export default function ErrorPage({error}:IProps) {
-
+export default function ErrorPage({ error }: IProps) {
   console.log(error);
   if (error) {
     if ("status" in error) {

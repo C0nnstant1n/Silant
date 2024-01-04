@@ -1,7 +1,7 @@
 import { maintenanceApi } from "../../../../../redux/maintenance.ts";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styles from "../detail.module.scss";
-import popStyles from '../../../../main.module.scss'
+import popStyles from "../../../../main.module.scss";
 import { useState } from "react";
 import buttonsStyles from "../../../../../assets/styles/buttons.module.scss";
 import Loading from "../Loading.tsx";
@@ -10,7 +10,8 @@ import ErrorPage from "../../../../error.tsx";
 export default function MaintenanceDetail() {
   const location = useLocation();
   const path = location.pathname.replace(/^\D+/g, "");
-  const { data, isLoading, isError, error } = maintenanceApi.useGetMaintenanceDetailQuery(path);
+  const { data, isLoading, isError, error } =
+    maintenanceApi.useGetMaintenanceDetailQuery(path);
 
   const [popup, setPopup] = useState(popStyles.popup);
   const handlePopUp = () => {
@@ -29,8 +30,10 @@ export default function MaintenanceDetail() {
   return (
     <>
       {isLoading && !data ? (
-        <Loading suffix={'big'} />
-      ) : isError ? <ErrorPage error={error}/> :(
+        <Loading suffix={"big"} />
+      ) : isError ? (
+        <ErrorPage error={error} />
+      ) : (
         <>
           <div className={styles.detail}>
             <div className={styles.detail_wrapper}>
@@ -46,7 +49,10 @@ export default function MaintenanceDetail() {
                 <p className={styles.label}>Вид ТО:</p>
                 <div className={styles.data}>
                   <span>{data && data.maintenance_type.name}</span>
-                  <button className={buttonsStyles.popup_button} onClick={handlePopUp}>
+                  <button
+                    className={buttonsStyles.popup_button}
+                    onClick={handlePopUp}
+                  >
                     {popup.search(/popup/) > 0 ? "˅" : "˄"}
                   </button>
                 </div>

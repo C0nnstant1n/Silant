@@ -1,6 +1,6 @@
 import { complaintsApi } from "../../../../../redux/complaints.ts";
 import styles from "../detail.module.scss";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Detail from "../detail.tsx";
 import Loading from "../Loading.tsx";
 
@@ -21,17 +21,17 @@ export default function ComplaintDetail() {
   return (
     <>
       {isLoading && !data ? (
-      <Loading suffix={'big'} />
+        <Loading suffix={"big"} />
       ) : (
-          <>
-            <div className={styles.detail}>
-                {complaint
-                    ? complaint.map((data: string[]) => (
-                        <Detail data={data} key={data[0]}/>
-                    ))
-                    : null}
-            </div>
-          </>
+        <>
+          <div className={styles.detail}>
+            {complaint
+              ? complaint.map((data: string[]) => (
+                  <Detail data={data} key={data[0]} />
+                ))
+              : null}
+          </div>
+        </>
       )}
     </>
   );

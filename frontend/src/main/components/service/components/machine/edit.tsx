@@ -16,7 +16,8 @@ export default function Edit() {
   const path = location.pathname.replace(/^\D+/g, "");
   // console.log(path)
   const { data } = machineApi.useGetMachineQuery(path);
-  const [update, { isSuccess, isLoading, isError, error }] = machineApi.useUpdateMachineMutation();
+  const [update, { isSuccess, isLoading, isError, error }] =
+    machineApi.useUpdateMachineMutation();
 
   const content = [];
   if (data) {
@@ -39,8 +40,11 @@ export default function Edit() {
 
   return (
     <>
-      { isLoading ? <Loading suffix={'big'} /> :
-          isError ? <ErrorPage error={error}/> : content ? (
+      {isLoading ? (
+        <Loading suffix={"big"} />
+      ) : isError ? (
+        <ErrorPage error={error} />
+      ) : content ? (
         <form className={formStyle.form} onSubmit={handleUpdate}>
           {content.map((detail) => (
             <div className={styles.detail_wrapper} key={detail[0]}>
@@ -59,10 +63,16 @@ export default function Edit() {
             </div>
           ))}
           <div className={buttonStyle.buttons_container}>
-            <button className={buttonStyle.button + ' ' + buttonStyles.medium} type='submit'>
+            <button
+              className={buttonStyle.button + " " + buttonStyles.medium}
+              type='submit'
+            >
               Сохранить
             </button>
-            <Link to={"/service/info"} className={buttonStyle.button + ' ' + buttonStyles.medium}>
+            <Link
+              to={"/service/info"}
+              className={buttonStyle.button + " " + buttonStyles.medium}
+            >
               Отмена
             </Link>
           </div>

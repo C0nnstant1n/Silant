@@ -2,27 +2,30 @@ import { IComplaint } from "../../../../configs/intarfaces.ts";
 import { complaintsApi } from "../../../../../redux/complaints.ts";
 import tableStyles from "../../../../../assets/styles/table.module.scss";
 import ComplaintTable from "./complaint_table.tsx";
-import {useLocation} from "react-router-dom";
-import {complaintDict} from "../../../../configs/variables.ts";
+import { useLocation } from "react-router-dom";
+import { complaintDict } from "../../../../configs/variables.ts";
 import TableHeaders from "../table_headers.tsx";
 import Loading from "../Loading.tsx";
 import ErrorPage from "../../../../error.tsx";
 
 export default function Complaints() {
-  const path = useLocation()
+  const path = useLocation();
 
-  const { data: complains, isLoading, isError,error } =
-    complaintsApi.useGetComplaintsQuery(path.search ? path.search : '');
+  const {
+    data: complains,
+    isLoading,
+    isError,
+    error,
+  } = complaintsApi.useGetComplaintsQuery(path.search ? path.search : "");
   // console.log(complains)
 
   return (
     <>
-
       {isLoading && !complains ? (
-          <Loading suffix={'big'}/>
-      ) : isError ? <ErrorPage error={error}/> :
-
-          !complains || !complains.count ? (
+        <Loading suffix={"big"} />
+      ) : isError ? (
+        <ErrorPage error={error} />
+      ) : !complains || !complains.count ? (
         <div>
           <div>
             <h2> По вашему запросу нет данных </h2>
@@ -32,7 +35,7 @@ export default function Complaints() {
         <table className={tableStyles.result_table}>
           <thead>
             <tr>
-              <TableHeaders dict={complaintDict}/>
+              <TableHeaders dict={complaintDict} />
             </tr>
           </thead>
           <tbody>
