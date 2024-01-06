@@ -1,6 +1,6 @@
 import { handbooksApi } from "../../../../redux/handbooks.ts";
 import { IHandbook, IMachine } from "../../../configs/intarfaces.ts";
-import { useState } from "react";
+import { BaseSyntheticEvent, useState } from "react";
 import { summary_dictionary } from "../../../configs/variables.ts";
 import { useLocation } from "react-router-dom";
 import { machineApi } from "../../../../redux/machine.ts";
@@ -40,7 +40,7 @@ export default function Selector({ name }: IProps) {
 
   const [def, setDefault] = useState(name.length > 1 ? name[1] : "");
 
-  const handleChange = (event) => {
+  const handleChange = (event: BaseSyntheticEvent) => {
     setDefault(event.target.value);
     event.preventDefault();
   };

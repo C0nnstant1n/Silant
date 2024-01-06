@@ -1,6 +1,6 @@
 import { complaintsApi } from "../../../../../redux/complaints.ts";
 import formStyle from "../../../../../assets/styles/form.module.scss";
-import { IHandbook, IMachine } from "../../../../configs/intarfaces.ts";
+import {IComplaint, IHandbook, IMachine} from "../../../../configs/intarfaces.ts";
 import { getData } from "../../../../../scripts/create.ts";
 import { handbooksApi } from "../../../../../redux/handbooks.ts";
 import { machineApi } from "../../../../../redux/machine.ts";
@@ -28,10 +28,12 @@ export default function CreateComplaint() {
 
   const handleCreate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    create(getData(event));
+    const a = getData(event) as IComplaint
+    create(a);
   };
 
-  const complaint = [];
+
+  const complaint  = []
   // console.log(data)
   for (const i in complaintDict) {
     i != "id" ? complaint.push([i, complaintDict[i]]) : null;
@@ -58,20 +60,18 @@ export default function CreateComplaint() {
                 <section className={formStyle.form_section} key={data[0]}>
                   <p className={formStyle.label}>{data[1]}:</p>
                   <select name={data[0]}>
-                    {handbooks[data[0]] &&
-                      handbooks[data[0]].results.map((data: IHandbook) => (
+                    {handbooks[data[0]] ? handbooks[data[0]].results.map((data: IHandbook) => (
                         <option value={data.id} key={data.name + data.id}>
                           {data.name}
                         </option>
-                      ))}
+                    )) : null}
                   </select>
                 </section>
               ) : data[0] == "machine" ? (
                 <section className={formStyle.form_section} key={data[0]}>
                   <p className={formStyle.label}>{data[1]}:</p>
                   <select name={data[0]}>
-                    {handbooks[data[0]] &&
-                      handbooks[data[0]].results.map((data: IMachine) => (
+                    {handbooks[data[0]] && handbooks[data[0]].results.map((data: IMachine) => (
                         <option
                           value={data.id}
                           key={data.machine_serial_number + data.id}

@@ -10,6 +10,7 @@ import Loading from "../Loading.tsx";
 import ErrorPage from "../../../../error.tsx";
 import { getData } from "../../../../../scripts/create.ts";
 import { IMachine } from "../../../../configs/intarfaces.ts";
+import { BaseSyntheticEvent } from "react";
 
 export default function EditComplaint() {
   const location = useLocation();
@@ -27,7 +28,7 @@ export default function EditComplaint() {
     }
   }
 
-  const handleUpdate = async (e) => {
+  const handleUpdate = async (e: BaseSyntheticEvent) => {
     e.preventDefault();
     // console.log(data.machine);
     let complaint = getData(e);

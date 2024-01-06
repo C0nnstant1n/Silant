@@ -3,10 +3,10 @@ import popStyles from "../../../main.module.scss";
 import buttonStyles from "../../../../assets/styles/buttons.module.scss";
 import { useState } from "react";
 import { summary_dictionary } from "../../../configs/variables.ts";
-import { IHandbook } from "../../../configs/intarfaces.ts";
+import {IHandbook, IMachine} from "../../../configs/intarfaces.ts";
 
 interface IProps {
-  data: [string, string | IHandbook];
+  data: [string, string | number | IHandbook | IMachine];
 }
 
 export default function Detail({ data }: IProps) {
@@ -18,6 +18,7 @@ export default function Detail({ data }: IProps) {
       ? setPopup(popStyles.popdown)
       : setPopup(popStyles.popup);
   };
+  console.log(data.keys(), data)
 
   return (
     <div className={styles.detail_wrapper}>

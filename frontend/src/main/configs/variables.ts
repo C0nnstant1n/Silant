@@ -1,4 +1,7 @@
-const machineDict = {
+interface IDict {
+  [index:string]: string
+}
+const machineDict: IDict = {
   machine_model: "Модель техники",
   machine_serial_number: "Зав. № машины",
   model_engine: "Модель Двигателя",
@@ -18,7 +21,7 @@ const machineDict = {
   service_company: "Сервисная компания",
 
 };
-const maintenanceDict = {
+const maintenanceDict: IDict = {
   machine: "Зав. № машины",
   maintenance_type: "Вид ТО",
   maintenance_date: "Дата Проведения ТО",
@@ -28,7 +31,8 @@ const maintenanceDict = {
   service_company: "Организация проводившая ТО",
 }
 
-const complaintDict = {
+
+const complaintDict: IDict = {
   machine: "Зав. № машины",
   recovery_date: "Дата восстановления",
   date_refusal: "Дата отказа",
@@ -59,7 +63,7 @@ const maintenances_filters = [
   'service_company'
 ]
 
-const summary_dictionary = {
+const summary_dictionary: IDict = {
   machine_model: "Модель техники",
   machine_serial_number: "Зав. № машины",
   model_engine: "Модель Двигателя",

@@ -57,7 +57,7 @@ interface IMaintenance {
 }
 
 interface IComplaint {
-  id?: number;
+  id: number;
   recovery_date: string;
   date_refusal: string;
   operating_time: number;
@@ -68,6 +68,7 @@ interface IComplaint {
   recovery_method: IHandbook | string;
   machine: IMachine | string;
   service_company: IHandbook | string;
+  [key: string]: string | number | IHandbook | IMachine;
 }
 
 interface IResponse {
